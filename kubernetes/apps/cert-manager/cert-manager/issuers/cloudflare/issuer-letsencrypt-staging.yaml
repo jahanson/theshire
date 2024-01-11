@@ -1,0 +1,22 @@
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/cert-manager.io/clusterissuer_v1.json
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-cloudflare-staging
+spec:
+  acme:
+    email: "joe@veri.dev"
+    preferredChain: ""
+    privateKeySecretRef:
+      name: letsencrypt-cloudflare-staging
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    solvers:
+      - dns01:
+          cloudflare:
+            apiTokenSecretRef:
+              name: cloudflare-api-token
+              key: api-token
+        selector:
+          dnsZones:
+            - hsn.dev

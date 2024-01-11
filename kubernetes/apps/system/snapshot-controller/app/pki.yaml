@@ -1,0 +1,17 @@
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/cert-manager.io/issuer_v1.json
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: snapshot-controller-webhook-selfsign
+spec:
+  selfSigned: {}
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/cert-manager.io/issuer_v1.json
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: snapshot-controller-webhook-ca
+spec:
+  ca:
+    secretName: snapshot-controller-webhook-ca

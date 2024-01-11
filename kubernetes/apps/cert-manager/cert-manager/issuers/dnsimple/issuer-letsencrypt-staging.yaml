@@ -1,0 +1,21 @@
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/cert-manager.io/clusterissuer_v1.json
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+spec:
+  acme:
+    preferredChain: ""
+    privateKeySecretRef:
+      name: letsencrypt-staging
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    solvers:
+      - dns01:
+          webhook:
+            config:
+              tokenSecretRef:
+                key: api-token
+                name: dnsimple-api-token
+            solverName: dnsimple
+            groupName: acme.jahanson.com

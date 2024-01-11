@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: hcloud
+    namespace: kube-system
+stringData:
+    ROBOT_ENABLED: ENC[AES256_GCM,data:tTSnWw==,iv:rSrqYIiQSOv6G0QxSYVU6DtW7b3PT7XNF/1pWx68M1g=,tag:2m6YXewARCcyXTjZGimodQ==,type:str]
+    token: ENC[AES256_GCM,data:DzLwUiv5JH/S6OBrzgNp0NO5U/7w0Pq2YtQ7uOAfg7Iw90qzGlzc8CqzlQOw0jHv91LzCUgjpeZn9QP93Dgprw==,iv:T6rqz1HmdKATl+8ov5qclhAo/NzHQTIN6eRSiCEyiZU=,tag:39VZ8N96NEXgvXTPQ/vvBA==,type:str]
+    robot-password: ENC[AES256_GCM,data:OeITzLUpgj03MyQ2n+SYgwykcw==,iv:9ZdbQW4ZAtqmGEiR4KBsziRXMAoHGHcBYXiwjep5H2A=,tag:4eGKJTfn0+NARz1k7j8jXA==,type:str]
+    robot-user: ENC[AES256_GCM,data:Cy2ilSDCVNaxES0N,iv:fs/fu9OOhNPDwgnw1xV8SPtbzlbDkbynvL4Z5L6aO2o=,tag:n2+BeAx8HLtD4rFbKMdUqw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1g786w8t40g9y29l33rfd4jqlwhrgsxsc7ped6uju60k54j0q3enql3kfve
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBSaVJMaEQvSGw1Y3h1WXVi
+            TGFnM1dTaHRaUEtOaVl5anpKazZjbVRpckIwCi9Bc1BueHYvMUljdWRrZFVpQldJ
+            bkRVMWJIdmdubGJXL2NOeUloV3RXQ0EKLS0tIEZadWZJcytYZW5ZdmtFbGcrUjZN
+            SGkvdTBIM1hxMTREL1JDT0NCcXo0ckUKW3fJ509OnrgKxLvWHALLvA4Ha91pN+GM
+            JRdKi8tSlyVEpFgumeOsan3fIrsi9urgqYjMuW5e6ApMZ8/2522MWA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-12-12T18:16:51Z"
+    mac: ENC[AES256_GCM,data:m3jplww3Pv4UnCIdyJ2DEkA95U5+Ovddk2DhEG7KhVQ/PTtG31UFCHdoBIgHf0ZcYmAYRLeyvUfRmi19I+h0h1eDrlbTwpFSYByunLvJZqk2Dp9WWCyGnoJ2Wh/dzW/pcLRSJCZWPxUGPR48cyZTlzg+iZHm760kbXQmzAE+ZHc=,iv:xxyyd9IaTtd+Te+2T156/c+842GVeOoPEs+IBZibWrk=,tag:EruEq5+6kU+nme9NydF/bg==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.8.1

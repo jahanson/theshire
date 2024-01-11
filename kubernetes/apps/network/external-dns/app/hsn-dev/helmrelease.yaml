@@ -1,0 +1,69 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2beta2.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: &name externaldns-hsn-dev
+  namespace: network
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: external-dns
+      version: 1.13.1
+      sourceRef:
+        kind: HelmRepository
+        name: kubernetes-sigs-external-dns
+        namespace: flux-system
+      interval: 30m
+
+  values:
+    fullnameOverride: *name
+
+    domainFilters:
+      - hsn.dev
+
+    env:
+      - name: CF_API_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: externaldns-hsn-dev-secrets
+            key: cloudflare_api_token
+
+    extraArgs:
+      - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
+      - --ingress-class=hsn-nginx
+
+    podAnnotations:
+      secret.reloader.stakater.com/reload: externaldns-hsn-dev-secrets
+
+    policy: sync
+    provider: cloudflare
+
+    resources:
+      requests:
+        cpu: 5m
+        memory: 100Mi
+      limits:
+        memory: 100Mi
+
+    serviceMonitor:
+      enabled: true
+
+    sources:
+      - ingress
+      - crd
+
+    txtPrefix: "k8s."
+
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              version: v1
+              kind: Deployment
+              name: *name
+            patch: |
+              - op: add
+                path: /spec/template/spec/enableServiceLinks
+                value: false

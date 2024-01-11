@@ -1,0 +1,16 @@
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/cert-manager.io/certificate_v1.json
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: "valinor-social"
+  namespace: network
+spec:
+  secretName: "valinor-social-tls"
+  issuerRef:
+    name: letsencrypt-dnsimple-production
+    kind: ClusterIssuer
+  commonName: "valinor.social"
+  dnsNames:
+    - "valinor.social"
+    - "*.valinor.social"

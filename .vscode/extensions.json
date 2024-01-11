@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "mikestead.dotenv",
+        "redhat.ansible",
+        "redhat.vscode-yaml",
+        "signageos.signageos-vscode-sops",
+        "pkief.material-icon-theme",
+        "ms-vscode-remote.remote-ssh"
+    ]
+}

@@ -1,0 +1,12 @@
+---
+version: "3"
+
+tasks:
+  hubble:
+    desc: forward the hubble relay
+    cmds:
+      - cilium hubble port-forward &
+  hubble-ui:
+    desc: port-forward hubble to 8888
+    cmds:
+      - kubectl port-forward -n kube-system svc/hubble-ui 8888:80

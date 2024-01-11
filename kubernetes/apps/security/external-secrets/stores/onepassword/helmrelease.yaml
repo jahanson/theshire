@@ -1,0 +1,142 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2beta2.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: onepassword-connect
+  namespace: security
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.4.0
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+
+  values:
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: docker.io/1password/connect-api
+              tag: 1.7.2
+            env:
+              OP_BUS_PORT: "11220"
+              OP_BUS_PEERS: "localhost:11221"
+              OP_HTTP_PORT: &port-connect 8080
+              OP_SESSION:
+                valueFrom:
+                  secretKeyRef:
+                    name: onepassword-connect-secret
+                    key: onepassword-credentials.json
+            probes:
+              liveness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /heartbeat
+                    port: *port-connect
+                  initialDelaySeconds: 15
+                  periodSeconds: 30
+                  failureThreshold: 3
+              readiness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /health
+                    port: *port-connect
+                  initialDelaySeconds: 15
+              startup:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /health
+                    port: *port-connect
+                  failureThreshold: 30
+                  periodSeconds: 5
+                  successThreshold: 1
+                  timeoutSeconds: 1
+          sync:
+            image:
+              repository: docker.io/1password/connect-sync
+              tag: 1.7.2
+            env:
+              - name: OP_SESSION
+                valueFrom:
+                  secretKeyRef:
+                    name: onepassword-connect-secret
+                    key: onepassword-credentials.json
+              - name: OP_HTTP_PORT
+                value: &port-sync 8081
+              - name: OP_BUS_PORT
+                value: "11221"
+              - name: OP_BUS_PEERS
+                value: "localhost:11220"
+            probes:
+              readinessProbe:
+                httpGet:
+                  path: /health
+                  port: *port-sync
+                initialDelaySeconds: 15
+              livenessProbe:
+                httpGet:
+                  path: /heartbeat
+                  port: *port-sync
+                failureThreshold: 3
+                periodSeconds: 30
+                initialDelaySeconds: 15
+            volumeMounts:
+              - name: shared
+                mountPath: /home/opuser/.op/data
+
+    service:
+      main:
+        ports:
+          http:
+            port: *port-connect
+
+    ingress:
+      main:
+        classname: "nginx"
+        annotations:
+          nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
+        hosts:
+          - host: &host "1pwconnect.hsn.dev"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+
+        tls:
+          - hosts:
+              - *host
+
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 999
+        runAsGroup: 999
+
+    persistence:
+      shared:
+        enabled: true
+        type: emptyDir
+        globalMounts:
+          - path: /home/opuser/.op/data
+
+    resources:
+      requests:
+        cpu: 5m
+        memory: 10Mi
+      limits:
+        memory: 100Mi

@@ -1,0 +1,18 @@
+---
+kubernetes:
+  vars:
+    ansible_user: jahanson
+    ansible_ssh_port: 22
+  children:
+    master:
+      hosts:
+        galadriel:
+          ansible_host: 10.1.1.61
+        thrain:
+          ansible_host: 10.1.1.62
+        cirdan:
+          ansible_host: 10.1.1.63
+    workers:
+      hosts:
+        qbee:
+          ansible_host: 10.1.1.41

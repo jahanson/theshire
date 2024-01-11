@@ -1,0 +1,34 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization.json
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+ - authentik.yaml
+ - bitnami.yaml
+ - bjw-s.yaml
+ - cilium.yaml
+ - cloudnative-pg.yaml
+ - crowdsec.yaml
+ - crunchydata.yaml
+ - democratic-csi.yaml
+ - dragonflydb.yaml
+ - elastic.yaml
+ - external-secrets.yaml
+ - fairwinds.yaml
+ - grafana.yaml
+ - hetzner.yaml
+ - ingress-nginx.yaml
+ - intel.yaml
+ - jahanson.yaml
+ - jetstack.yaml
+ - kubernetes-sigs-nfd.yaml
+#  - kubernetes-sigs-descheduler.yaml
+ - kyverno.yaml
+ - kubernetes-sigs-metrics-server.yaml
+ - kubernetes-sigs-external-dns.yaml
+ - piraeus.yaml
+ - postfinance.yaml
+ - prometheus-community.yaml
+ - rook-ceph.yaml
+ - stakater.yaml
+#  - weave-gitops.yaml

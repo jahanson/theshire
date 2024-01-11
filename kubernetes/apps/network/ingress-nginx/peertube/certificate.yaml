@@ -1,0 +1,16 @@
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/cert-manager.io/certificate_v1.json
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: "khazadtube-tv"
+  namespace: network
+spec:
+  secretName: "khazadtube-tv-tls"
+  issuerRef:
+    name: letsencrypt-dnsimple-production
+    kind: ClusterIssuer
+  commonName: "khazadtube.tv"
+  dnsNames:
+    - "khazadtube.tv"
+    - "*.khazadtube.tv"

@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://ks.hsn.dev/cilium.io/ciliumclusterwidenetworkpolicy_v2.json
+---
+apiVersion: cilium.io/v2
+kind: CiliumClusterwideNetworkPolicy
+metadata:
+  name: allow-ssh
+spec:
+  description: ""
+  nodeSelector:
+    matchLabels:
+      # node-access: ssh
+      node-role.kubernetes.io/control-plane: "true"
+  ingress:
+  - fromEntities:
+    - cluster
+  - toPorts:
+    - ports:
+      - port: "22"
+        protocol: TCP
+  - icmps:
+    - fields:
+      - type: 8
+        family: IPv4
