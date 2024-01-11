@@ -27,7 +27,7 @@ spec:
     keepHistory: false
   values:
     cluster:
-      name: valinor
+      name: homelab
       id: 1
     hubble:
       relay:
@@ -35,7 +35,6 @@ spec:
       ui:
         enabled: true
       metrics:
-        # enabled: "{dns,drop,tcp,flow,port-distribution,icmp,httpV2:exemplars=true;labelsContext=source_ip,source_namespace,source_workload,destination_ip,destination_namespace,destination_workload,traffic_direction}"
         enableOpenMetrics: true
     prometheus:
       enabled: true
@@ -50,26 +49,7 @@ spec:
       enabled: true                  # enable host policies
     extraConfig:
       allow-localhost: policy        # enable policies for localhost
-
     kubeProxyReplacement: true
-    securityContext:
-      capabilities:
-        ciliumAgent:
-          - CHOWN
-          - KILL
-          - NET_ADMIN
-          - NET_RAW
-          - IPC_LOCK
-          - SYS_ADMIN
-          - SYS_RESOURCE
-          - DAC_OVERRIDE
-          - FOWNER
-          - SETGID
-          - SETUID
-        cleanCiliumState:
-          - NET_ADMIN
-          - SYS_ADMIN
-          - SYS_RESOURCE
     k8sServiceHost: ${K8S_SERVICE_ENDPOINT}
     k8sServicePort: 6443
     rollOutCiliumPods: true

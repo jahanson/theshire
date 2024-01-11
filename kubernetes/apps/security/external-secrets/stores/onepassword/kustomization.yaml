@@ -5,9 +5,7 @@ kind: Kustomization
 namespace: security
 resources:
   - ./secret.sops.yaml
-  - ./helmrelease.yaml
   - ./clustersecretstore.yaml
-
 labels:
   - pairs:
       app.kubernetes.io/name: stores

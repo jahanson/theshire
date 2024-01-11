@@ -15,5 +15,5 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: valinor
+    name: homelab
   wait: true

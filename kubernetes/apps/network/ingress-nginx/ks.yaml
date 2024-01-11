@@ -3,17 +3,17 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-ingress-nginx
+  name: cluster-apps-ingress-nginx-external
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
   interval: 10m
-  path: "./kubernetes/apps/network/ingress-nginx/app"
+  path: "./kubernetes/apps/network/ingress-nginx/external"
   prune: true
   sourceRef:
     kind: GitRepository
-    name: valinor
+    name: homelab
   wait: true
   dependsOn:
     - name: cluster-apps-cert-manager-issuers
@@ -32,7 +32,7 @@ spec:
 #   prune: true
 #   sourceRef:
 #     kind: GitRepository
-#     name: valinor
+#     name: homelab
 #   wait: true
 #   dependsOn:
 #     - name: cluster-apps-cert-manager-issuers

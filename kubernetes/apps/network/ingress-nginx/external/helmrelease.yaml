@@ -15,6 +15,11 @@ spec:
         name: ingress-nginx
         namespace: flux-system
       interval: 30m
+  valuesFrom:
+    - targetPath: controller.maxmindLicenseKey
+      kind: Secret
+      name: nginx-external-maxmind-secret
+      valuesKey: MAXMIND_LICENSE_KEY
   values:
     controller:
       replicaCount: 2
@@ -26,10 +31,8 @@ spec:
         enabled: true
         type: LoadBalancer
         annotations:
-          load-balancer.hetzner.cloud/location: fsn1
-          load-balancer.hetzner.cloud/protocol: tcp
-          load-balancer.hetzner.cloud/name: hsn-nginx
-          load-balancer.hetzner.cloud/uses-proxyprotocol: true
+          external-dns.alpha.kubernetes.io/hostname: external.hsn.dev
+          io.cilium/lb-ipam-ips: 10.45.0.2
 
       publishService:
         enabled: true
@@ -43,27 +46,33 @@ spec:
             any: true
 
       ingressClassResource:
-        name: hsn-nginx
+        name: external
         default: true
 
       config:
         block-user-agents: "GPTBot,~*GPTBot*,ChatGPT-User,~*ChatGPT-User*,Google-Extended,~*Google-Extended*,CCBot,~*CCBot*,Omgilibot,~*Omgilibot*,FacebookBot,~*FacebookBot*" # taken from https://github.com/superseriousbusiness/gotosocial/blob/main/internal/web/robots.go
-        client-header-timeout: 120
-        client-body-buffer-size: "100M"
+        client-body-buffer-size: 100M
         client-body-timeout: 120
+        client-header-timeout: 120
         enable-brotli: "true"
         enable-ocsp: "true"
         enable-real-ip: "true"
-        use-proxy-protocol: "true"
         hide-headers: Server,X-Powered-By
-        hsts-max-age: "31449600"
-        keep-alive: 120
+        hsts-max-age: 31449600
         keep-alive-requests: 10000
+        keep-alive: 120
+        log-format-escape-json: "true"
+        log-format-upstream: >
+          {"time": "$time_iso8601", "remote_addr": "$proxy_protocol_addr", "x_forwarded_for": "$proxy_add_x_forwarded_for",
+          "request_id": "$req_id", "remote_user": "$remote_user", "bytes_sent": $bytes_sent, "request_time": $request_time,
+          "status": $status, "vhost": "$host", "request_proto": "$server_protocol", "path": "$uri", "request_query": "$args",
+          "request_length": $request_length, "duration": $request_time, "method": "$request_method", "http_referrer": "$http_referer",
+          "http_user_agent": "$http_user_agent", "country_code": "$geoip2_city_country_code", "country_name": "$geoip2_city_country_name"}
         proxy-body-size: 0
-        proxy-buffer-size: "16k"
-        ssl-protocols: "TLSv1.3 TLSv1.2"
+        proxy-buffer-size: 16k
+        ssl-protocols: TLSv1.3 TLSv1.2
+        use-geoip2: true
         use-forwarded-headers: "true"
-
       extraArgs:
         default-ssl-certificate: "network/hsn-dev-tls"
 
@@ -75,24 +84,10 @@ spec:
             matchLabels:
               app.kubernetes.io/instance: ingress-nginx-hsn
               app.kubernetes.io/component: controller
-      affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchExpressions:
-                  - key: app.kubernetes.io/component
-                    operator: In
-                    values:
-                      - controller
-                  - key: app.kubernetes.io/instance
-                    operator: In
-                    values:
-                      - ingress-nginx-hsn
-              topologyKey: kubernetes.io/hostname
 
       resources:
         requests:
-          cpu: 23m
+          cpu: 100m
           memory: 381M
 
     defaultBackend:

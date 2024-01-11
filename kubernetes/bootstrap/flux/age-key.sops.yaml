@@ -5,24 +5,24 @@ metadata:
     name: sops-age
     namespace: flux-system
 stringData:
-    age.agekey: ENC[AES256_GCM,data:DELuczoRtBQW58s5i8Nmb4Hp+XzZ35aiOfwBJDXaqgfQMFY63QXRzBVkTDS0GxFoGt3jvLILJPwde0OHiVrkNEZdDwRr3JZKnTs=,iv:DqAaHlJRT8SUItoceaIQ7smJUcmtTeu51AJt1WM0pKA=,tag:YGbmN4hRhWCCGLPvyDLsnA==,type:str]
+    age.agekey: ENC[AES256_GCM,data:f+9hVYtS9xNgh3KSpC7HtIzSWnFEEtKNijhT4NWi9Yx3dlRuX50vhc8exLYcjcIbytCwMtTCI4xAjUk4TkxlGaj5DzhU/rdvE+c=,iv:uzhwlqMG1F2rb4XM00EXCI8mpCcKMTn1a2KPH/NGYqo=,tag:Ao+cLYINlL1AfJGFR9EG/A==,type:str]
 sops:
     kms: []
     gcp_kms: []
     azure_kv: []
     hc_vault: []
     age:
-        - recipient: age1g786w8t40g9y29l33rfd4jqlwhrgsxsc7ped6uju60k54j0q3enql3kfve
+        - recipient: age1eqlaq205y5jre9hu5hvulywa7w3d4qyxwmafneamxcn7nejesedsf4q9g6
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAxMURBNzFadmc1ejZ4eStp
-            czlYTUtWUk52NzlaZ1NJSzU2R3R4VFB4TWtZCmc2SjZ1OVhNYXlXQ21WT1I0ZjU3
-            V2RzRU5PUnYzMWlRcy9vTG5JNkIwVncKLS0tIHdjU0VSaVdBQ3A5ZDlybTBiUVB1
-            YVE3NVptM1Q2ZjEyZHE3N2ZIaEtlRFUKQZEkNHDnlnZYXqK62SplHa7gEsEIBVNV
-            4TYZQzf+fBmlxmDCwDLTNTJZZJfgLjYPfBStvGSx+VbW2HS6PoXMFQ==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB5cVRSZUZjR1Y2Q0U2RUJC
+            M05wdVdhWU1oTjZBeTliNDR1V29KN3hKMFN3ClJJQkx2RTRSL2V4ZjR2QmJQUGph
+            ZUo3UlpPaVc4YjdJbGRkaVhTQmpHVGsKLS0tIFlYMHY2a1FjZ2xobUpKNnRwSDhV
+            eE1VUmwxNjU0SVAvaWF1dVNKMlV6ZzAKrxZ1g+mkSBNECmd+sf5Z4L7xVDaFw1g/
+            hUoFCpjo7fiGS0ru7lhkLzBAwRflWDkpjn75W/18ULaF69bsF9swPQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-08-15T16:24:05Z"
-    mac: ENC[AES256_GCM,data:QxME2bUjRTBpPpMR1ZWANlF+EskMRJuyylOiRHcPzWu9Bve1rz+4mkNdlUYzf0gdLi8psRc6ko0Jb6IH9lLZxOkMAh2YYaMrzAf3hMRBytiJKX/nUs9tIJv8Lft21nXibeaT/TcT5YNwNvd3nTZgBJcJ5nYwmU1sTn3/Lay5jrY=,iv:0uVxxRg+Dp8oZ43DnbtEx25rQcJ23Ag13eKfvvXukVk=,tag:/4Ufpkh8DCONTEWy4pc5bw==,type:str]
+    lastmodified: "2024-01-11T22:06:47Z"
+    mac: ENC[AES256_GCM,data:Sg8eZvpifFdLezfcQ8FFwCUzQpCzx+iOrje2E2fVM4AcIcVR/i3zrdCOzJ252W7Fe6mreVpZA0rKKePCEH1A6ZSvjnPKpMvAdhei7BMyIkDs/8VDJMjZOJOWmtLNIwCYIbkwA+cOnFfufnRdSp7/NsqVo+8STOcr4qWAyfDenVQ=,iv:FHFTiD1NtBHslxuTwdmxw3Xb31F9xK6hhKdw0szXfkk=,tag:MbNsGc1ZW1biUOEDFRTSMQ==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
-    version: 3.7.3
+    version: 3.8.1

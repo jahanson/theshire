@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: rocky-nessa
+  name: ubuntu
   namespace: default
 spec:
-  nodeName: nessa
+  nodeName: nenya
   containers:
-    - name: rocky
-      image: rockylinux:9
+    - name: ubuntu
+      image: ubuntu:latest
       securityContext:
         privileged: true
       command: ["/bin/bash", "-c", "while true; do sleep 10; done"]

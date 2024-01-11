@@ -3,7 +3,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: valinor
+  name: homelab
   namespace: flux-system
 spec:
   interval: 30m
@@ -31,7 +31,7 @@ spec:
   wait: false
   sourceRef:
     kind: GitRepository
-    name: valinor
+    name: homelab
   decryption:
     provider: sops
     secretRef:
