@@ -1,1 +1,1 @@
-Kubernetes with Talos @ Hetzner
+Kubernetes with k3s @ Home
