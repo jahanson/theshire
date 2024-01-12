@@ -24,7 +24,7 @@ spec:
   uninstall:
     keepHistory: false
   dependsOn:
-    - name: cluster-apps-ingress-nginx-external
+    - name: ingress-nginx-hsn
       namespace: network
   values:
     controllers:
