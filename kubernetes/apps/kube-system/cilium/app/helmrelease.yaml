@@ -53,3 +53,10 @@ spec:
     k8sServiceHost: ${K8S_SERVICE_ENDPOINT}
     k8sServicePort: 6443
     rollOutCiliumPods: true
+    bgp:
+      enabled: false
+      announce:
+        loadbalancerIP: true
+        podCIDR: false
+    bgpControlPlane:
+      enabled: true
