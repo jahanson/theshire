@@ -9,11 +9,11 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: nvdp
+      chart: nvidia-device-plugin
       version: 0.14.3
       sourceRef:
         kind: HelmRepository
-        name: nvidia-device-plugin
+        name: nvdp
         namespace: flux-system
   maxHistory: 2
   install:
