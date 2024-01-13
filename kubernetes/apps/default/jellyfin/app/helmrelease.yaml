@@ -82,8 +82,8 @@ spec:
           volumeClaimTemplates:
             - name: config
               accessMode: ReadWriteOnce
-              size: 50Gi
-              storageClass: ceph-block
+              size: 1Gi
+              storageClass: local-hostpath
               globalMounts:
                 - path: /config
     service:
@@ -114,6 +114,9 @@ spec:
         globalMounts:
           - path: /transcode
       media:
-        existingClaim: media
+        enabled: true
+        type: nfs
+        server: 10.1.1.30
+        path: /mnt/Nahar/Media
         globalMounts:
           - path: /media
