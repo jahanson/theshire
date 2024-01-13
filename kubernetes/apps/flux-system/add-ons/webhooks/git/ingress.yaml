@@ -7,7 +7,7 @@ metadata:
   annotations:
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
 spec:
-  ingressClassName: "hsn-nginx"
+  ingressClassName: external-nginx
   rules:
     - host: &host "flux-receiver-valinor.hsn.dev"
       http:

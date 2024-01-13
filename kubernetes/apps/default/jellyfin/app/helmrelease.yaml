@@ -94,7 +94,7 @@ spec:
     ingress:
       main:
         enabled: true
-        className: hsn-nginx
+        className: external-nginx
         annotations:
         hosts:
           - host: &host "jelly.hsn.dev"
