@@ -6,6 +6,4 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  - ./node-feature-discovery/ks.yaml
-  - ./reloader/ks.yaml
-  - ./snapshot-controller/ks.yaml
+  - ./nvidia-device-plugin/ks.yaml

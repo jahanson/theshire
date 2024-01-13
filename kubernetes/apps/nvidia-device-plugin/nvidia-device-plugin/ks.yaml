@@ -10,7 +10,7 @@ metadata:
 spec:
   targetNamespace: nvidia-device-plugin
   interval: 10m
-  path: "./kubernetes/apps/system/nvidia-device-plugin/app"
+  path: "./kubernetes/apps/nvidia-device-plugin/nvidia-device-plugin/app"
   prune: true
   sourceRef:
     kind: GitRepository
