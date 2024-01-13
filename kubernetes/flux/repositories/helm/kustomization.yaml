@@ -26,6 +26,7 @@ resources:
  - kyverno.yaml
  - kubernetes-sigs-metrics-server.yaml
  - kubernetes-sigs-external-dns.yaml
+ - nvidia.yaml
  - piraeus.yaml
  - postfinance.yaml
  - prometheus-community.yaml
