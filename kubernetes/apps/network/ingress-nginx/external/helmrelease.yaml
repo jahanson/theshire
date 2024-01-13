@@ -46,7 +46,7 @@ spec:
             any: true
 
       ingressClassResource:
-        name: external
+        name: external-nginx
         default: true
 
       config:
