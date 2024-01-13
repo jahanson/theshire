@@ -25,9 +25,6 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  dependsOn:
-    - name: intel-device-plugins-gpu
-      namespace: system
   values:
     controllers:
       main:
@@ -62,11 +59,11 @@ spec:
                 enabled: false
             resources:
               requests:
-                gpu.intel.com/i915: 1
+                nvidia.com/gpu: 1 # requesting 1 GPU
                 cpu: 100m
                 memory: 512Mi
               limits:
-                gpu.intel.com/i915: 1
+                nvidia.com/gpu: 1
                 memory: 4Gi
         pod:
           enableServiceLinks: false
