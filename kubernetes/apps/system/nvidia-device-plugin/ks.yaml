@@ -8,6 +8,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
+  targetNamespace: system
   interval: 10m
   path: "./kubernetes/apps/system/nvidia-device-plugin/app"
   prune: true
