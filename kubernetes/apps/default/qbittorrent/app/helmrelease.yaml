@@ -36,6 +36,11 @@ spec:
             env:
               UMASK: "022"
               QBITTORRENT__PORT: &port 8080
+              QBT_Preferences__WebUI__AlternativeUIEnabled: false
+              QBT_Preferences__WebUI__AuthSubnetWhitelistEnabled: true
+              QBT_Preferences__WebUI__AuthSubnetWhitelist: |-
+                10.32.0.0/16, 10.1.2.0/24
+              QBT_Preferences__WebUI__LocalHostAuth: false
             resources:
               requests:
                 cpu: 49m
