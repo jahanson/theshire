@@ -120,7 +120,7 @@ spec:
     persistence:
       config:
         enabled: true
-        className: local-hostpath
+        storageClassName: local-hostpath
         advancedMounts:
           main:
             main:
