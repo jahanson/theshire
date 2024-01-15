@@ -1,0 +1,16 @@
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/cert-manager.io/certificate_v1.json
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: "jahanson-tech"
+  namespace: network
+spec:
+  secretName: "jahanson-tech-tls"
+  issuerRef:
+    name: letsencrypt-cloudflare-production
+    kind: ClusterIssuer
+  commonName: "jahanson.tech"
+  dnsNames:
+    - "jahanson.tech"
+    - "*.jahanson.tech"
