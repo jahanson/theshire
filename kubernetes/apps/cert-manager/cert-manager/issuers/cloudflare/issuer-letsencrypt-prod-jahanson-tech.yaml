@@ -1,0 +1,22 @@
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/cert-manager.io/clusterissuer_v1.json
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: le-cf-prod-jahanson-tech
+spec:
+  acme:
+    email: "joe@veri.dev"
+    preferredChain: ""
+    privateKeySecretRef:
+      name: letsencrypt-cloudflare-production
+    server: https://acme-v02.api.letsencrypt.org/directory
+    solvers:
+      - dns01:
+          cloudflare:
+            apiTokenSecretRef:
+              name: jahanson-tech-api-token
+              key: api-token
+        selector:
+          dnsZones:
+            - jahanson.tech

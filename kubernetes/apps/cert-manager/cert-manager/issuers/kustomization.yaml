@@ -6,4 +6,5 @@ namespace: cert-manager
 resources:
   - ./cloudflare/externalsecret.yaml
   - ./cloudflare/issuer-letsencrypt-prod.yaml
+  - ./cloudflare/issuer-letsencrypt-prod-jahanson-tech.yaml
   - ./cloudflare/issuer-letsencrypt-staging.yaml
