@@ -20,4 +20,3 @@ spec:
         selector:
           dnsZones:
             - hsn.dev
-            - jahanson.tech

@@ -8,7 +8,7 @@ metadata:
 spec:
   secretName: "jahanson-tech-tls"
   issuerRef:
-    name: letsencrypt-cloudflare-production
+    name: le-cf-prod-jahanson-tech
     kind: ClusterIssuer
   commonName: "jahanson.tech"
   dnsNames:
