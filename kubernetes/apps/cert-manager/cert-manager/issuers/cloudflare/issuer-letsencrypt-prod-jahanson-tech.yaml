@@ -15,8 +15,8 @@ spec:
       - dns01:
           cloudflare:
             apiTokenSecretRef:
-              name: jahanson-tech-api-token
-              key: api-token
+              name: cloudflare-api-token
+              key: jahanson-tech-api-token
         selector:
           dnsZones:
             - jahanson.tech
