@@ -14,5 +14,17 @@ kubernetes:
           ansible_host: 10.1.1.63
     workers:
       hosts:
-        qbee:
+        nenya:
           ansible_host: 10.1.1.41
+        vilya:
+          ansible_host: 10.1.1.42
+          ceph_drives:
+            - /dev/disk/by-id/nvme-PC300_NVMe_SK_hynix_256GB_EJ75N587410705M4U
+        gollum:
+          ansible_host: 10.1.1.43
+          ceph_drives:
+            - /dev/disk/by-id/nvme-Samsung_SSD_960_EVO_250GB_S3ESNX0K308457X
+        narya:
+          ansible_host: 10.1.1.44
+          ceph_drives:
+            - /dev/disk/by-id/nvme-Samsung_SSD_960_EVO_250GB_S3ESNX0K308438J
