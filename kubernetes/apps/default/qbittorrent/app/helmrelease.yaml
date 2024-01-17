@@ -136,7 +136,7 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClassName: local-hostpath
+        existingClaim: qbittorrent-config
         advancedMounts:
           main:
             main:
