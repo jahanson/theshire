@@ -8,6 +8,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
+  targetNamespace: network
   interval: 10m
   path: "./kubernetes/apps/network/external-dns/app/hsn-dev"
   prune: true
@@ -27,6 +28,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
+  targetNamespace: network
   interval: 10m
   path: "./kubernetes/apps/network/external-dns/app/jahanson-tech"
   prune: true
