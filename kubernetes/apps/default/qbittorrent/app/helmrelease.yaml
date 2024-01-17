@@ -136,11 +136,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: qbittorrent-config
-        advancedMounts:
-          main:
-            main:
-              - path: /config
+        existingClaim: qbittorrent
       media:
         type: nfs
         server: 10.1.1.30
