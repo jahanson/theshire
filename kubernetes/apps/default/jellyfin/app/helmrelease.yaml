@@ -31,12 +31,12 @@ spec:
         type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
+        runtimeClassName: nvidia
         containers:
           main:
             image:
               repository: jellyfin/jellyfin
               tag: 10.8.13
-            runtimeClassName: nvidia
             env:
               NVIDIA_VISIBLE_DEVICES: "all"
               NVIDIA_DRIVER_CAPABILITIES: "compute,video,utility"
