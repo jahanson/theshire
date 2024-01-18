@@ -75,14 +75,6 @@ spec:
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
             supplementalGroups: [44, 105, 10000]
-        statefulset:
-          volumeClaimTemplates:
-            - name: config
-              accessMode: ReadWriteOnce
-              size: 1Gi
-              storageClass: local-hostpath
-              globalMounts:
-                - path: /config
     service:
       main:
         ports:
@@ -106,6 +98,9 @@ spec:
           - hosts:
               - *host
     persistence:
+      config:
+        existingClaim: jellyfin
+        enabled: true
       transcode:
         type: emptyDir
         globalMounts:
