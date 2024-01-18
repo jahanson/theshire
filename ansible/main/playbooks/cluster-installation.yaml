@@ -80,6 +80,7 @@
 
     # TODO: Replace this with embedded spegel in the future
     - name: Copy custom containerd configuration
+      when: inventory_hostname != 'nenya'
       notify: Restart Kubernetes
       ansible.builtin.copy:
         src: files/config.toml.tmpl
@@ -87,6 +88,17 @@
         owner: root
         group: root
         mode: "0644"
+
+    - name: Copy custom containerd configuration
+      when: inventory_hostname == 'nenya'
+      notify: Restart Kubernetes
+      ansible.builtin.copy:
+        src: files/config.nvidia.toml.tmpl
+        dest: /var/lib/rancher/k3s/agent/etc/containerd/config.toml.tmpl
+        owner: root
+        group: root
+        mode: "0644"
+
 
   handlers:
     - name: Restart Kubernetes
