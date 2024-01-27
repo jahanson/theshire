@@ -42,5 +42,10 @@ spec:
       enabled: true
     extraConfig:
       allow-localhost: policy
-
-
+    bgp:
+      enabled: false
+      announce:
+        loadbalancerIP: true
+        podCIDR: false
+    bgpControlPlane:
+      enabled: true
