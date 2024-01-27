@@ -16,14 +16,16 @@ kubernetes:
       hosts:
         nenya:
           ansible_host: 10.1.1.41
+          ceph_drives:
+            - /dev/disk/by-id/nvme-PC300_NVMe_SK_hynix_256GB_EJ75N587410705M4U
         vilya:
           ansible_host: 10.1.1.42
           ceph_drives:
-            - /dev/disk/by-id/nvme-PC300_NVMe_SK_hynix_256GB_EJ75N587410705M4U
-        gollum:
+            - /dev/disk/by-id/nvme-PC300_NVMe_SK_hynix_256GB_EJ75N587411205N58
+        elrond:
           ansible_host: 10.1.1.43
           ceph_drives:
-            - /dev/disk/by-id/nvme-Samsung_SSD_960_EVO_250GB_S3ESNX0K308457X
+            - /dev/vdb
         narya:
           ansible_host: 10.1.1.44
           ceph_drives:

@@ -23,7 +23,7 @@
             filename: non-free
             update_cache: true
         - name: Packages | Install Intel common packages
-          when: inventory_hostname == 'orome'
+          when: inventory_hostname != 'elrond'
           ansible.builtin.apt:
             name: vim,i965-va-driver-shaders,apt-transport-https,ca-certificates,conntrack,curl,dirmngr,gdisk,
               gnupg,hdparm,htop,btop,intel-gpu-tools,intel-media-va-driver-non-free,iperf3,iptables,iputils-ping,ipvsadm,
@@ -32,7 +32,7 @@
               unzip,util-linux
             install_recommends: false
         - name: Packages | Install AMD common packages
-          when: inventory_hostname != 'orome'
+          when: inventory_hostname == 'elrond'
           ansible.builtin.apt:
             name: vim,apt-transport-https,ca-certificates,conntrack,curl,dirmngr,gdisk,
               gnupg,hdparm,htop,btop,iperf3,iptables,iputils-ping,ipvsadm,
@@ -103,7 +103,7 @@
             dest: "/etc/modules-load.d/{{ item }}.conf"
             mode: "0644"
             content: "{{ item }}"
-          loop: ["br_netfilter", "ceph", "ip_vs", "ip_vs_rr", "nbd", "overlay", "rbd", "tcp_bbr"]
+          loop: ["br_netfilter", "ceph", "ip_vs", "ip_vs_rr", "overlay", "rbd", "tcp_bbr"]
           register: modules_status
         - name: System Configuration | Reload Kernel modules # noqa: no-changed-when no-handler
           when: modules_status.changed

@@ -80,7 +80,7 @@
 
     # TODO: Replace this with embedded spegel in the future
     - name: Copy custom containerd configuration
-      when: inventory_hostname != 'nenya'
+      when: inventory_hostname != 'temp'
       notify: Restart Kubernetes
       ansible.builtin.copy:
         src: files/config.toml.tmpl
@@ -90,7 +90,7 @@
         mode: "0644"
 
     - name: Copy custom containerd configuration
-      when: inventory_hostname == 'nenya'
+      when: inventory_hostname == 'temp'
       notify: Restart Kubernetes
       ansible.builtin.copy:
         src: files/config.nvidia.toml.tmpl
