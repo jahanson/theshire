@@ -9,4 +9,5 @@ resources:
   - ./radarr/ks.yaml
   - ./sabnzbd/ks.yaml
   - ./sonarr/ks.yaml
+  - ./tautulli/ks.yaml
   - ./qbittorrent/ks.yaml
