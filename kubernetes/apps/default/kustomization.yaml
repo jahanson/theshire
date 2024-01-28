@@ -5,6 +5,7 @@ kind: Kustomization
 resources:
   # Flux-Kustomizations
   - ./jellyfin/ks.yaml
+  - ./maintainerr/ks.yaml
   - ./prowlarr/ks.yaml
   - ./radarr/ks.yaml
   - ./recyclarr/ks.yaml
