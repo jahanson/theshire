@@ -49,6 +49,22 @@ spec:
               SONARR__THEME: dark
               SONARR__POSTGRES_MAIN_DB: sonarr_main
               SONARR__POSTGRES_LOG_DB: sonarr_logs
+              SONARR__POSTGRES_HOST:
+                valueFrom:
+                  secretKeyRef:
+                    name: "${APP}-pguser-${DB_USER}"
+                    key: host
+              SONARR__POSTGRES_PORT: "5432"
+              SONARR__POSTGRES_USER:
+                valueFrom:
+                  secretKeyRef:
+                    name: "${APP}-pguser-${DB_USER}"
+                    key: user
+              SONARR__POSTGRES_PASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    name: "${APP}-pguser-${DB_USER}"
+                    key: password
               TZ: America/Chicago
             envFrom:
               - secretRef:
