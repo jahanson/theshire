@@ -140,3 +140,9 @@ spec:
         path: /volume1/Media
         globalMounts:
           - path: /data/nas-media
+      sting-media:
+        type: nfs
+        server: 10.1.1.12
+        path: /mnt/user/Media/
+        globalMounts:
+          - path: /data/sting-media
