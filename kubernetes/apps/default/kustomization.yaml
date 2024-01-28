@@ -6,6 +6,7 @@ resources:
   # Flux-Kustomizations
   - ./jellyfin/ks.yaml
   - ./maintainerr/ks.yaml
+  - ./overseerr/ks.yaml
   - ./prowlarr/ks.yaml
   - ./radarr/ks.yaml
   - ./recyclarr/ks.yaml
