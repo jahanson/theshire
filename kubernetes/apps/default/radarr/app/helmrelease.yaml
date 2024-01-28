@@ -47,6 +47,24 @@ spec:
               RADARR__PORT: &port 80
               RADARR__LOG_LEVEL: info
               RADARR__THEME: dark
+              RADARR__POSTGRES_HOST:
+                valueFrom:
+                  secretKeyRef:
+                    name: "${APP}-pguser-${DB_USER}"
+                    key: host
+              RADARR__POSTGRES_PORT: "5432"
+              RADARR__POSTGRES_USER:
+                valueFrom:
+                  secretKeyRef:
+                    name: "${APP}-pguser-${DB_USER}"
+                    key: user
+              RADARR__POSTGRES_PASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    name: "${APP}-pguser-${DB_USER}"
+                    key: password
+              RADARR__POSTGRES_MAIN_DB: radarr_main
+              RADARR__POSTGRES_LOG_DB: radarr_log
               TZ: America/Chicago
             envFrom:
               - secretRef:
