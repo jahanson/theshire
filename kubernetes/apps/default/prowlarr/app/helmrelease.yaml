@@ -104,7 +104,7 @@ spec:
     ingress:
       main:
         enabled: true
-        className: internal
+        className: nginx-internal
         hosts:
           - host: &host "{{ .Release.Name }}.jahanson.tech"
             paths:
