@@ -25,7 +25,7 @@ spec:
           main:
             image:
               repository: ghcr.io/jorenn92/maintainerr
-              tag: 1.7.1@sha256:7d1e7834c5f9692553fd5515385cb32875e328fd0506965b2afb26e36c6e8e6e
+              tag: 2.0.0@sha256:25413140c8464cd519a559a7595c60ebb54b9066f82e4fed44ff75d1d0f649bb
             env:
               TZ: America/Chicago
             resources:
