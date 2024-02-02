@@ -13,4 +13,5 @@ resources:
   - ./sabnzbd/ks.yaml
   - ./sonarr/ks.yaml
   - ./tautulli/ks.yaml
+  - ./unpackerr/ks.yaml
   - ./qbittorrent/ks.yaml
