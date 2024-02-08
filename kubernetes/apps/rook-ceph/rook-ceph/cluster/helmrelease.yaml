@@ -74,7 +74,7 @@ spec:
               - name: /dev/disk/by-id/nvme-PC300_NVMe_SK_hynix_256GB_EJ75N587411205N58
           - name: elrond
             devices:
-              - name: /dev/vdb
+              - name: /dev/xvdb
           - name: nenya
             devices:
               - name: /dev/disk/by-id/nvme-PC300_NVMe_SK_hynix_256GB_EJ75N587410705M4U
