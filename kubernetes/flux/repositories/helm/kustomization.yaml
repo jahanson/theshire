@@ -11,7 +11,7 @@ resources:
  - cloudnative-pg.yaml
  - crowdsec.yaml
  - crunchydata.yaml
- - democratic-csi.yaml
+#  - democratic-csi.yaml
  - dragonflydb.yaml
  - elastic.yaml
  - external-secrets.yaml
@@ -28,9 +28,10 @@ resources:
  - kubernetes-sigs-metrics-server.yaml
  - kubernetes-sigs-external-dns.yaml
  - nvidia.yaml
+ - openebs.yaml
  - piraeus.yaml
  - postfinance.yaml
  - prometheus-community.yaml
  - rook-ceph.yaml
  - stakater.yaml
-#  - weave-gitops.yaml
+ - xenitab.yaml
