@@ -66,15 +66,15 @@ spec:
         config:
           osdsPerDevice: "1"
         nodes:
-          - name: vilya
-            devices:
-              - name: /dev/disk/by-id/nvme-PC300_NVMe_SK_hynix_256GB_EJ75N587411205N58
-          - name: elrond
+          - name: talos-8l0-xp4
             devices:
               - name: /dev/xvdb
-          - name: nenya
+          - name: talos-lwi-tw0
             devices:
-              - name: /dev/disk/by-id/nvme-PC300_NVMe_SK_hynix_256GB_EJ75N587410705M4U
+              - name: /dev/xvdb
+          - name: talos-9w2-80i
+            devices:
+              - name: /dev/xvdb
       placement:
         mgr: &placement
           nodeAffinity:
