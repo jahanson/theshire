@@ -2,9 +2,9 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: rocky-nenya
-  namespace: default
+  namespace: kube-system 
 spec:
-  nodeName: nenya
+  #  nodeName: nenya
   containers:
     - name: rocky
       image: rockylinux:9
