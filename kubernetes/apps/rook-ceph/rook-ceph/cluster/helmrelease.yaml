@@ -66,13 +66,13 @@ spec:
         config:
           osdsPerDevice: "1"
         nodes:
-          - name: talos-8l0-xp4
+          - name: talos-9c9-dj0
             devices:
               - name: /dev/xvdb
-          - name: talos-lwi-tw0
+          - name: talos-dz9-5ys
             devices:
               - name: /dev/xvdb
-          - name: talos-9w2-80i
+          - name: talos-nz9-4fz
             devices:
               - name: /dev/xvdb
       placement:
