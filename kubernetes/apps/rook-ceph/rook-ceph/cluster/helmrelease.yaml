@@ -83,6 +83,10 @@ spec:
                 - matchExpressions:
                     - key: node-role.kubernetes.io/control-plane
                       operator: Exists
+          tolerations: # allow mgr to run on control plane nodes
+            - key: node-role.kubernetes.io/control-plane
+              operator: Exists
+              effect: NoSchedule
         mon: *placement
       resources:
         mgr:
