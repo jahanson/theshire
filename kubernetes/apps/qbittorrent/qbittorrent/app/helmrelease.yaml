@@ -77,6 +77,8 @@ spec:
                   name: qbittorrent-secret
             securityContext:
               capabilities:
+                drop:
+                  - ALL
                 add:
                   - NET_ADMIN
               allowPrivilegeEscalation: false

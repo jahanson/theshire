@@ -6,12 +6,12 @@ metadata:
   name: &app qbittorrent
   namespace: flux-system
 spec:
-  targetNamespace: default
+  targetNamespace: qbittorrent
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   interval: 10m
-  path: "./kubernetes/apps/default/qbittorrent/app"
+  path: "./kubernetes/apps/qbittorrent/qbittorrent/app"
   prune: true
   sourceRef:
     kind: GitRepository
