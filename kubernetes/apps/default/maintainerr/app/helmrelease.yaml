@@ -20,11 +20,11 @@ spec:
       main:
         annotations:
           reloader.stakater.com/auto: "true"
-      securityContext:
-        runAsUser: 568
-        runAsGroup: 568
-        fsGroup: 568
-        fsGroupChangePolicy: "OnRootMismatch"
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+          fsGroup: 568
+          fsGroupChangePolicy: "OnRootMismatch"
 
         containers:
           main:
