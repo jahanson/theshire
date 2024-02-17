@@ -8,3 +8,4 @@ resources:
   # Flux-Kustomizations
   # - ./cilium/ks.yaml
   - ./metrics-server/ks.yaml
+  - ./spegel/ks.yaml
