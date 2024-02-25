@@ -61,20 +61,8 @@ spec:
         urlPrefix: /
         ssl: false
       storage:
-        useAllNodes: false
+        useAllNodes: true
         useAllDevices: false
-        config:
-          osdsPerDevice: "1"
-        nodes:
-          - name: talos-a6a-aen
-            devices:
-              - name: /dev/xvdb
-          - name: talos-dz9-5ys
-            devices:
-              - name: /dev/xvdb
-          - name: talos-nz9-4fz
-            devices:
-              - name: /dev/xvdb
       placement:
         mgr: &placement
           nodeAffinity:
