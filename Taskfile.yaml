@@ -2,10 +2,7 @@
 version: "3"
 
 vars:
-  PYTHON_BIN: python3
-  ANSIBLE_DIR: "{{.ROOT_DIR}}/ansible"
   KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes"
-  TERRAFORM_DIR: "{{.ROOT_DIR}}/terraform"
   CLUSTER_SECRETS_FILE: "{{.CLUSTER_DIR}}/flux/vars/cluster-secrets.sops.env"
   CLUSTER_SETTINGS_FILE: "{{.CLUSTER_DIR}}/flux/vars/cluster-settings.env"
 
@@ -13,14 +10,9 @@ env:
   KUBECONFIG: "{{.ROOT_DIR}}/kubeconfig"
   SOPS_AGE_KEY_FILE: "{{.ROOT_DIR}}/age.key"
   PATH: "{{.ROOT_DIR}}/.venv/bin:$PATH"
-  VIRTUAL_ENV: "{{.ROOT_DIR}}/.venv"
-  ANSIBLE_COLLECTIONS_PATH: "{{.ROOT_DIR}}/.venv/galaxy"
-  ANSIBLE_ROLES_PATH: "{{.ROOT_DIR}}/.venv/galaxy/ansible_roles"
-  ANSIBLE_VARS_ENABLED: "host_group_vars,community.sops.sops"
   K8S_AUTH_KUBECONFIG: "{{.ROOT_DIR}}/kubeconfig"
 
 includes:
-  ansible: .taskfiles/Ansible/Taskfile.yaml
   volsync: .taskfiles/VolSync/Tasks.yaml
   precommit: .taskfiles/PreCommit/Tasks.yaml
   k8s: .taskfiles/k8s/Taskfile.yaml
@@ -32,7 +24,6 @@ includes:
     taskfile: .taskfiles/flux
 
 tasks:
-
   default:
     silent: true
     cmds: ["task -l"]
@@ -68,27 +59,6 @@ tasks:
         weaveworks/tap/gitops
         yamllint
         yq
-
-  configure-venv:
-    desc: Install or upgrade the Python virtual env
-    cmds:
-      - "{{.PYTHON_BIN}} -m venv {{.ROOT_DIR}}/.venv"
-      - .venv/bin/python3 -m pip install --upgrade pip setuptools wheel
-      - .venv/bin/python3 -m pip install --upgrade --requirement "{{.ROOT_DIR}}/requirements.txt"
-      - .venv/bin/ansible-galaxy install --role-file "{{.ANSIBLE_DIR}}/requirements.yaml" --force
-
-  flux-apply:
-    desc: Apply a resource path that contains Flux substitution variables
-    dotenv: ['{{.CLUSTER_SETTINGS_FILE}}']
-    vars:
-      ks: '{{ or .ks (fail "Missing path (`ks` var)") }}'
-    cmd: |
-      sops exec-env {{.CLUSTER_SECRETS_FILE}} \
-        "kustomize build --load-restrictor=LoadRestrictionsNone {{.ks}} | \
-          envsubst | kubectl apply --server-side --field-manager=kustomize-controller -f -"
-    preconditions:
-      - sh: test -f {{.CLUSTER_SECRETS_FILE}}
-      - sh: test -f {{.CLUSTER_SETTINGS_FILE}}
 
   sync-secrets:
     desc: Sync ExternalSecret resources
@@ -145,14 +115,3 @@ tasks:
         }'
     preconditions:
       - kubectl -n {{.namespace}} get pvc {{.claim}}
-
-  # https://github.com/fluxcd/helm-controller/issues/644
-  "644":
-    cmds:
-      - kubectl -n {{.namespace}} delete secret -l owner=helm,name={{.release}},status=pending-upgrade
-      - flux -n {{.namespace}} reconcile hr {{.release}}
-    vars:
-      release: '{{ or .release (fail "HelmRelease `release` is required") }}'
-      namespace: '{{.namespace | default "default"}}'
-    preconditions:
-      - flux -n {{.namespace}} get hr {{.release}}
