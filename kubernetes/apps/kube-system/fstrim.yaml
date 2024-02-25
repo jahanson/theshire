@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fstrim-any
+  namespace: kube-system
+spec:
+  #  nodeName: nenya
+  containers:
+    - name: fstrim
+      image: ghcr.io/onedr0p/kubanetics:2024.2.5
+      securityContext:
+        privileged: true
+      command: ["/bin/bash", "-c", "while true; do sleep 10; done"]
+      env:
+        - name: SCRIPT_NAME
+          value: fstrim.sh
+      resources:
+        requests:
+          cpu: 100m
+          memory: 512Mi
+        limits:
+          cpu: 4000m
+          memory: 1000Mi
+      volumeMounts:
+        - name: procfs
+          mountPath: /proc
+        - name: netfs
+          mountPath: /sys
+  volumes:
+    - name: procfs
+      hostPath:
+        path: /proc
+    - name: netfs
+      hostPath:
+        path: /sys
