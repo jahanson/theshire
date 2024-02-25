@@ -113,6 +113,7 @@ patches:
                     - security
                     - kyverno
                     - rook-ceph
+                    - qbittorrent
               name: PodSecurity
 ---
 kind: Workers
