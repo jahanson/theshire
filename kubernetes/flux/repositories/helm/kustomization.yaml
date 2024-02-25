@@ -11,7 +11,7 @@ resources:
  - cloudnative-pg.yaml
  - crowdsec.yaml
  - crunchydata.yaml
-#  - democratic-csi.yaml
+ - descheduler.yaml
  - dragonflydb.yaml
  - elastic.yaml
  - external-secrets.yaml
@@ -23,7 +23,6 @@ resources:
  - jahanson.yaml
  - jetstack.yaml
  - kubernetes-sigs-nfd.yaml
-#  - kubernetes-sigs-descheduler.yaml
  - kyverno.yaml
  - kubernetes-sigs-metrics-server.yaml
  - kubernetes-sigs-external-dns.yaml
