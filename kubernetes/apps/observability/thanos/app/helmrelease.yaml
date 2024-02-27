@@ -52,8 +52,10 @@ spec:
         type: REDIS
         config:
           addr: >-
-            dragonfly.database.svc.cluster.local:6379,
+            dragonfly-0.database.cluster.local:6379,
+            dragonfly-1.database.cluster.local:6379
           db: 13
+          master_name: master
       ingress:
         enabled: true
         ingressClassName: internal-nginx
