@@ -52,8 +52,7 @@ spec:
         type: REDIS
         config:
           addr: >-
-            dragonfly-0.dragonfly.database.svc.cluster.local:6379,
-            dragonfly-1.dragonfly.database.svc.cluster.local:6379
+            dragonfly-0.dragonfly.database.svc.cluster.local:6379
           db: 13
           master_name: master
       ingress:
