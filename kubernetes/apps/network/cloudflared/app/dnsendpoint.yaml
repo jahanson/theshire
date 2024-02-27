@@ -8,4 +8,4 @@ spec:
   endpoints:
     - dnsName: external.hsn.dev
       recordType: CNAME
-      targets: ["${SECRET_CLUSTER_CLOUDFLARE_TUNNEL_ID}.cfargotunnel.com"]
+      targets: ["${CLUSTER_SECRET_CLOUDFLARE_TUNNEL_ID}.cfargotunnel.com"]
