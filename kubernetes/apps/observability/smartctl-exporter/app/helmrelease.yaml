@@ -35,3 +35,10 @@ spec:
       enabled: true
     prometheusRules:
       enabled: false
+    tolerations:
+      - effect: NoSchedule
+        operator: Exists
+    nodeSelector: {
+      # only control plane nodes
+      kubernetes.io/role: control-plane
+    }
