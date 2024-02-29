@@ -25,3 +25,5 @@ spec:
     substitute:
       APP: *app
       VOLSYNC_CAPACITY: 1Gi
+      APP_GID: "1000"
+      APP_UID: "1000"
