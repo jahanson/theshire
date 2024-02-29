@@ -36,9 +36,9 @@ spec:
     prometheusRules:
       enabled: false
     tolerations:
-      - effect: NoSchedule
+      - key: node-role.kubernetes.io/control-plane
+        effect: NoSchedule
         operator: Exists
-    nodeSelector: {
+    nodeSelector:
       # only control plane nodes
-      kubernetes.io/role: control-plane
-    }
+      node-role.kubernetes.io/control-plane: ""
