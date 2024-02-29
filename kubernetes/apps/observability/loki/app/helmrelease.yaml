@@ -137,7 +137,7 @@ spec:
         enabled: true
         ingressClassName: internal
         hosts:
-          - host: &host loki.devbu.io
+          - host: &host loki.jahanson.tech
             paths:
               - path: /
                 pathType: Prefix
