@@ -32,9 +32,6 @@ spec:
     replicas: 2
     env:
       GF_DATE_FORMATS_USE_BROWSER_LOCALE: true
-      GF_EXPLORE_ENABLED: true
-      GF_FEATURE_TOGGLES_ENABLE: publicDashboards
-      GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: natel-discrete-panel,pr0ps-trackmap-panel,panodata-map-panel
       GF_SERVER_ROOT_URL: https://grafana.hsn.dev
       GF_DATABASE_NAME: ${DB_NAME}
       GF_DATABASE_HOST:
@@ -78,11 +75,8 @@ spec:
         auth_url: https://auth.hsn.dev/application/o/authorize/
         token_url: https://auth.hsn.dev/application/o/token/
         api_url: https://auth.hsn.dev/application/o/userinfo/
-
-      auth.generic_oauth.group_mapping:
-        org_id: 1
         role_attribute_path: |
-          contains(groups[*], 'admins') && 'Admin' || contains(groups[*], 'people') && 'Viewer'
+          contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'
       auth.basic:
         enabled: false
       auth.anonymous:
@@ -388,6 +382,7 @@ spec:
       - natel-discrete-panel
       - pr0ps-trackmap-panel
       - vonage-status-panel
+      - panodata-map-panel
     serviceMonitor:
       enabled: true
     ingress:
