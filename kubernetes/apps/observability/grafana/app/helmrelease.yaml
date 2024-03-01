@@ -54,8 +54,7 @@ spec:
             key: password
       GF_DATABASE_SSL_MODE: disable
       GF_DATABASE_TYPE: postgres
-    envFromSecrets:
-      - name: *secret
+    envFromSecret: grafana-secret
     grafana.ini:
       analytics:
         check_for_updates: false
