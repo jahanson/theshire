@@ -328,7 +328,6 @@ spec:
       - natel-discrete-panel
       - pr0ps-trackmap-panel
       - vonage-status-panel
-      - panodata-map-panel
     serviceMonitor:
       enabled: true
     ingress:
