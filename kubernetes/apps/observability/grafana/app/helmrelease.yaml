@@ -35,7 +35,7 @@ spec:
       GF_EXPLORE_ENABLED: true
       GF_FEATURE_TOGGLES_ENABLE: publicDashboards
       GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: natel-discrete-panel,pr0ps-trackmap-panel,panodata-map-panel
-      GF_SERVER_ROOT_URL: https://grafana.jahanson.tech
+      GF_SERVER_ROOT_URL: https://grafana.hsn.dev
       GF_DATABASE_NAME: ${DB_NAME}
       GF_DATABASE_HOST:
         valueFrom:
@@ -392,9 +392,9 @@ spec:
       enabled: true
     ingress:
       enabled: true
-      ingressClassName: internal-nginx
+      ingressClassName: external-nginx
       hosts:
-        - &host grafana.jahanson.tech
+        - &host grafana.hsn.dev
       tls:
         - hosts:
             - *host
