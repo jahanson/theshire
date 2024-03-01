@@ -25,3 +25,5 @@ spec:
   postBuild:
     substitute:
       APP: *app
+      DB_NAME: grafana
+      DB_USER: grafana
