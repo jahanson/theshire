@@ -7,7 +7,7 @@ spec:
   #  nodeName: nenya
   containers:
     - name: fstrim
-      image: ghcr.io/onedr0p/kubanetics:2024.2.8
+      image: ghcr.io/onedr0p/kubanetics:2024.3.2
       securityContext:
         privileged: true
       command: ["/bin/bash", "-c", "while true; do sleep 10; done"]
