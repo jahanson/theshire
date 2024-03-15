@@ -41,6 +41,7 @@ spec:
               SCRIPT_NAME: alertmanager-silencer.sh
               ALERTMANAGER_URL: http://alertmanager-operated.observability.svc.cluster.local:9093
               MATCHERS_0: alertname=NodeCPUHighUsage job=node-exporter
+              MATCHERS_1: alertname=CephNodeDiskspaceWarning device=/dev/xvda6
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
