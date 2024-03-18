@@ -63,7 +63,7 @@ spec:
       storage:
         useAllNodes: true
         useAllDevices: false
-        deviceFilter: "xvdb"
+        deviceFilter: "xvdb|nvme1n1"
       placement:
         mgr: &placement
           nodeAffinity:
