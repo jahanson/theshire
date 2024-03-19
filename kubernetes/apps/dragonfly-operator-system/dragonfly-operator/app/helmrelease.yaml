@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://ks.hsn.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2beta2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      version: 3.0.4
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -28,7 +28,7 @@ spec:
       create: false
       name: dragonfly-operator-controller-manager
     controllers:
-      main:
+      dragonfly-operator:
         containers:
           rbac-proxy:
             image:
@@ -50,7 +50,7 @@ spec:
               limits:
                 cpu: 500m
                 memory: 128Mi
-          main:
+          app:
             image:
               repository: docker.dragonflydb.io/dragonflydb/operator
               tag: v1.1.1
@@ -123,7 +123,8 @@ spec:
                 matchLabels:
                   app.kubernetes.io/name: *app
     service:
-      main:
+      app:
+        controller: dragonfly-operator
         ports:
           http:
             port: *port
