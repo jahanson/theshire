@@ -42,7 +42,7 @@ tasks:
     silent: true
     cmds:
       - envsubst < <(cat {{.unlockJobTemplate}}) | kubectl apply -f -
-      - bash {{.waitForJobScript}} unlock-{{.rsrc}}-{{.ts}} {{.namespace}}
+      # - bash {{.waitForJobScript}} unlock-{{.rsrc}}-{{.ts}} {{.namespace}}
       - kubectl -n {{.namespace}} wait job/unlock-{{.rsrc}}-{{.ts}} --for condition=complete --timeout=1m
       - kubectl -n {{.namespace}} logs job/unlock-{{.rsrc}}-{{.ts}} --container unlock
       - kubectl -n {{.namespace}} delete job unlock-{{.rsrc}}-{{.ts}}
@@ -51,7 +51,7 @@ tasks:
       namespace: '{{.namespace | default "default"}}'
     env: *task-vars
     preconditions:
-      - sh: test -f {{.waitForJobScript}}
+      # - sh: test -f {{.waitForJobScript}}
       - sh: test -f {{.unlockJobTemplate}}
 
   # To run backup jobs in parallel for all replicationsources:
