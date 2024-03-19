@@ -151,6 +151,6 @@ spec:
         server: 10.1.1.11
         path: /volume1/Media
         advancedMounts:
-          main:
-            main:
+          qbittorrent:
+            app:
               - path: /data/nas-media
