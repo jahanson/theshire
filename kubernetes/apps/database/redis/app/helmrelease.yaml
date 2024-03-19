@@ -31,9 +31,11 @@ spec:
     master:
       persistence:
         enabled: false
+      resourcesPreset: small
     replica:
       persistence:
         enabled: false
+      resourcesPreset: small
     sentinel:
       enabled: true
       masterSet: redis-master
@@ -42,6 +44,7 @@ spec:
         failureThreshold: 2
       persistence:
         enabled: false
+      resourcesPreset: small
     networkPolicy:
       enabled: false
     metrics:
