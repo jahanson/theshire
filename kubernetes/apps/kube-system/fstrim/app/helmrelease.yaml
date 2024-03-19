@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://ks.hsn.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2beta2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
@@ -21,17 +21,16 @@ spec:
     cleanupOnFail: true
     remediation:
       retries: 3
-  uninstall:
-    keepHistory: false
+      strategy: rollback
   values:
     controllers:
-      main:
+      kubanetics:
         type: cronjob
         cronjob:
           schedule: "@weekly"
           parallelism: 6 # Set to my total number of nodes
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/onedr0p/kubanetics
               tag: 2024.3.4@sha256:2dfb70e154b4d4cbd8b1f98f1647e4a96aa1fc084a7e07b2586e35f7fc743383
@@ -61,9 +60,6 @@ spec:
               labelSelector:
                 matchLabels:
                   app.kubernetes.io/name: *app
-    service:
-      main:
-        enabled: false
     persistence:
       procfs:
         type: hostPath

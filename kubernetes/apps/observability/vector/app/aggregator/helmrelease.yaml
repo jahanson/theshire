@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://ks.hsn.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2beta2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
@@ -22,11 +22,10 @@ spec:
     cleanupOnFail: true
     remediation:
       retries: 3
-  uninstall:
-    keepHistory: false
+      strategy: rollback
   values:
     controllers:
-      main:
+      vector-aggregator:
         replicas: 2
         strategy: RollingUpdate
         annotations:
@@ -44,7 +43,7 @@ spec:
               - secretRef:
                   name: vector-aggregator-secret
         containers:
-          main:
+          app:
             image:
               repository: docker.io/timberio/vector
               tag: 0.36.1-alpine@sha256:cf20f6f0adb57f561df678a70c4a68361885b861882235bfb0a808610bb1b532
@@ -58,7 +57,8 @@ spec:
                 matchLabels:
                   app.kubernetes.io/name: *app
     service:
-      main:
+      app:
+        controller: vector-aggregator
         type: LoadBalancer
         annotations:
           external-dns.alpha.kubernetes.io/hostname: vector.jahanson.tech

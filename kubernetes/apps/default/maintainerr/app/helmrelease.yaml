@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://ks.hsn.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2beta2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
@@ -14,15 +14,22 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+      strategy: rollback
   interval: 30m
   values:
     controllers:
-      main:
+      maintainerr:
         annotations:
           reloader.stakater.com/auto: "true"
-
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/jorenn92/maintainerr
               tag: 2.0.2@sha256:4e0f5199f09b8a1fc7d9933c1ecbf508b6d4f18b6f8d1e40bd0453dc14c80a5c
@@ -34,22 +41,21 @@ spec:
                 memory: 128Mi
               limits:
                 memory: 1Gi
-            pod:
-              securityContext:
-                runAsUser: ${APP_UID}
-                runAsGroup: ${APP_GID}
-                fsGroup: ${APP_GID}
-                fsGroupChangePolicy: "OnRootMismatch"
-
+        pod:
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            fsGroupChangePolicy: "OnRootMismatch"
     service:
-      main:
+      app:
+        controller: maintainerr
         ports:
           http:
             port: 6246
 
     ingress:
-      main:
-        enabled: true
+      app:
         className: internal-nginx
         hosts:
           - host: &host "{{ .Release.Name }}.jahanson.tech"
@@ -57,7 +63,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:

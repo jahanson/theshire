@@ -21,8 +21,7 @@ spec:
     cleanupOnFail: true
     remediation:
       retries: 3
-  uninstall:
-    keepHistory: false
+      strategy: rollback
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
@@ -30,11 +29,11 @@ spec:
       namespace: volsync-system
   values:
     controllers:
-      main:
+      overseerr:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/sct/overseerr
               tag: 1.33.2@sha256:714ea6db2bc007a2262d112bef7eec74972eb33d9c72bddb9cbd98b8742de950
@@ -74,12 +73,12 @@ spec:
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
     service:
-      main:
+      app:
         ports:
           http:
             port: *port
     ingress:
-      main:
+      app:
         enabled: true
         className: external-nginx
         annotations:
@@ -91,7 +90,7 @@ spec:
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:

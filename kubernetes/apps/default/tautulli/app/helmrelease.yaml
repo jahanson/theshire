@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://ks.hsn.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2beta2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
@@ -21,8 +21,7 @@ spec:
     cleanupOnFail: true
     remediation:
       retries: 3
-  uninstall:
-    keepHistory: false
+      strategy: rollback
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
@@ -30,11 +29,11 @@ spec:
       namespace: volsync-system
   values:
     controllers:
-      main:
+      tautulli:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/onedr0p/tautulli
               tag: 2.13.4@sha256:b3000c0063cc4c0c6f2436fb7174f4bcfd8d91eca05206731edccb8b643ea570
@@ -86,12 +85,13 @@ spec:
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
     service:
-      main:
+      app:
+        controller: tautulli
         ports:
           http:
             port: *port
     ingress:
-      main:
+      app:
         enabled: true
         className: external-nginx
         annotations:
@@ -102,7 +102,7 @@ spec:
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:

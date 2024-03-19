@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://ks.hsn.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2beta2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
@@ -21,18 +21,17 @@ spec:
     cleanupOnFail: true
     remediation:
       retries: 3
-  uninstall:
-    keepHistory: false
+      strategy: rollback
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
   values:
     controllers:
-      main:
+      radarr:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/onedr0p/radarr
               tag: 5.3.6.8612@sha256:431f4d8da415645cd18359d0b704d4191f400eb57137ed3e5749774f3915c0a8
@@ -103,6 +102,7 @@ spec:
             supplementalGroups: [10000]
     service:
       main:
+        controller: radarr
         ports:
           http:
             port: *port
@@ -115,7 +115,7 @@ spec:
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:

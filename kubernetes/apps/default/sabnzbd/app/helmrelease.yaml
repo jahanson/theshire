@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://ks.hsn.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2beta2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
@@ -21,8 +21,7 @@ spec:
     cleanupOnFail: true
     remediation:
       retries: 3
-  uninstall:
-    keepHistory: false
+      strategy: rollback
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
@@ -30,11 +29,11 @@ spec:
       namespace: volsync-system
   values:
     controllers:
-      main:
+      sabnzbd:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/onedr0p/sabnzbd
               tag: 4.2.3@sha256:fa8ddea45e56b0e36454c3c0eb30ff5521d90aeb5b35301656ae9236680be3a9
@@ -85,12 +84,13 @@ spec:
             fsGroupChangePolicy: OnRootMismatch
             supplementalGroups: [10000]
     service:
-      main:
+      app:
+        controller: sabnzbd
         ports:
           http:
             port: *port
     ingress:
-      main:
+      app:
         enabled: true
         className: internal-nginx
         hosts:
@@ -98,7 +98,7 @@ spec:
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:
