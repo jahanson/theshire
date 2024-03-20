@@ -6,7 +6,8 @@ resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
   - ./prometheusrules
-  # - ./scrapeconfigs
+  - ./scrapeconfigs
+  - ./podmonitors
 configMapGenerator:
   - name: alertmanager-config-tpl
     files:
