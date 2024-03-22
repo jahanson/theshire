@@ -1,13 +1,10 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "platform": "gitea",
-  "endpoint": "https://git.hsn.dev",
   "extends": [
     "config:recommended",
     "local>jahanson/homelab//.renovate/customManagers.json5",
     "local>jahanson/homelab//.renovate/autoMerge.json5"
   ],
-  "repositories": [],
   "flux": {
     "fileMatch": [
       "kubernetes/.+\\.ya?ml$"
