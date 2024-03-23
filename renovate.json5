@@ -64,10 +64,6 @@
   ],
   "packageRules": [
     {
-      "registryAliases": {
-        "ghcr.io": "hub.hsn.dev/ghcr.io",
-        "docker.io": "hub.hsn.dev/docker.io"
-      },
       "description": "Use custom versioning for Vector",
       "matchDatasources": [
         "docker"
