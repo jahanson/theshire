@@ -10,6 +10,6 @@ Thumbs.db
 *.key
 *.pem
 kubeconfig*
-talosconfig.yaml
+*talosconfig.yaml
 omniconfig.yaml
 config.xml
