@@ -51,7 +51,7 @@ spec:
               postgres-operator.crunchydata.com/cluster: ${APP}
               postgres-operator.crunchydata.com/data: postgres
   users:
-    - name: "${DB_USER}"
+    - name: "sonarr"
       databases:
         - "sonarr_main"
         - "sonarr_logs"
