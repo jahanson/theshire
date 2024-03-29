@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: immich-config
+  labels:
+    app.kubernetes.io/name: immich
+data:
+  LOG_LEVEL: verbose
+  NODE_ENV: production
+  REDIS_HOSTNAME: dragonfly.database.svc.cluster.local
+  REDIS_PORT: "6379"
+  IMMICH_WEB_URL: http://immich-web.media.svc.cluster.local:3000
+  IMMICH_SERVER_URL: http://immich-server.media.svc.cluster.local:3001
+  IMMICH_MACHINE_LEARNING_URL: http://immich-machine-learning.media.svc.cluster.local:3003
