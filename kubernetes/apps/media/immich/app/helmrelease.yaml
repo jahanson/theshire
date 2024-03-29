@@ -61,10 +61,8 @@ spec:
                     name: immich-pguser-immich
                     key: uri
             envFrom:
-              - secretRef:
-                  name: immich-secret
               - configMapRef:
-                  name: immich-config
+                  name: immich-app-config
         pod:
           enableServiceLinks: false
           securityContext:
@@ -97,9 +95,6 @@ spec:
           - hosts:
               - *host
     persistence:
-      config:
-        existingClaim: immich
-        enabled: true
       media:
         enabled: true
         type: nfs

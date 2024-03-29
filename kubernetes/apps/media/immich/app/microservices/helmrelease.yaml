@@ -55,7 +55,7 @@ spec:
                 enabled: true
             envFrom:
               - configMapRef:
-                  name: immich-config
+                  name: immich-app-config
             env:
               DB_URL:
                 valueFrom:
