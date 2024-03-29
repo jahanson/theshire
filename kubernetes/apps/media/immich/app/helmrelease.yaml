@@ -63,13 +63,6 @@ spec:
             envFrom:
               - configMapRef:
                   name: immich-app-config
-        pod:
-          enableServiceLinks: false
-          securityContext:
-            runAsUser: 568
-            runAsGroup: 568
-            fsGroup: 568
-            fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         controller: immich-server

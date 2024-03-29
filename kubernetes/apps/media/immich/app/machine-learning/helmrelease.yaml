@@ -59,13 +59,6 @@ spec:
                   secretKeyRef:
                     name: immich-pguser-immich
                     key: uri
-        pod:
-          enableServiceLinks: false
-          securityContext:
-            runAsUser: 568
-            runAsGroup: 568
-            fsGroup: 568
-            fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         controller: immich-machine-learning
