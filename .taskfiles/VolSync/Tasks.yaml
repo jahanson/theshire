@@ -34,7 +34,7 @@ tasks:
       namespace: '{{.namespace | default "default"}}'
     env: *task-vars
     preconditions:
-      - sh: test -f {{.waitForJobScript}}
+      # - sh: test -f {{.waitForJobScript}}
       - sh: test -f {{.listJobTemplate}}
 
   unlock:
@@ -71,7 +71,7 @@ tasks:
       namespace: '{{.namespace | default "default"}}'
     env: *task-vars
     preconditions:
-      - sh: test -f {{.waitForJobScript}}
+      # - sh: test -f {{.waitForJobScript}}
       - sh: kubectl -n {{.namespace}} get replicationsources {{.rsrc}}
         msg: "ReplicationSource '{{.rsrc}}' not found in namespace '{{.namespace}}'"
 
@@ -116,7 +116,7 @@ tasks:
     preconditions:
       - sh: test -f {{.wipeJobTemplate}}
       - sh: test -f {{.destinationTemplate}}
-      - sh: test -f {{.waitForJobScript}}
+      # - sh: test -f {{.waitForJobScript}}
 
   # Suspend the Flux ks and hr
   restore-suspend-app:
