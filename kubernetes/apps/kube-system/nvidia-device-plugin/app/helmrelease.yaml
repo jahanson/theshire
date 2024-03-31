@@ -23,6 +23,7 @@ spec:
       retries: 3
       strategy: rollback
   values:
+    runtimeClassName: "nvidia"
     gfd:
       enabled: true
     nfd:
