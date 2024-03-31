@@ -59,6 +59,9 @@ spec:
                   secretKeyRef:
                     name: immich-pguser-immich
                     key: uri
+    pod:
+      nodeSelector:
+        nvidia.com/gpu.present: "true"
     service:
       app:
         controller: immich-machine-learning
