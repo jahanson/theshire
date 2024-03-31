@@ -2,11 +2,11 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: disk-wipe-nessa
-  namespace: rook-ceph
+  name: disk-wipe-s01
+  namespace: kube-system
 spec:
   restartPolicy: Never
-  nodeName: talos-nz9-4fz
+  nodeName: talos-0ye-ep1
   containers:
     - name: disk-wipe
       image: ghcr.io/onedr0p/alpine:3.19.1@sha256:3fbc581cb0fe29830376161ae026e2a765dcc11e1747477fe9ebf155720b8638
@@ -39,11 +39,11 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: disk-wipe-nienna
-  namespace: rook-ceph
+  name: disk-wipe-anduril
+  namespace: kube-system
 spec:
   restartPolicy: Never
-  nodeName: talos-9c9-dj0
+  nodeName: talos-9pw-zvs
   containers:
     - name: disk-wipe
       image: ghcr.io/onedr0p/alpine:3.19.1@sha256:3fbc581cb0fe29830376161ae026e2a765dcc11e1747477fe9ebf155720b8638
@@ -52,7 +52,7 @@ spec:
       resources: {}
       env:
         - name: CEPH_DISK
-          value: "/dev/xvdb"
+          value: "/dev/nvme1n1"
       command:
         [
           "/bin/sh",
@@ -76,11 +76,11 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: disk-wipe-orome
-  namespace: rook-ceph
+  name: disk-wipe-g01
+  namespace: kube-system
 spec:
   restartPolicy: Never
-  nodeName: talos-dz9-5ys
+  nodeName: 
   containers:
     - name: disk-wipe
       image: ghcr.io/onedr0p/alpine:3.19.1@sha256:3fbc581cb0fe29830376161ae026e2a765dcc11e1747477fe9ebf155720b8638
@@ -89,7 +89,7 @@ spec:
       resources: {}
       env:
         - name: CEPH_DISK
-          value: "/dev/xvdb"
+          value: "/dev/nvme0n1"
 
       command:
         [
