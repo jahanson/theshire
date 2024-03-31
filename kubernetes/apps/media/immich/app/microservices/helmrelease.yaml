@@ -65,6 +65,7 @@ spec:
     pod:
       nodeSelector:
         nvidia.com/gpu.present: "true"
+      runtimeClassName: nvidia
     service:
       app:
         controller: immich-microservices
