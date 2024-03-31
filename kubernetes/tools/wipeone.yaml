@@ -1,0 +1,37 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: disk-wipe-one
+  namespace: rook-ceph
+spec:
+  restartPolicy: Never
+  nodeName: talos-ltk-p4a
+  containers:
+    - name: disk-wipe
+      image: ghcr.io/onedr0p/alpine:3.19.1@sha256:3fbc581cb0fe29830376161ae026e2a765dcc11e1747477fe9ebf155720b8638
+      securityContext:
+        privileged: true
+      resources: {}
+      env:
+        - name: CEPH_DISK
+          value: "/dev/xvdb"
+      command:
+        [
+          "/bin/sh",
+          "-c"
+        ]
+      args:
+        - apk add --no-cache sgdisk util-linux parted;
+          sgdisk --zap-all $CEPH_DISK;
+          blkdiscard $CEPH_DISK;
+          dd if=/dev/zero bs=1M count=1000 oflag=direct of=$CEPH_DISK;
+          partprobe $CEPH_DISK;
+      volumeMounts:
+        - mountPath: /mnt/host_var
+          name: host-var
+  volumes:
+    - name: host-var
+      hostPath:
+        path: /var
+
