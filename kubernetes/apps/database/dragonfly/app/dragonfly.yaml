@@ -16,6 +16,7 @@ spec:
       memory: 3Gi
   args:
     - "--proactor_threads=4"
+    - "--default_lua_flags=allow-undeclared-keys"
   # Need retention policy before this is enabled
   # Or add S3 details and enable retention policy on the bucket.
   # snapshot:
