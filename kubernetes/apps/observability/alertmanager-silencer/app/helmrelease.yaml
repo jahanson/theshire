@@ -43,6 +43,7 @@ spec:
               MATCHERS_1: alertname=CephNodeDiskspaceWarning device=/dev/xvda6
               MATCHERS_2: alertname=CephNodeDiskspaceWarning device=/dev/nvme0n1p6
               MATCHERS_3: alertname=CephNodeDiskspaceWarning device=/dev/sda6
+              MATCHERS_4: alertname=CephNodeDiskspaceWarning device=/dev/vda6
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
