@@ -31,6 +31,17 @@ spec:
   values:
     replicas: 2
     envFromSecret: grafana-secret
+    env:
+      - name: GF_DATABASE_USER
+        valueFrom:
+          secretKeyRef:
+            name: grafana-pguser-grafana
+            key: user
+      - name: GF_DATABASE_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: grafana-pguser-grafana
+            key: password
     dashboardProviders:
       dashboardproviders.yaml:
         apiVersion: 1
