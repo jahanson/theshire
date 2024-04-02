@@ -29,6 +29,10 @@ spec:
         strategy: Recreate
         annotations:
           reloader.stakater.com/auto: "true"
+        pod:
+          nodeSelector:
+            nvidia.com/gpu.present: "true"
+          runtimeClassName: nvidia
         containers:
           app:
             image:
@@ -62,10 +66,6 @@ spec:
                   secretKeyRef:
                     name: immich-pguser-immich
                     key: uri
-    pod:
-      nodeSelector:
-        nvidia.com/gpu.present: "true"
-      runtimeClassName: nvidia
     service:
       app:
         controller: immich-microservices
