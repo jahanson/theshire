@@ -26,7 +26,7 @@ spec:
   values:
     controllers:
       immich-microservices:
-        strategy: recreate
+        strategy: Recreate
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
