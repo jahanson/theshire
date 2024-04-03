@@ -8,7 +8,7 @@ metadata:
 spec:
   secretName: "jahanson-tech-tls"
   issuerRef:
-    name: letsencrypt-dnsimple-prod-jahanson-tech
+    name: issuer-zerossl-prod
     kind: ClusterIssuer
   commonName: "jahanson.tech"
   dnsNames:
