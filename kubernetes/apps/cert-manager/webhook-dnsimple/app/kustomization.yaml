@@ -7,3 +7,4 @@ resources:
   - ./apiservice.yaml
   - ./helmrelease.yaml
   - ./pki.yaml
+  - ./rbac.yaml
