@@ -8,4 +8,4 @@ resources:
   - ./cloudflare/issuer-letsencrypt-prod.yaml
   - ./cloudflare/issuer-letsencrypt-staging.yaml
   - ./dnsimple/externalsecret.yaml
-  - ./dnsimple/issuer-letsencrypt-prod-jahanson-tech.yaml
+  - ./dnsimple/issuer-zerossl-prod.yaml
