@@ -12,5 +12,4 @@ spec:
   versionPriority: 15
   service:
     name: Local
-    namespace: cert-manager
   version: v1alpha1
