@@ -57,3 +57,6 @@ spec:
         globalMounts:
           - path: /tls
             readOnly: true
+    serviceAccount:
+      create: true
+      name: webhook-dnsimple
