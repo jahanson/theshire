@@ -50,6 +50,14 @@ spec:
                 enabled: true
               readiness:
                 enabled: true
+    service:
+      app:
+        controller: webhook-dnsimple
+        ports:
+          https:
+            port: 443
+            targetPort: 8443
+            protocol: TCP
     persistence:
       certs:
         type: secret
