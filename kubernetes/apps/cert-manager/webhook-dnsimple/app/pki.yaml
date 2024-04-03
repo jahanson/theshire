@@ -1,0 +1,62 @@
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/cert-manager.io/issuer_v1.json
+# Create a selfsigned Issuer, in order to create a root CA certificate for
+# signing webhook serving certificates
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: webhook-dnsimple-selfsign
+  namespace: "cert-manager"
+  labels:
+    app: cert-manager-webhook-dnsimple
+spec:
+  selfSigned: {}
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/cert-manager.io/issuer_v1.json
+# Create an Issuer that uses the above generated CA certificate to issue certs
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: webhook-dnsimple-ca
+  namespace: "cert-manager"
+  labels:
+    app: cert-manager-webhook-dnsimple
+spec:
+  ca:
+    secretName: webhook-dnsimple-ca
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/cert-manager.io/certificate_v1.json
+# Generate a CA Certificate used to sign certificates for the webhook
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: webhook-dnsimple-ca
+  namespace: "cert-manager"
+  labels:
+    app: cert-manager-webhook-dnsimple
+spec:
+  secretName: webhook-dnsimple-ca
+  duration: 43800h # 5y
+  issuerRef:
+    name: webhook-dnsimple-selfsign
+  commonName: "ca.dnsimple-webhook.cert-manager"
+  isCA: true
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/cert-manager.io/certificate_v1.json
+# Finally, generate a serving certificate for the webhook to use
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: webhook-dnsimple-webhook-tls
+  namespace: "cert-manager"
+  labels:
+    app: cert-manager-webhook-dnsimple
+spec:
+  secretName: webhook-dnsimple-webhook-tls
+  duration: 8760h # 1y
+  issuerRef:
+    name: webhook-dnsimple-ca
+  dnsNames:
+  - webhook-dnsimple
+  - webhook-dnsimple.cert-manager
+  - webhook-dnsimple.cert-manager.svc
