@@ -70,7 +70,7 @@ roleRef:
 subjects:
   - apiGroup: ""
     kind: ServiceAccount
-    name: webhook-dnsimple
+    name: cert-manager
     namespace: cert-manager
 ---
 # Grant the webhook permission to read the api-token Secret in the specified namespace.
