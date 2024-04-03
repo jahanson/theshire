@@ -9,14 +9,17 @@ spec:
     email: "joe@veri.dev"
     preferredChain: ""
     privateKeySecretRef:
-      name: letsencrypt-cloudflare-production
+      name: letsencrypt-dnsimple-production
     server: https://acme-v02.api.letsencrypt.org/directory
     solvers:
       - dns01:
-          cloudflare:
-            apiTokenSecretRef:
-              name: cloudflare-api-token
-              key: jahanson-tech-api-token
+          webhook:
+            groupName: acme.hsn.dev
+            solverName: dnsimple
+            config:
+              apiKeySecretRef:
+                name: dnsimple-api-token
+                key: api-token
         selector:
           dnsZones:
             - jahanson.tech
