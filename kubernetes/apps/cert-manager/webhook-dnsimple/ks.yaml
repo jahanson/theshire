@@ -6,6 +6,7 @@ metadata:
   name: cert-manager-webhook-dnsimple
   namespace: flux-system
 spec:
+  targetNamespace: cert-manager
   interval: 10m
   path: "./kubernetes/apps/cert-manager/webhook-dnsimple/app"
   prune: true
