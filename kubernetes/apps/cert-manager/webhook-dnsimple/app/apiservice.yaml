@@ -11,6 +11,6 @@ spec:
   groupPriorityMinimum: 1000
   versionPriority: 15
   service:
-    name: webhook-dnsimple
+    name: Local
     namespace: cert-manager
   version: v1alpha1
