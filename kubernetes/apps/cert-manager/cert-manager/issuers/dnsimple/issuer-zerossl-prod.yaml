@@ -8,7 +8,6 @@ spec:
   acme:
     server: https://acme.zerossl.com/v2/DV90
     email: "joe@veri.dev"
-    preferredChain: ""
     privateKeySecretRef:
       name: zerossl-production
     externalAccountBinding:
