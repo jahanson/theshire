@@ -115,6 +115,9 @@ spec:
           io.cilium/lb-ipam-ips: 10.45.0.6
         externalTrafficPolicy: Cluster
       prometheusSpec:
+        podMetadata:
+          annotations:
+            secret.reloader.stakater.com/reload: &secret thanos-objstore-config
         replicas: 2
         replicaExternalLabelName: __replica__
         scrapeInterval: 1m # Must match interval in Grafana Helm chart
@@ -138,8 +141,8 @@ spec:
           version: "${THANOS_VERSION#v}"
           objectStorageConfig:
             existingSecret:
-              name: thanos-s3-secret
-              key: objstore.yml
+              name: *secret
+              key: config
         retention: 2d
         retentionSize: 15GB
         externalLabels:
