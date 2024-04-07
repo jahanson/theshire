@@ -77,7 +77,7 @@ spec:
     query:
       replicas: 2
       extraArgs: ["--alert.query-url=https://thanos.jahanson.tech"]
-      additionalStores: ["thanos.turbo.ac:10901"]
+      additionalStores: ["thanos.jahanson.tech:10901"]
     queryFrontend:
       enabled: true
       replicas: 2
