@@ -6,6 +6,7 @@ resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
   - ./postgresCluster.yaml
+  - ./pushsecret.yaml
 configMapGenerator:
   - name: gatus-configmap
     files:
