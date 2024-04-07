@@ -90,7 +90,7 @@ spec:
       extraArgs: ["--query-range.response-cache-config=$(THANOS_CACHE_CONFIG)"]
       ingress:
         enabled: true
-        ingressClassName: internal
+        ingressClassName: internal-nginx
         hosts:
           - &host thanos.hsn.dev
         tls:
