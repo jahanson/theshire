@@ -5,7 +5,7 @@ kind: Kustomization
 resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
-  - ../../../../templates/postgres-database
+  - ./postgresCluster.yaml
 configMapGenerator:
   - name: gatus-configmap
     files:
