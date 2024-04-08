@@ -74,6 +74,9 @@ spec:
         enabled: true
         storageClass: openebs-hostpath
         size: 10Gi
+    query:
+      replicas: 2
+      extraArgs: ["--alert.query-url=https://thanos.jahanson.tech"]
     queryFrontend:
       enabled: true
       replicas: 2
