@@ -64,6 +64,11 @@ spec:
         - atuin
       password:
         type: AlphaNumeric
+    - name: grafana
+      databases:
+        - grafana
+      password:
+        type: AlphaNumeric
 
 
   backups:
