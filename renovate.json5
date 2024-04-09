@@ -5,6 +5,7 @@
     "local>jahanson/homelab//.renovate/customManagers.json5",
     "local>jahanson/homelab//.renovate/autoMerge.json5"
   ],
+  "ignorePaths": [".archive/**"],
   "flux": {
     "fileMatch": [
       "kubernetes/.+\\.ya?ml$"
