@@ -154,6 +154,11 @@ spec:
           gnetId: 1860
           revision: 33
           datasource: Prometheus
+        smartctl-exporter:
+          # renovate: depName="smartctl_exporter"
+          gnetId: 20204
+          revision: 1
+          datasource: Prometheus
         spegel:
           # renovate: depName="Spegel"
           gnetId: 18089
