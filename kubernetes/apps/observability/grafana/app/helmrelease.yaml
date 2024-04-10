@@ -162,6 +162,12 @@ spec:
           gnetId: 1860
           revision: 33
           datasource: Prometheus
+        postgres:
+          # renovate: depName="PostgreSQL Database"
+          gnetId: 9628
+          revision: 7
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
         smartctl-exporter:
           # renovate: depName="smartctl_exporter"
           gnetId: 20204
