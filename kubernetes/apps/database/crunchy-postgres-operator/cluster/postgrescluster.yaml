@@ -76,17 +76,20 @@ spec:
         type: AlphaNumeric
     - name: prowlarr
       databases:
-        - prowlarr
+        - prowlarr_logs
+        - prowlarr_main
       password:
         type: AlphaNumeric
     - name: radarr
       databases:
-        - radarr
+        - radarr_logs
+        - radarr_main
       password:
         type: AlphaNumeric
     - name: sonarr
       databases:
-        - sonarr
+        - sonarr_logs
+        - sonarr_main
       password:
         type: AlphaNumeric
 
