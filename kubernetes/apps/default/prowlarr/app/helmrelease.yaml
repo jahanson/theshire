@@ -42,22 +42,6 @@ spec:
               PROWLARR__AUTHENTICATION_METHOD: External
               PROWLARR__THEME: dark
               TZ: America/Chicago
-              PROWLARR__POSTGRES_HOST:
-                valueFrom:
-                  secretKeyRef:
-                    name: "${APP}-pguser-${DB_USER}"
-                    key: host
-              PROWLARR__POSTGRES_PORT: "5432"
-              PROWLARR__POSTGRES_USER:
-                valueFrom:
-                  secretKeyRef:
-                    name: "${APP}-pguser-${DB_USER}"
-                    key: user
-              PROWLARR__POSTGRES_PASSWORD:
-                valueFrom:
-                  secretKeyRef:
-                    name: "${APP}-pguser-${DB_USER}"
-                    key: password
               PROWLARR__POSTGRES_MAIN_DB: prowlarr_main
               PROWLARR__POSTGRES_LOG_DB: prowlarr_logs
             envFrom:
