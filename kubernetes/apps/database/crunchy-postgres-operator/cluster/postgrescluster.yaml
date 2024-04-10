@@ -64,9 +64,29 @@ spec:
         - atuin
       password:
         type: AlphaNumeric
+    - name: gatus
+      databases:
+        - gatus
+      password:
+        type: AlphaNumeric
     - name: grafana
       databases:
         - grafana
+      password:
+        type: AlphaNumeric
+    - name: prowlarr
+      databases:
+        - prowlarr
+      password:
+        type: AlphaNumeric
+    - name: radarr
+      databases:
+        - radarr
+      password:
+        type: AlphaNumeric
+    - name: sonarr
+      databases:
+        - sonarr
       password:
         type: AlphaNumeric
 
