@@ -87,6 +87,7 @@ spec:
             enabled: true
         query_scheduler:
           max_outstanding_requests_per_tenant: 4096
+
         frontend:
           max_outstanding_per_tenant: 4096
         common:
@@ -116,13 +117,6 @@ spec:
           ring:
             kvstore:
               store: memberlist
-        compactor:
-          working_directory: /var/loki/boltdb-shipper-compactor
-          shared_store: s3
-          compaction_interval: 10m
-          retention_enabled: true
-          retention_delete_delay: 2h
-          retention_delete_worker_count: 150
         ingester:
           max_chunk_age: 1h
           lifecycler:
