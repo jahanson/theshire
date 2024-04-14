@@ -10,6 +10,7 @@ resources:
   - ./descheduler/ks.yaml
   - ./fstrim/ks.yaml
   - ./metrics-server/ks.yaml
+  - ./multus/ks.yaml
   - ./intel-device-plugin/ks.yaml
   - ./nvidia-device-plugin/ks.yaml
   - ./node-feature-discovery/ks.yaml

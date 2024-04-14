@@ -6,12 +6,12 @@ metadata:
   name: &appname multus
   namespace: flux-system
 spec:
-  targetNamespace: network
+  targetNamespace: kube-system
   commonMetadata:
     labels:
       app.kubernetes.io/name: *appname
   interval: 10m
-  path: "./kubernetes/apps/network/multus/app"
+  path: "./kubernetes/apps/kube-system/multus/app"
   prune: true
   sourceRef:
     kind: GitRepository
@@ -25,12 +25,12 @@ metadata:
   name: &appname multus-config
   namespace: flux-system
 spec:
-  targetNamespace: network
+  targetNamespace: kube-system
   commonMetadata:
     labels:
       app.kubernetes.io/name: *appname
   interval: 10m
-  path: "./kubernetes/apps/network/multus/config"
+  path: "./kubernetes/apps/kube-system/multus/config"
   prune: true
   sourceRef:
     kind: GitRepository
