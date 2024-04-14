@@ -8,7 +8,7 @@ resources:
 configMapGenerator:
   - name: smartctl-exporter-loki-rules
     files:
-      - smartctl-exporter.yaml=./resources/lokirule.yaml
+      - smartctl-exporter.yaml=./resources/lokirule.yml
     options:
       labels:
         loki_rule: "true"
