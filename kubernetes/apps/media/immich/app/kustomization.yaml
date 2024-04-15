@@ -9,6 +9,7 @@ resources:
   - ./machine-learning
   - ./microservices
   - ./postgresCluster.yaml
+  - ./service.yaml
 configMapGenerator:
   - name: immich-databse-init-sql
     files:
