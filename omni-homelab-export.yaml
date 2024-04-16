@@ -1,0 +1,156 @@
+kind: Cluster
+name: homelab
+kubernetes:
+  version: v1.29.3
+talos:
+  version: v1.6.7
+features:
+  backupConfiguration:
+    interval: 1h0m0s
+patches:
+  - idOverride: 200-homelab
+    inline:
+      cluster:
+        apiServer:
+          certSANs:
+            - 10.5.0.2
+        network:
+          cni:
+            name: none
+        proxy:
+          disabled: true
+      machine:
+        files:
+          - content: |-
+              [plugins."io.containerd.grpc.v1.cri"]
+                enable_unprivileged_ports = true
+                enable_unprivileged_icmp = true
+              [plugins."io.containerd.grpc.v1.cri".containerd]
+                discard_unpacked_layers = false
+              [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
+                discard_unpacked_layers = false
+            op: create
+            path: /etc/cri/conf.d/20-customization.part
+            permissions: 0
+        kubelet:
+          defaultRuntimeSeccompProfileEnabled: true
+          extraMounts:
+            - destination: /var/openebs/local
+              options:
+                - bind
+                - rshared
+                - rw
+              source: /var/openebs/local
+              type: bind
+        sysctls:
+          fs.inotify.max_queued_events: "65536"
+          fs.inotify.max_user_instances: "8192"
+          fs.inotify.max_user_watches: "524288"
+        time:
+          disabled: false
+          servers:
+            - 10.1.1.1
+---
+kind: ControlPlane
+machineClass:
+  name: dell-micro
+  size: 3
+patches:
+  - idOverride: 400-homelab-control-planes
+    inline:
+      cluster:
+        apiServer:
+          admissionControl:
+            - configuration:
+                exemptions:
+                  namespaces:
+                    - openebs-system
+                    - security
+                    - kyverno
+                    - rook-ceph
+                    - qbittorrent
+                    - observability
+                    - home-automation
+              name: PodSecurity
+          disablePodSecurityPolicy: true
+          extraArgs:
+            bind-address: 0.0.0.0
+        controllerManager:
+          extraArgs:
+            bind-address: 0.0.0.0
+        etcd:
+          extraArgs:
+            listen-metrics-urls: http://0.0.0.0:2381
+        scheduler:
+          extraArgs:
+            bind-address: 0.0.0.0
+---
+kind: Workers
+machines:
+  - 00000000-0000-0000-0000-00d861319aa0
+  - 95d6c80f-d76e-42c2-7e77-c9938b5b52bf
+  - e0380f77-9228-4679-9561-daef16748b94
+---
+kind: Machine
+name: 00000000-0000-0000-0000-00d861319aa0
+patches:
+  - idOverride: 500-29b8171e-4766-4f30-99a0-041e89c370fd
+    annotations:
+      name: Anduril-Net
+    inline:
+      machine:
+        network:
+          interfaces:
+            - bond:
+                deviceSelectors:
+                  - hardwareAddr: 00:d8:61:31:9a:a0
+                mode: active-backup
+              dhcp: true
+              interface: bond0
+  - idOverride: 500-d80a0219-be53-49c1-8bbc-4f734cd99a86
+    annotations:
+      name: Nvidia
+    inline:
+      machine:
+        kernel:
+          modules:
+            - name: nvidia
+            - name: nvidia_uvm
+            - name: nvidia_drm
+            - name: nvidia_modeset
+        sysctls:
+          net.core.bpf_jit_harden: 1
+---
+kind: Machine
+name: 95d6c80f-d76e-42c2-7e77-c9938b5b52bf
+patches:
+  - idOverride: 500-5c55d5ef-2293-4e67-8dcc-0b93db9a43c4
+    annotations:
+      name: shadowfax-net
+    inline:
+      machine:
+        network:
+          interfaces:
+            - bond:
+                deviceSelectors:
+                  - hardwareAddr: 0e:46:8d:59:24:ca
+                mode: active-backup
+              dhcp: true
+              interface: bond0
+---
+kind: Machine
+name: e0380f77-9228-4679-9561-daef16748b94
+patches:
+  - idOverride: 500-669e0035-eeea-44ea-880e-1dc7a2c496dd
+    annotations:
+      name: Gandalf-Net
+    inline:
+      machine:
+        network:
+          interfaces:
+            - bond:
+                deviceSelectors:
+                  - hardwareAddr: 00:25:90:85:51:ca
+                mode: active-backup
+              dhcp: true
+              interface: bond0
