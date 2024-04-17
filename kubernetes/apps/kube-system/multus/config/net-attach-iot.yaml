@@ -12,6 +12,7 @@ spec:
         {
           "type": "macvlan",
           "master": "bond0",
+          "mode": "bridge",
           "ipam": {
             "type": "static",
             "routes": [
