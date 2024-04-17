@@ -103,7 +103,7 @@ patches:
           interfaces:
             - bond:
                 deviceSelectors:
-                  - hardwareAddr: 00:d8:61:31:9a:a0
+                  - hardwareAddr: d4:5d:64:91:b2:42
                 mode: active-backup
               dhcp: true
               interface: bond0
