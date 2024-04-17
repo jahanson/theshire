@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://ks.hsn.dev/k8s.cni.cncf.io%2Fnetworkattachmentdefinition_v1.json
 apiVersion: "k8s.cni.cncf.io/v1"
 kind: NetworkAttachmentDefinition
 metadata:
