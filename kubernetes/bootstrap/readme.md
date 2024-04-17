@@ -24,7 +24,8 @@ cilium install \
     --helm-set=bgpControlPlane.enabled=true \
     --helm-set=bgp.enabled=false \
     --helm-set=bgp.announce.loadbalancerIP=true \
-    --helm-set=bgp.announce.podCIDR=false
+    --helm-set=bgp.announce.podCIDR=false \
+    --helm-set=cni-exclusive=false
 ```
 
 ## Flux Prep
