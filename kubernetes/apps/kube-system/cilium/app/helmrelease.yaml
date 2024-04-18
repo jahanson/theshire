@@ -28,6 +28,7 @@ spec:
       serviceMonitor:
         enabled: true
       relay:
+        enabled: true
         prometheus:
           serviceMonitor:
             enabled: true
