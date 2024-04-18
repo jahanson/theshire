@@ -1,0 +1,59 @@
+cluster:
+  name: homelab
+  id: 1
+bandwidthManager:
+  enabled: true
+  bbr: true
+bpf:
+  masquerade: true
+  tproxy: true
+
+autoDirectNodeRoutes: true
+ipv4NativeRoutingCIDR: 10.244.0.0/16
+routingMode: native
+
+loadBalancer:
+  algorithm: maglev
+  mode: dsr
+
+containerRuntime:
+  integration: containerd
+
+localRedirectPolicy: true
+operator:
+  rollOutPods: true
+ipam:
+  mode: kubernetes
+kubeProxyReplacement: true
+k8sServiceHost: 127.0.0.1
+k8sServicePort: 7445
+rollOutCiliumPods: true
+cgroup:
+  automount:
+    enabled: false
+  hostRoot: /sys/fs/cgroup
+bgp:
+  enabled: false
+  announce:
+    loadbalancerIP: true
+    podCIDR: false
+bgpControlPlane:
+  enabled: true
+securityContext:
+  capabilities:
+    ciliumAgent:
+      - CHOWN
+      - KILL
+      - NET_ADMIN
+      - NET_RAW
+      - IPC_LOCK
+      - SYS_ADMIN
+      - SYS_RESOURCE
+      - DAC_OVERRIDE
+      - FOWNER
+      - SETGID
+      - SETUID
+    cleanCiliumState:
+      - NET_ADMIN
+      - SYS_ADMIN
+      - SYS_RESOURCE
