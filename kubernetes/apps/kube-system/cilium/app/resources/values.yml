@@ -1,6 +1,8 @@
 cluster:
   name: homelab
   id: 1
+cni:
+  exclusive: false
 bandwidthManager:
   enabled: true
   bbr: true
@@ -15,9 +17,6 @@ routingMode: native
 loadBalancer:
   algorithm: maglev
   mode: dsr
-
-containerRuntime:
-  integration: containerd
 
 localRedirectPolicy: true
 operator:
