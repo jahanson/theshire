@@ -6,8 +6,8 @@ resources:
   - ./helmrelease.yaml
   - ./runtimeclass.yaml
 configMapGenerator:
-  - name: nvidia-plugin-configs
+  - name: nvidia-helm-values
     files:
-      - config.yaml=./config/config.yml
+      - values.yaml=./resources/values.yml
 generatorOptions:
   disableNameSuffixHash: true

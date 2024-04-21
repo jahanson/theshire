@@ -22,14 +22,6 @@ spec:
     remediation:
       retries: 3
       strategy: rollback
-  values:
-    runtimeClassName: "nvidia"
-    gfd:
-      enabled: true
-    nfd:
-      enabled: false
-    resources:
-      requests:
-        cpu: 100m
-      limits:
-        memory: 512Mi
+  valuesFrom:
+    - kind: ConfigMap
+      name: nvidia-helm-values
