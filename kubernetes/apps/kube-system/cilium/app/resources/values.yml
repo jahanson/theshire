@@ -18,6 +18,9 @@ loadBalancer:
   algorithm: maglev
   mode: dsr
 
+containerRuntime:
+  integration: containerd
+
 localRedirectPolicy: true
 operator:
   rollOutPods: true
