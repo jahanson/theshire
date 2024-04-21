@@ -7,3 +7,4 @@ resources:
   - ./gatus.yaml
   - ./postgrescluster.yaml
   - ./pushsecret.yaml
+  - ./service.yaml
