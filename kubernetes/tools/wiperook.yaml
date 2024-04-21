@@ -6,7 +6,7 @@ metadata:
   namespace: kube-system
 spec:
   restartPolicy: Never
-  nodeName: talos-0ye-ep1
+  nodeName: talos-fki-fmf
   containers:
     - name: disk-wipe
       image: ghcr.io/onedr0p/alpine:3.19.1@sha256:3fbc581cb0fe29830376161ae026e2a765dcc11e1747477fe9ebf155720b8638
@@ -43,7 +43,7 @@ metadata:
   namespace: kube-system
 spec:
   restartPolicy: Never
-  nodeName: talos-9pw-zvs
+  nodeName: talos-xuc-f2e
   containers:
     - name: disk-wipe
       image: ghcr.io/onedr0p/alpine:3.19.1@sha256:3fbc581cb0fe29830376161ae026e2a765dcc11e1747477fe9ebf155720b8638
@@ -80,7 +80,7 @@ metadata:
   namespace: kube-system
 spec:
   restartPolicy: Never
-  nodeName: 
+  nodeName: talos-opy-6ij
   containers:
     - name: disk-wipe
       image: ghcr.io/onedr0p/alpine:3.19.1@sha256:3fbc581cb0fe29830376161ae026e2a765dcc11e1747477fe9ebf155720b8638
