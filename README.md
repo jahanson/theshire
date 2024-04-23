@@ -1,1 +1,1 @@
-Kubernetes with k3s @ Home
+Kubernetes with talos @ Home
