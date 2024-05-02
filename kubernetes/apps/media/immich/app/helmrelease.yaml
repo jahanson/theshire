@@ -58,8 +58,8 @@ spec:
               DB_URL:
                 valueFrom:
                   secretKeyRef:
-                    name: immich-pguser-immich
-                    key: uri
+                    name: immich-secret
+                    key: DATABASE_URI
             envFrom:
               - configMapRef:
                   name: immich-app-config

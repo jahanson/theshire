@@ -10,6 +10,7 @@ resources:
   - ./machine-learning
   - ./microservices
   - ./postgresCluster.yaml
+  - ./pushsecret.yaml
   - ./service.yaml
 configMapGenerator:
   - name: immich-databse-init-sql
