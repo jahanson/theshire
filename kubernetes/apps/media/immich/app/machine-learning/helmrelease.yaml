@@ -61,8 +61,8 @@ spec:
               DB_URL:
                 valueFrom:
                   secretKeyRef:
-                    name: immich-pguser-immich
-                    key: uri
+                    name: immich-secret
+                    key: DATABASE_URI
     service:
       app:
         controller: immich-machine-learning
