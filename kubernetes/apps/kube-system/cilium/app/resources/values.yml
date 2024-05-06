@@ -23,7 +23,7 @@ containerRuntime:
 
 localRedirectPolicy: true
 operator:
-  rollOutPods: true
+  replicas: 1
 ipam:
   mode: kubernetes
 kubeProxyReplacement: true
