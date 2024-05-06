@@ -10,8 +10,8 @@ helmDefaults:
 repositories:
   - name: cilium
     url: https://helm.cilium.io
-  - name: nvdp
-    url: https://nvidia.github.io/k8s-device-plugin
+  - name: postfinance
+    url: https://postfinance.github.io/kubelet-csr-approver
 
 releases:
   - name: cilium
@@ -20,12 +20,12 @@ releases:
     version: 1.15.4
     values: ["../../../apps/kube-system/cilium/app/resources/values.yml"]
     wait: true
-  - name: nvidia-device-plugin
+  - name: kubelet-csr-approver
     namespace: kube-system
-    chart: nvdp/nvidia-device-plugin
-    version: 0.14.5
-    values: ["../../../apps/kube-system/nvidia-device-plugin/app/resources/values.yml"]
-    wait: true
+    chart: postfinance/kubelet-csr-approver
+    version: 1.1.0
+    values: ["../../../apps/kube-system/kubelet-csr-approver/app/helm-values.yaml"]
+    needs: ["cilium"]
   - name: spegel
     namespace: kube-system
     chart: oci://ghcr.io/spegel-org/helm-charts/spegel

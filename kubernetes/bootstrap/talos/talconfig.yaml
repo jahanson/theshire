@@ -6,9 +6,6 @@ talosVersion: v1.7.1
 kubernetesVersion: 1.28.4
 endpoint: "https://10.1.1.57:6443"
 
-cniConfig:
-  name: none
-
 additionalApiServerCertSans:
   - 10.1.1.57
 
@@ -21,10 +18,12 @@ nodes:
     ipAddress: 10.1.1.61
     controlPlane: true
     installDiskSelector:
-      busPath: /dev/nvme0n1
+      busPath: /pci0000:20/0000:20:01.2/0000:2d:00.0/nvme/nvme1/nvme1n1
     networkInterfaces:
-      - interface: eth0
+      - interface: enp37s0f1
         dhcp: true
+      - interface: enp37s0f0
+        dhcp: false
     kernelModules:
       - name: nvidia
       - name: nvidia_uvm
@@ -55,7 +54,7 @@ controlPlane:
       machine:
         network:
           nameservers:
-            - 10.1.1.11
+            - 10.1.1.1
 
     # Configure NTP
     - |-
@@ -79,6 +78,9 @@ controlPlane:
         allowSchedulingOnMasters: true
         proxy:
           disabled: true
+        network:
+          cni:
+            name: none
 
     # ETCD configuration
     - |-
