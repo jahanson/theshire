@@ -54,6 +54,7 @@ tasks:
         prettier
         sops
         stern
+        talhelper
         yamllint
         yq
 
