@@ -54,9 +54,6 @@ tasks:
         prettier
         sops
         stern
-        terraform
-        tflint
-        weaveworks/tap/gitops
         yamllint
         yq
 
