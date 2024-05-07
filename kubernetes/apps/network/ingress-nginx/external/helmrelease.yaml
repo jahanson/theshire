@@ -22,7 +22,7 @@ spec:
       valuesKey: MAXMIND_LICENSE_KEY
   values:
     controller:
-      replicaCount: 2
+      replicaCount: 1
       updateStrategy:
         type: RollingUpdate
       allowSnippetAnnotations: true

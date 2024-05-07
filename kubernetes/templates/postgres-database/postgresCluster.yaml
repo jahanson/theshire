@@ -34,7 +34,7 @@ spec:
       metadata:
         labels:
           app.kubernetes.io/name: pgo-${APP}
-      replicas: 2
+      replicas: 1
       dataVolumeClaimSpec:
         storageClassName: openebs-hostpath
         accessModes:
