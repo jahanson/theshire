@@ -49,6 +49,7 @@ spec:
       bdev_enable_discard = true
       bdev_async_discard = true
       osd_class_update_on_start = false
+      osd_pool_default_size = 1
     cephClusterSpec:
       network:
         provider: host
@@ -63,20 +64,7 @@ spec:
       storage:
         useAllNodes: true
         useAllDevices: false
-        deviceFilter: "xvdb|nvme1n1|nvme0n1"
-      placement:
-        mgr: &placement
-          nodeAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-              nodeSelectorTerms:
-                - matchExpressions:
-                    - key: node-role.kubernetes.io/control-plane
-                      operator: Exists
-          tolerations: # allow mgr to run on control plane nodes
-            - key: node-role.kubernetes.io/control-plane
-              operator: Exists
-              effect: NoSchedule
-        mon: *placement
+        deviceFilter: "nvme2n1"
       resources:
         mgr:
           requests:
@@ -103,8 +91,6 @@ spec:
       - name: ceph-blockpool
         spec:
           failureDomain: host
-          replicated:
-            size: 3
         storageClass:
           enabled: true
           name: ceph-block
@@ -130,12 +116,8 @@ spec:
       - name: ceph-filesystem
         spec:
           metadataPool:
-            replicated:
-              size: 3
           dataPools:
             - failureDomain: host
-              replicated:
-                size: 3
               name: data0
           metadataServer:
             activeCount: 1
@@ -171,13 +153,8 @@ spec:
         spec:
           metadataPool:
             failureDomain: host
-            replicated:
-              size: 3
           dataPool:
             failureDomain: host
-            erasureCoded:
-              dataChunks: 2
-              codingChunks: 1
           preservePoolsOnDelete: true
           gateway:
             port: 80
