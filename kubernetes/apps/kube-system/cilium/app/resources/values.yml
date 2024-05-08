@@ -17,6 +17,8 @@ cni:
   exclusive: false
 containerRuntime:
   integration: containerd
+devices: enp+
+enableRuntimeDeviceDetection: true
 endpointRoutes:
   enabled: true
 ipam:
