@@ -12,6 +12,8 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: external-secrets-stores
+    - name: openebs-cluster
+    - name: dragonfly-operator
   path: ./kubernetes/apps/observability/thanos/app
   prune: true
   sourceRef:
