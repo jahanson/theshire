@@ -27,6 +27,7 @@ resources:
  - kubernetes-sigs-external-dns.yaml
  - nvidia.yaml
  - openebs.yaml
+ - openebs-zfs.yaml
  - piraeus.yaml
  - postfinance.yaml
  - prometheus-community.yaml
