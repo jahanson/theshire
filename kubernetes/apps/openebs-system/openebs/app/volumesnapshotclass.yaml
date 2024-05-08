@@ -1,0 +1,10 @@
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/snapshot.storage.k8s.io/volumesnapshotclass_v1beta1.json
+kind: VolumeSnapshotClass
+apiVersion: snapshot.storage.k8s.io/v1beta1
+metadata:
+  name: openebs-zfs
+  annotations:
+    snapshot.storage.kubernetes.io/is-default-class: "true"
+driver: zfs.csi.openebs.io
+deletionPolicy: Delete

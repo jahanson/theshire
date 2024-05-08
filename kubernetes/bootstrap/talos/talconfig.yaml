@@ -3,7 +3,7 @@
 clusterName: homelab
 
 talosVersion: v1.7.1
-kubernetesVersion: 1.28.4
+kubernetesVersion: 1.30.0
 endpoint: "https://10.1.1.57:6443"
 
 additionalApiServerCertSans:
@@ -18,7 +18,7 @@ nodes:
     ipAddress: 10.1.1.61
     controlPlane: true
     installDiskSelector:
-      busPath: /pci0000:20/0000:20:01.2/0000:2d:00.0/nvme/nvme1/nvme1n1
+      busPath: /pci0000:20/0000:20:01.2/0000:2c:00.0/nvme/nvme4/nvme4n1
     networkInterfaces:
       - interface: enp37s0f1
         dhcp: true
@@ -33,9 +33,11 @@ nodes:
       customization:
         systemExtensions:
           officialExtensions:
-            - "siderolabs/amd-ucode"
-            - "siderolabs/nonfree-kmod-nvidia"
-            - "siderolabs/nvidia-container-toolkit"
+            - siderolabs/amd-ucode
+            - siderolabs/nonfree-kmod-nvidia
+            - siderolabs/nvidia-container-toolkit
+            - siderolabs/zfs
+
     patches:
       - |-
         machine:
@@ -134,12 +136,12 @@ controlPlane:
             validSubnets:
                 - 10.1.1.0/24
           extraMounts:
-            - destination: /var/openebs/local
+            - destination: /var/openebs/keys
               options:
                 - bind
                 - rshared
                 - rw
-              source: /var/openebs/local
+              source: /var/openebs/keys
               type: bind
 
     # Custom sysctls
