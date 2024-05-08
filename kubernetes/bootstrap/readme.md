@@ -39,10 +39,15 @@ sops --decrypt kubernetes/flux/vars/cluster-secrets.sops.yaml | kubectl apply -f
 kubectl apply -f kubernetes/flux/vars/cluster-settings.yaml
 ```
 
-## Wipe Rook Ceph
+### Bootsrap Kube Prometheus Stack CRDs.
+```sh
+kubectl apply -k kubernetes/bootstrap/kps-crds/
+```
+
+## Reset ZFS Pool
 
 ```sh
-kubectl apply -f kubernetes/tools/wiperook.yaml
+# TBD
 ```
 
 ## Kick off Flux applying this repository
