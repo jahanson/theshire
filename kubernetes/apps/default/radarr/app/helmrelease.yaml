@@ -23,7 +23,7 @@ spec:
       retries: 3
       strategy: rollback
   dependsOn:
-    - name: rook-ceph-cluster
+    - name: openebs
       namespace: rook-ceph
   values:
     controllers:
