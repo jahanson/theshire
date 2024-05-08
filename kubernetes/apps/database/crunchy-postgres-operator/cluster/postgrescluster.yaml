@@ -17,7 +17,7 @@ spec:
     metadata:
       annotations:
         external-dns.alpha.kubernetes.io/hostname: postgres.jahanson.tech
-        io.cilium/lb-ipam-ips: 10.45.0.7
+        io.cilium/lb-ipam-ips: 10.1.1.35
 
   monitoring:
     pgmonitor:
