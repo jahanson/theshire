@@ -22,9 +22,6 @@ spec:
     remediation:
       retries: 3
       strategy: rollback
-  dependsOn:
-    - name: openebs-cluster
-      namespace: rook-ceph
   values:
     controllers:
       radarr:
@@ -39,7 +36,6 @@ spec:
               # Ref: https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
               # Ref: https://github.com/dotnet/runtime/issues/9336
               COMPlus_EnableDiagnostics: "0"
-              PUSHOVER_DEBUG: "false"
               RADARR__AUTHENTICATION_METHOD: External
               RADARR__AUTHENTICATION_REQUIRED: DisabledForLocalAddresses
               RADARR__INSTANCE_NAME: Radarr
@@ -109,14 +105,6 @@ spec:
       config:
         enabled: true
         existingClaim: radarr
-      pushover-notify:
-        type: configMap
-        name: radarr-configmap
-        defaultMode: 0775
-        globalMounts:
-          - path: /scripts/pushover-notify.sh
-            subPath: pushover-notify.sh
-            readOnly: true
       tmp:
         type: emptyDir
       media:
