@@ -13,6 +13,8 @@ spec:
   dependsOn:
     - name: crunchy-postgres-operator
     - name: external-secrets-stores
+    - name: volsync
+    - name: openebs-cluster
   path: ./kubernetes/apps/default/sonarr/app
   prune: true
   sourceRef:

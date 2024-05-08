@@ -22,9 +22,6 @@ spec:
     remediation:
       retries: 3
       strategy: rollback
-  dependsOn:
-    - name: openebs-cluster
-      namespace: rook-ceph
   values:
     controllers:
       sonarr:
