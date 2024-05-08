@@ -41,6 +41,7 @@ tasks:
       DEPS: >-
         age
         ansible
+        cilium-cli
         direnv
         derailed/k9s/k9s
         fluxcd/tap/flux
@@ -52,6 +53,7 @@ tasks:
         kustomize
         pre-commit
         prettier
+        shellcheck
         sops
         stern
         talhelper
