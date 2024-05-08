@@ -26,3 +26,7 @@ spec:
   values:
     zfsNode:
       encrKeysDir: /var/openebs/keys
+    crds:
+      csi:
+        volumeSnapshots:
+          enabled: false
