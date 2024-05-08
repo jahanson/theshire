@@ -1,7 +1,7 @@
 ---
-# yaml-language-server: $schema=https://ks.hsn.dev/snapshot.storage.k8s.io/volumesnapshotclass_v1beta1.json
+# yaml-language-server: $schema=https://ks.hsn.dev/snapshot.storage.k8s.io/volumesnapshotclass_v1.json
 kind: VolumeSnapshotClass
-apiVersion: snapshot.storage.k8s.io/v1beta1
+apiVersion: snapshot.storage.k8s.io/v1
 metadata:
   name: openebs-zfs
   annotations:
