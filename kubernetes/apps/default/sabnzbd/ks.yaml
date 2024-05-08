@@ -12,6 +12,8 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: external-secrets-stores
+    - name: openebs-cluster
+    - name: volsync
   path: ./kubernetes/apps/default/sabnzbd/app
   prune: true
   sourceRef:
