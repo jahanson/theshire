@@ -24,7 +24,7 @@ spec:
       strategy: rollback
       retries: 3
   dependsOn:
-    - name: openebs
+    - name: openebs-cluster
       namespace: openebs-system
     - name: dragonfly-operator
       namespace: dragonfly-operator-system

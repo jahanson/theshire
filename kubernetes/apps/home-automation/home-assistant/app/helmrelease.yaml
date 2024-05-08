@@ -23,7 +23,7 @@ spec:
       strategy: rollback
       retries: 3
   dependsOn:
-    - name: openebs
+    - name: openebs-cluster
       namespace: rook-ceph
     - name: volsync
       namespace: volsync-system

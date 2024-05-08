@@ -26,7 +26,7 @@ spec:
       strategy: rollback
       retries: 3
   dependsOn:
-    - name: openebs
+    - name: openebs-cluster
       namespace: openebs-system
     - name: thanos
       namespace: observability

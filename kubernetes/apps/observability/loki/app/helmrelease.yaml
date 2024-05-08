@@ -24,7 +24,7 @@ spec:
       strategy: uninstall
       retries: 3
   dependsOn:
-    - name: openebs
+    - name: openebs-cluster
       namespace: openebs-system
     - name: rook-ceph-cluster
       namespace: rook-ceph
