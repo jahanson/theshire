@@ -114,7 +114,7 @@ spec:
       replicas: 1
       persistence:
         size: 20Gi
-        storageClass: openebs-hostpath
+        storageClass: openebs-zfs
     gateway:
       replicas: 1
       image:
@@ -135,7 +135,7 @@ spec:
       replicas: 1
       persistence:
         size: 20Gi
-        storageClass: openebs-hostpath
+        storageClass: openebs-zfs
     sidecar:
       image:
         repository: ghcr.io/kiwigrid/k8s-sidecar
