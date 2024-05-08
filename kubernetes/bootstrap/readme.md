@@ -11,7 +11,8 @@ helm plugin install https://github.com/databus23/helm-diff
 ### Bootstrap talos cluster
 
 ```sh
-omnictl cluster template sync -f ./omni-homelab-export.yaml --omniconfig ./omniconfig.yaml
+talosctl apply-config --nodes=10.1.1.61 --file=./kubernetes/bootstrap/talos/clusterconfig/homelab-shadowfax.yaml --insecure
+talosctl bootstrap --nodes=10.1.1.61
 ```
 ## CNI & Container Proxy
 
