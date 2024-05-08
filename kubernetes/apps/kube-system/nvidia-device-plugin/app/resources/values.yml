@@ -1,6 +1,6 @@
 runtimeClassName: "nvidia"
 gfd:
-  enabled: true
+  enabled: false
 nfd:
   enabled: false
 resources:
