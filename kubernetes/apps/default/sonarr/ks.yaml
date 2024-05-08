@@ -27,3 +27,4 @@ spec:
       APP: *app
       DB_NAME: sonarr
       DB_USER: sonarr
+      VOLSYNC_CAPACITY: 15Gi
