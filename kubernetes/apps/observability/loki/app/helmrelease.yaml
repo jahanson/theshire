@@ -23,13 +23,6 @@ spec:
     remediation:
       strategy: uninstall
       retries: 3
-  dependsOn:
-    - name: openebs-cluster
-      namespace: openebs-system
-    - name: vector-agent
-      namespace: observability
-    - name: vector-aggregator
-      namespace: observability
   valuesFrom:
     - targetPath: loki.storage.bucketNames.chunks
       kind: Secret

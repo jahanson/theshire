@@ -12,6 +12,9 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: external-secrets-stores
+    - name: openebs-cluster
+    - name: vector-agent
+    - name: vector-aggregator
   path: ./kubernetes/apps/observability/loki/app
   prune: true
   sourceRef:
