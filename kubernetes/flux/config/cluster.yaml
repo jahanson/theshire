@@ -11,7 +11,7 @@ spec:
     branch: main
   secretRef:
     name: git-deploy-key
-  url: ssh://git.hsn.dev/jahanson/homelab
+  url: ssh://forgejo@git.hsn.dev/jahanson/homelab
   ignore: |
     # exclude all
     /*
