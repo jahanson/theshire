@@ -17,8 +17,8 @@ jobs:
       - name: Renovate
         uses: ./.forgejo/actions/renovate
         with:
-          endpoint: ${{ github.server_url }}
+          endpoint: https://git.hsn.dev/api/v1/
           token: ${{ secrets.RENOVATE_TOKEN }}
           github-token: ${{ secrets.GH_TOKEN }}
           args: ${{ github.repository }}
-          save-cache: false
+          save-cache: true
