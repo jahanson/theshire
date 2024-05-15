@@ -20,5 +20,5 @@ jobs:
           endpoint: https://git.hsn.dev/api/v1/
           token: ${{ secrets.RENOVATE_TOKEN }}
           github-token: ${{ secrets.GH_TOKEN }}
-          args: ${{ github.repository }}
+          args: --autodiscover #${{ github.repository }}
           save-cache: true
