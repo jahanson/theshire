@@ -43,12 +43,12 @@ runs:
         RENOVATE_PLATFORM: gitea
         RENOVATE_REPOSITORY_CACHE: 'enabled'
         RENOVATE_TOKEN: ${{ inputs.token }}
-        RENOVATE_GIT_AUTHOR: 'Renovate Bot <bot@kriese.eu>'
+        RENOVATE_GIT_AUTHOR: 'Renovate Bot <smeagol@hsn.dev>'
 
         GIT_AUTHOR_NAME: 'Renovate Bot'
-        GIT_AUTHOR_EMAIL: 'bot@kriese.eu'
+        GIT_AUTHOR_EMAIL: 'smeagol@hsn.dev'
         GIT_COMMITTER_NAME: 'Renovate Bot'
-        GIT_COMMITTER_EMAIL: 'bot@kriese.eu'
+        GIT_COMMITTER_EMAIL: 'smeagol@hsn.dev'
 
     - name: Save renovate repo cache
       if: always() && inputs.save-cache == 'true'
