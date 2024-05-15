@@ -1,0 +1,21 @@
+on: [push]
+jobs:
+  renovate:
+    name: Renovate
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/visualon/renovate:37.363.4@sha256:8c6e868c1ff7190f243d20dbeef44c86fc9b1dcdf344c4ece45facdfe3416cb7
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          show-progress: false
+
+      - name: Renovate
+        uses: ./.forgejo/actions/renovate
+        with:
+          endpoint: ${{ github.server_url }}
+          token: ${{ secrets.RENOVATE_TOKEN }}
+          github-token: ${{ secrets.GH_TOKEN }}
+          args: ${{ github.repository }}
+          save-cache: false
