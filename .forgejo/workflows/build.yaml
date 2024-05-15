@@ -1,0 +1,14 @@
+on: [push]
+jobs:
+  renovate:
+    name: Renovate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Renovate
+        uses: https://github.com/renovatebot/github-action@v40.1.11
+        with:
+          configurationFile: .forgejo/renovate-config.json5
+          token: "${{ secrets.RENOVATE_TOKEN }}"
