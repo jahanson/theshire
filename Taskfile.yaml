@@ -90,7 +90,7 @@ tasks:
               {
                 "name": "debug",
                 "image": "docker.io/library/alpine:3.19.1",
-                "command": ["/bin/bash"],
+                "command": ["/bin/ash"],
                 "stdin": true,
                 "stdinOnce": true,
                 "tty": true,
