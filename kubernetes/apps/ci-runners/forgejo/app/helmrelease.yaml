@@ -42,7 +42,7 @@ spec:
               - "--instance"
               - $(FORGEJO_INSTANCE_URL)
               - "--labels"
-              - "docker,x86_64,linux,pc"
+              - "docker:docker://node:20-bullseye,x86_64,linux,pc"
             env:
               - name: RUNNER_NAME
                 valueFrom:
