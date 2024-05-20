@@ -41,6 +41,8 @@ spec:
               - $(RUNNER_NAME)
               - "--instance"
               - $(FORGEJO_INSTANCE_URL)
+              - "--labels"
+              - "docker,x86_64,linux,pc"
             env:
               - name: RUNNER_NAME
                 valueFrom:
