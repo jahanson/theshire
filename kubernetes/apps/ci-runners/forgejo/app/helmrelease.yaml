@@ -45,17 +45,17 @@ spec:
               - name: RUNNER_NAME
                 valueFrom:
                   secretKeyRef:
-                    name: runner-secret
+                    name: forgejo-runner-secret
                     key: RUNNER_NAME
               - name: RUNNER_TOKEN
                 valueFrom:
                   secretKeyRef:
-                    name: runner-secret
+                    name: forgejo-runner-secret
                     key: RUNNER_TOKEN
               - name: FORGEJO_INSTANCE_URL
                 valueFrom:
                   secretKeyRef:
-                    name: runner-secret
+                    name: forgejo-runner-secret
                     key: FORGEJO_INSTANCE_URL
         containers:
           daemon:
