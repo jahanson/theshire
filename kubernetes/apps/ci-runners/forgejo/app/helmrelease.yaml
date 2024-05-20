@@ -92,11 +92,9 @@ spec:
             port: 45315
     persistence:
       docker-certs:
-        name: docker-certs
-        advancedMounts:
-          forgejo-runner:
-            app:
-              - path: /certs
+        type: emptyDir
+        globalMounts:
+          - path: /certs
       runner-data:
         type: emptyDir
         globalMounts:
