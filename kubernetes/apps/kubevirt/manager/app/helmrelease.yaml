@@ -57,7 +57,7 @@ spec:
         controller: kubevirt-manager
         ports:
           http:
-            port: 8080
+            port: 8001
     ingress:
       app:
         className: internal-nginx
