@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://ks.hsn.dev/cdi.kubevirt.io/datavolume_v1beta1.json
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: DataVolume
+metadata:
+  name: "fj-runner-02-disk1"
+spec:
+  storage:
+    resources:
+      requests:
+        storage: 80Gi
+    storageClassName: "openebs-zfs"
+    accessModes:
+      - "ReadWriteOnce"
+  source:
+    blank: {}

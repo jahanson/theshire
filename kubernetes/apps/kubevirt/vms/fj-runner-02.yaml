@@ -3,7 +3,7 @@
 apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
-  name: fj-runner-01
+  name: fj-runner-02
   namespace: default
 spec:
   running: false
@@ -46,9 +46,9 @@ spec:
         kubernetes.io/hostname: shadowfax
       priorityClassName: vm-standard
       volumes:
-        - name: disk1
-          persistentVolumeClaim:
-            claimName: fj-runner-01-disk1
+        - dataVolume:
+            name: fj-runner-02-disk1
+          name: disk1
         - dataVolume:
             name: "nixos-minimal"
           name: nixosiso
