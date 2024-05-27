@@ -9,7 +9,7 @@ spec:
   nodeName: talos-fki-fmf
   containers:
     - name: disk-wipe
-      image: docker.io/library/alpine:3.19.1
+      image: docker.io/library/alpine:3.20.0
       securityContext:
         privileged: true
       resources: {}
@@ -46,7 +46,7 @@ spec:
   nodeName: talos-xuc-f2e
   containers:
     - name: disk-wipe
-      image: docker.io/library/alpine:3.19.1
+      image: docker.io/library/alpine:3.20.0
       securityContext:
         privileged: true
       resources: {}
@@ -83,7 +83,7 @@ spec:
   nodeName: talos-opy-6ij
   containers:
     - name: disk-wipe
-      image: docker.io/library/alpine:3.19.1
+      image: docker.io/library/alpine:3.20.0
       securityContext:
         privileged: true
       resources: {}
