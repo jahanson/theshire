@@ -77,12 +77,12 @@ endpoints:
       - type: pushover
   - name: Gandalf
     group: internal
-    url: http://10.1.1.13
+    url: icmp://10.1.1.13
     interval: 1m
     client:
       dns-resolver: tcp://10.1.1.1:53
     conditions:
-      - "[STATUS] == 200"
+      - "[CONNECTED] == true"
     alerts:
       - type: pushover
   - name: Gollum
