@@ -9,14 +9,18 @@ metadata:
     app.kubernetes.io/managed-by: cdi-controller
     cdi.kubevirt.io: ""
   name: openebs-zfs
-spec: {}
+spec:
+  claimPropertySets:
+    - accessModes:
+        - ReadWriteOnce
+      volumeMode: Block
 status:
+  claimPropertySets:
+    - accessModes:
+        - ReadWriteOnce
+      volumeMode: Block
   cloneStrategy: snapshot
   dataImportCronSourceFormat: pvc
   provisioner: zfs.csi.openebs.io
   snapshotClass: openebs-zfs
   storageClass: openebs-zfs
-  claimPropertySets:
-    - volumeMode: Block
-      accessModes:
-        - "ReadWriteOnce"
