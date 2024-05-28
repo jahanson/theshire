@@ -67,7 +67,7 @@ endpoints:
       - type: pushover
   - name: Sting
     group: internal
-    url: https://sting.hsn.dev
+    url: https://sting.jahanson.tech
     interval: 1m
     client:
       dns-resolver: tcp://10.1.1.1:53
@@ -77,7 +77,7 @@ endpoints:
       - type: pushover
   - name: Gandalf
     group: internal
-    url: https://10.1.1.13
+    url: http://10.1.1.13
     interval: 1m
     client:
       dns-resolver: tcp://10.1.1.1:53
@@ -87,7 +87,7 @@ endpoints:
       - type: pushover
   - name: Gollum
     group: internal
-    url: https://10.1.1.14
+    url: http://10.1.1.14
     interval: 1m
     client:
       dns-resolver: tcp://10.1.1.1:53
