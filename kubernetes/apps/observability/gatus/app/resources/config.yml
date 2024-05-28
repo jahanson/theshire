@@ -39,6 +39,9 @@ endpoints:
     group: external
     url: https://nc.hsn.dev
     interval: 1m
+    ui:
+      hide-url: true
+      hide-hostname: true
     client:
       dns-resolver: tcp://1.1.1.1:53
     conditions:
@@ -99,6 +102,9 @@ endpoints:
     group: internal
     url: https://nc.hsn.dev
     interval: 1m
+    ui:
+      hide-url: true
+      hide-hostname: true
     client:
       dns-resolver: tcp://10.1.1.1:53
     conditions:
