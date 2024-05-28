@@ -8,3 +8,5 @@ configMapGenerator:
   - name: zfs-scrub-configmap
     files:
       - zfs-scrub.sh=./resources/zfs-scrub.sh
+generatorOptions:
+  disableNameSuffixHash: true
