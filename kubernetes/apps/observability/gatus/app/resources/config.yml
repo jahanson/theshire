@@ -85,7 +85,7 @@ endpoints:
     client:
       dns-resolver: tcp://10.1.1.1:53
     conditions:
-      - "[CONNECTED] == true"
+      - "[STATUS] == 200"
     alerts:
       - type: pushover
   - name: Gollum
