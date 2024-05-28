@@ -89,7 +89,7 @@ tasks:
             "containers": [
               {
                 "name": "debug",
-                "image": "docker.io/library/alpine:3.19.1",
+                "image": "docker.io/library/alpine:3.20.0",
                 "command": ["/bin/ash"],
                 "stdin": true,
                 "stdinOnce": true,
