@@ -35,6 +35,16 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: pushover
+  - name: Nextcloud External
+    group: external
+    url: https://nc.hsn.dev
+    interval: 1m
+    client:
+      dns-resolver: tcp://1.1.1.1:53
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: pushover
   - name: flux-webhook
     group: external
     url: https://flux-receiver.hsn.dev
@@ -43,5 +53,65 @@ endpoints:
       dns-resolver: tcp://1.1.1.1:53
     conditions:
       - "[STATUS] == 404"
+    alerts:
+      - type: pushover
+  - name: Elessar
+    group: internal
+    url: https://elessar.jahanson.tech
+    interval: 1m
+    client:
+      dns-resolver: tcp://10.1.1.1:53
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: pushover
+  - name: Sting
+    group: internal
+    url: https://sting.hsn.dev
+    interval: 1m
+    client:
+      dns-resolver: tcp://10.1.1.1:53
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: pushover
+  - name: Gandalf
+    group: internal
+    url: https://10.1.1.13
+    interval: 1m
+    client:
+      dns-resolver: tcp://10.1.1.1:53
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: pushover
+  - name: Gollum
+    group: internal
+    url: https://10.1.1.14
+    interval: 1m
+    client:
+      dns-resolver: tcp://10.1.1.1:53
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: pushover
+  - name: Nextcloud Internal
+    group: internal
+    url: https://nc.hsn.dev
+    interval: 1m
+    client:
+      dns-resolver: tcp://10.1.1.1:53
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: pushover
+  - name: Home Assistant
+    group: internal
+    url: https://hass.jahanson.tech
+    interval: 1m
+    client:
+      dns-resolver: tcp://10.1.1.1:53
+    conditions:
+      - "[STATUS] == 200"
     alerts:
       - type: pushover
