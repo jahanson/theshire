@@ -80,7 +80,7 @@ endpoints:
       - type: pushover
   - name: Gandalf
     group: internal
-    url: icmp://gandalf.jahanson.tech
+    url: https://gandalf.jahanson.tech:8443
     interval: 1m
     client:
       dns-resolver: tcp://10.1.1.1:53
