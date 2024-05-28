@@ -20,7 +20,7 @@ spec:
         devices:
           disks:
             - disk:
-                bus: virtio
+                bus: sata
               name: disk1
             - cdrom:
                 bus: sata
@@ -46,9 +46,9 @@ spec:
         kubernetes.io/hostname: shadowfax
       priorityClassName: vm-standard
       volumes:
-        - dataVolume:
-            name: fj-runner-02-disk1
-          name: disk1
+        - name: disk1
+          persistentVolumeClaim:
+            claimName: fj-runner-02-disk1
         - dataVolume:
             name: "nixos-minimal"
           name: nixosiso
