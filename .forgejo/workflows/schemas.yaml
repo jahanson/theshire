@@ -67,8 +67,6 @@ jobs:
           # Create final schemas directory
           SCHEMAS_DIR=$GITHUB_WORKSPACE/crdSchemas
           mkdir -p $SCHEMAS_DIR
-          echo "Schemas directory: $SCHEMAS_DIR"
-          cd $SCHEMAS_DIR
 
           # Extract CRDs from cluster
           NUM_OF_CRDS=0
