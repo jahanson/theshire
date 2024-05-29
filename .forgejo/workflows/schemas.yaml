@@ -145,4 +145,4 @@ jobs:
           MC_CONFIG_DIR: $GITHUB_WORKSPACE
         shell: bash
         run: |
-          mc cp --recursive $SCHEMAS_DIR r2-ks/kubernetes-schemas
+          mc cp --recursive $SCHEMAS_DIR r2-ks/kubernetes-schema
