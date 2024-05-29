@@ -13,7 +13,7 @@ on:
 jobs:
   publish:
     name: Schemas
-    runs-on: ["docker"]
+    runs-on: ["docker-x86_64"]
     permissions:
       contents: read
       packages: write
