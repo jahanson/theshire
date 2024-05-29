@@ -14,6 +14,8 @@ jobs:
   publish:
     name: Schemas
     runs-on: ["docker-x86_64"]
+    env:
+      KUBECONFIG: "${{ steps.kubeconfig.outputs.filePath }}"
     permissions:
       contents: read
       packages: write
@@ -57,8 +59,6 @@ jobs:
           fileDir: $GITHUB_WORKSPACE
 
       - name: test kubectl
-        env:
-          KUBECONFIG: "${{ steps.kubeconfig.outputs.filePath }}"
         run: |
           kubectl get nodes
       - name: Download and run crd-extractor
@@ -72,6 +72,8 @@ jobs:
           bash $GITHUB_WORKSPACE/crd-extractor.sh
 
       - name: Deploy to Cloudflare R2
+        env:
+          MC_CONFIG_DIR: $GITHUB_WORKSPACE
         shell: bash
         run: |
           mc cp --recursive $HOME/.datree/crdSchemas/ r2-ks/kubernetes-schemas
