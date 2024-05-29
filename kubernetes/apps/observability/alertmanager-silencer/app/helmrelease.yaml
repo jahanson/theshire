@@ -41,6 +41,7 @@ spec:
               ALERTMANAGER_URL: http://alertmanager-operated.observability.svc.cluster.local:9093
               MATCHERS_0: alertname=NodeCPUHighUsage job=node-exporter
               MATCHERS_1: alertname=CPUThrottlingHigh container=gc
+              MATCHERS_2: alertname=CPUThrottlingHigh container=worker
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
