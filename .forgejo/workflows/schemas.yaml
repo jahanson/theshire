@@ -1,0 +1,72 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: "Schemas"
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *" # Every day at midnight
+  push:
+    branches: ["main"]
+    paths: [".forgejo/workflows/schemas.yaml"]
+
+jobs:
+  publish:
+    name: Schemas
+    runs-on: ["docker"]
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout
+        uses: https://github.com/actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Homebrew
+        uses: https://github.com/Homebrew/actions/setup-homebrew@master
+
+      - name: Setup Workflow Tools
+        shell: bash
+        run: brew install kubernetes-cli minio-mc
+
+      - name: Setup Python
+        uses: https://github.com/actions/setup-python@v5
+        with:
+          python-version: 3.x
+
+      - name: Setup Node
+        uses: https://github.com/actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: Write kubeconfig
+        id: kubeconfig
+        uses: https://github.com/timheuer/base64-to-file@v1
+        with:
+          encodedString: "${{ secrets.KUBECONFIG }}"
+          fileName: kubeconfig
+          fileDir: $GITHUB_WORKSPACE
+
+      - name: Write mc
+        id: mcconfig
+        uses: https://github.com/timheuer/base64-to-file@v1
+        with:
+          encodedString: "${{ secrets.MCCONFIG }}"
+          fileName: config.json
+          fileDir: $GITHUB_WORKSPACE
+
+      - name: Download and run crd-extractor
+        env:
+          KUBECONFIG: "${{ steps.kubeconfig.outputs.filePath }}"
+        shell: bash
+        run: |
+          curl -fsSL -o $GITHUB_WORKSPACE/crd-extractor.sh \
+              https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/Utilities/crd-extractor.sh
+          chmod +x $GITHUB_WORKSPACE/crd-extractor.sh
+          bash $GITHUB_WORKSPACE/crd-extractor.sh
+
+      - name: Deploy to Cloudflare R2
+        shell: bash
+        run: |
+          mc cp --recursive $HOME/.datree/crdSchemas/ r2-ks/kubernetes-schemas
