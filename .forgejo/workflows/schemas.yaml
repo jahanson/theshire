@@ -89,6 +89,7 @@ jobs:
               resourceGroup=$(grep "group:" "$TMP_CRD_DIR/$filename.yaml" | awk 'NR==1{print $2}')
 
               # Save name and group for later directory organization
+              CRD_GROUPS["$resourceKind"]="$resourceGroup"
 
               let ++NUM_OF_CRDS
           done < <(kubectl get crds 2>&1 | sed -n '/NAME/,$p' | tail -n +2)
