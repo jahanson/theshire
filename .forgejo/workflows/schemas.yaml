@@ -89,8 +89,6 @@ jobs:
               resourceGroup=$(grep "group:" "$TMP_CRD_DIR/$filename.yaml" | awk 'NR==1{print $2}')
 
               # Save name and group for later directory organization
-              CRD_GROUPS["$resourceKind"]="$resourceGroup"
-              echo CRD_GROUPS: ${CRD_GROUPS[@]}
 
               let ++NUM_OF_CRDS
           done < <(kubectl get crds 2>&1 | sed -n '/NAME/,$p' | tail -n +2)
@@ -116,6 +114,10 @@ jobs:
               crdFileName=$(basename $schema .json)
               crdKind=${crdFileName%%_*}
               crdGroup=${CRD_GROUPS[$crdKind]}
+              if [ -z $crdGroup ]; then
+                  crdGroup="uncategorized"
+                  echo "CRD kind $crdKind has no group, moving to $crdGroup"
+              fi
               echo making directory $crdGroup
               mkdir -p $crdGroup
               mv $schema ./$crdGroup
