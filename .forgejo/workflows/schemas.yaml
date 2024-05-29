@@ -60,7 +60,7 @@ jobs:
         env:
           KUBECONFIG: "${{ steps.kubeconfig.outputs.filePath }}"
         run: |
-          kubectl get nodes
+          kubectl get crds 2>&1 | sed -n '/NAME/,$p' | tail -n +2
       - name: Download and run crd-extractor
         env:
           KUBECONFIG: "${{ steps.kubeconfig.outputs.filePath }}"
