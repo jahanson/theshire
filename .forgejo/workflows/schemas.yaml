@@ -56,6 +56,11 @@ jobs:
           fileName: config.json
           fileDir: $GITHUB_WORKSPACE
 
+      - name: test kubectl
+        env:
+          KUBECONFIG: "${{ steps.kubeconfig.outputs.filePath }}"
+        run: |
+          kubectl get nodes
       - name: Download and run crd-extractor
         env:
           KUBECONFIG: "${{ steps.kubeconfig.outputs.filePath }}"
