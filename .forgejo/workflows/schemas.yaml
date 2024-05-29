@@ -28,11 +28,11 @@ jobs:
         run: |
           curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
           chmod +x kubectl
-          sudo mv kubectl /usr/local/bin/
+          mv kubectl /usr/local/bin/
 
           curl -LO "https://dl.min.io/client/mc/release/linux-amd64/mc"
           chmod +x mc
-          sudo mv mc /usr/local/bin/
+          mv mc /usr/local/bin/
 
       - name: Setup Python
         uses: https://github.com/actions/setup-python@v5
