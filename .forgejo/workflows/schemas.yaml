@@ -93,6 +93,8 @@ jobs:
               let ++NUM_OF_CRDS
           done < <(kubectl get crds 2>&1 | sed -n '/NAME/,$p' | tail -n +2)
           echo numCRDs: $NUM_OF_CRDS
+
+          cd $SCHEMAS_DIR
           # Download converter script
           curl https://raw.githubusercontent.com/yannh/kubeconform/master/scripts/openapi2jsonschema.py --output $TMP_CRD_DIR/openapi2jsonschema.py 2>/dev/null
 
