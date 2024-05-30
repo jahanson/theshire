@@ -19,7 +19,6 @@ resources:
  - hetzner.yaml
  - ingress-nginx.yaml
  - intel.yaml
- - jahanson.yaml
  - jetstack.yaml
  - kubernetes-sigs-nfd.yaml
  - kyverno.yaml
