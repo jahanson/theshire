@@ -1,5 +1,14 @@
 ---
 creation_rules:
+  - # IMPORTANT: Keep this rule first
+    path_regex: kubernetes/bootstrap/talos/talsecret(\.sops)?\.ya?ml
+    input_type: yaml
+    encrypted_regex: ^(token|crt|key|id|secret|secretboxencryptionsecret|ca|bootstraptoken)$
+    age: >-
+      age1eqlaq205y5jre9hu5hvulywa7w3d4qyxwmafneamxcn7nejesedsf4q9g6
+  - path_regex: kubernetes/.*/talos/.*\.sops\.ya?ml$
+    age: >-
+      age1eqlaq205y5jre9hu5hvulywa7w3d4qyxwmafneamxcn7nejesedsf4q9g6
   - path_regex: kubernetes/.*\.sops\.ya?ml
     encrypted_regex: "^(data|stringData)$"
     # Homelab
