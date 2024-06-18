@@ -22,6 +22,9 @@ includes:
   flux:
     dir: .taskfiles/flux
     taskfile: .taskfiles/flux
+  talos:
+    taskfile: ".taskfiles/talos"
+    dir: .taskfiles/talos
 
 tasks:
   default:
