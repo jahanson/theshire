@@ -69,17 +69,46 @@ spec:
           - path: /app/zfs-scrub.sh
             subPath: zfs-scrub.sh
             readOnly: true
-      procfs:
-        type: hostPath
-        hostPath: /proc
-        hostPathType: Directory
-        globalMounts:
-          - path: /host/proc
-            readOnly: true
       netfs:
         type: hostPath
         hostPath: /sys
         hostPathType: Directory
         globalMounts:
-          - path: /host/net
+          - path: /sys
             readOnly: true
+      dev:
+        type: hostPath
+        hostPath: /dev
+        hostPathType: Directory
+        globalMounts:
+          - path: /dev
+      modules:
+        type: hostPath
+        hostPath: /lib/modules
+        hostPathType: ""
+        globalMounts:
+          - path: /lib/modules
+      udev:
+        type: hostPath
+        hostPath: /run/udev
+        hostPathType: ""
+        globalMounts:
+          - path: /run/udev
+      localtime:
+        type: hostPath
+        hostPath: /etc/localtime
+        hostPathType: ""
+        globalMounts:
+          - path: /etc/localtime
+      host:
+        type: hostPath
+        hostPath: /
+        hostPathType: Directory
+        globalMounts:
+          - path: /host
+      efivars:
+        type: hostPath
+        hostPath: /sys/firmware/efi/efivars
+        hostPathType: ""
+        globalMounts:
+          - path: /sys/firmware/efi/efivars
