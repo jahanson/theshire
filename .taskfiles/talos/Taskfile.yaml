@@ -48,8 +48,15 @@ tasks:
 
   fetch-kubeconfig:
     desc: Fetch kubeconfig from Talos controllers
+    vars:
+      CONTROLPLANE_NODE:
+        sh: |
+          talosctl --context {{.cluster}} config info \
+          | grep Endpoints: \
+          | awk '{split($0,u," "); print u[2]}' \
+          | sed -E 's/,//'
     cmd: |
-      talosctl --context {{.cluster}} kubeconfig --nodes {{.controller}} \
+      talosctl --context {{.cluster}} kubeconfig --nodes {{.CONTROLPLANE_NODE}} \
           --force --force-context-name {{.cluster}} {{.ROOT_DIR}}/kubeconfig
     requires:
       vars:
@@ -86,7 +93,7 @@ tasks:
             --env-file {{.KUBERNETES_DIR}}/bootstrap/talos/talenv.sops.yaml \
             --config-file {{.KUBERNETES_DIR}}/bootstrap/talos/talconfig.yaml
     cmds:
-      - talosctl --context {{.cluster}} upgrade -n {{.node}} --image {{.TALOS_IMAGE }}
+      - talosctl --context {{.cluster}} upgrade -n {{.node}} --image {{.TALOS_IMAGE }} --preserve # single node talos cluster needs to be preserved
     requires:
       vars:
         - cluster
