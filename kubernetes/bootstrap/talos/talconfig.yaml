@@ -2,7 +2,7 @@
 # yaml-language-server: $schema=https://ks.hsn.dev/talconfig.json
 clusterName: homelab
 
-talosVersion: v1.7.1
+talosVersion: v1.7.4
 kubernetesVersion: 1.30.0
 endpoint: "https://10.1.1.57:6443"
 
