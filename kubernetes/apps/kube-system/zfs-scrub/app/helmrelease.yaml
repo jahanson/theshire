@@ -32,10 +32,13 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/onedr0p/kubanetics
-              tag: 2024.6.0@sha256:899a6c65f45ef6b427c445025f9268076ebc77525234c2be7345b38c9d5521cd
-            env:
-              SCRIPT_NAME: zfs-scrub.sh
+              repository: ghcr.io/aarnaud/talos-debug-tools
+              tag: latest-6.6.29
+            command: ["/bin/bash", "-c"]
+            args:
+              - |
+                # Trim filesystems
+                chroot /host /usr/local/sbin/zpool scrub nahar
             probes:
               liveness:
                 enabled: false
@@ -61,14 +64,6 @@ spec:
                 matchLabels:
                   app.kubernetes.io/name: *app
     persistence:
-      zfs-scrub:
-        type: configMap
-        name: zfs-scrub-configmap
-        defaultMode: 0775
-        globalMounts:
-          - path: /app/zfs-scrub.sh
-            subPath: zfs-scrub.sh
-            readOnly: true
       netfs:
         type: hostPath
         hostPath: /sys
