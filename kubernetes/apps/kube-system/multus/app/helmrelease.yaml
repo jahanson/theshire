@@ -32,9 +32,9 @@ spec:
     resources:
       requests:
         cpu: 5m
-        memory: 96Mi
+        memory: 200Mi
       limits:
-        memory: 96Mi
+        memory: 200Mi
 
     hostPaths:
       netns: /var/run/netns
