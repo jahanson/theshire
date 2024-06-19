@@ -3,6 +3,7 @@ Thumbs.db
 .private/
 .venv/
 .terraform
+.direnv
 *.tfvars
 .decrypted~*
 *.agekey
