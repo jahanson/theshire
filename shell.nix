@@ -1,9 +1,16 @@
-{ pkgs ? import <nixpkgs> {}}:
-
+# Shell for bootstrapping flake-enabled nix and home-manager
+{pkgs ? import <nixpkgs> {}}:
 pkgs.mkShell {
-  packages = [
-    pkgs.k9s
-    pkgs.kubectl
-    pkgs.kubevirt
+  # Enable experimental features without having to specify the argument
+  NIX_CONFIG = "experimental-features = nix-command flakes";
+
+  nativeBuildInputs = with pkgs; [
+    git
+    go-task
+    sops
+    pre-commit
+    gitleaks
+    k9s
+    kubectl
   ];
 }
