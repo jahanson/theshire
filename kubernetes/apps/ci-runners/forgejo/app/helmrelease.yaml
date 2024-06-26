@@ -63,7 +63,7 @@ spec:
           daemon:
             image:
               repository: docker
-              tag: 27.0.1-dind
+              tag: 26.1.4-dind
             securityContext:
               privileged: true
             env:
