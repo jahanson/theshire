@@ -12,5 +12,6 @@ pkgs.mkShell {
     gitleaks
     k9s
     kubectl
+    kubevirt
   ];
 }
