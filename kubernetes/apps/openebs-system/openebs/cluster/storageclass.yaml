@@ -10,3 +10,4 @@ parameters:
   dedup: "off"
   fstype: "zfs"
   poolname: "nahar"
+allowVolumeExpansion: true
