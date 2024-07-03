@@ -33,18 +33,14 @@ spec:
               repository: ghcr.io/onedr0p/sonarr
               tag: 4.0.6.1805@sha256:7b1c3ea6a392b764eba6c9536dddbb1ad046d911d1a257e1d1e27b019996a1ed
             env:
-              # Ref: https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
-              # Ref: https://github.com/dotnet/runtime/issues/9336
-              COMPlus_EnableDiagnostics: "0"
-              SONARR__AUTHENTICATION_METHOD: External
-              SONARR__AUTHENTICATION_REQUIRED: DisabledForLocalAddresses
-              SONARR__INSTANCE_NAME: Sonarr
-              SONARR__PORT: &port 80
-              SONARR__LOG_LEVEL: info
-              SONARR__THEME: dark
-              SONARR__POSTGRES_MAIN_DB: sonarr_main
-              SONARR__POSTGRES_LOG_DB: sonarr_logs
-              SONARR__POSTGRES_PORT: "5432"
+              SONARR__APP__INSTANCENAME: Sonarr
+              SONARR__APP__THEME: dark
+              SONARR__AUTH__METHOD: External
+              SONARR__AUTH__REQUIRED: DisabledForLocalAddresses
+              SONARR__LOG__DBENABLED: "False"
+              SONARR__LOG__LEVEL: info
+              SONARR__SERVER__PORT: &port 80
+              SONARR__UPDATE__BRANCH: develop
               TZ: America/Chicago
             envFrom:
               - secretRef:
