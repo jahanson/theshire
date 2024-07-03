@@ -37,7 +37,7 @@ endpoints:
       - type: pushover
   - name: Umami
     group: external
-    url: https://umi.hsn.dev
+    url: https://umi.hsn.dev/script.js
     interval: 1m
     client:
       dns-resolver: tcp://1.1.1.1:53
