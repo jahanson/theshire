@@ -19,7 +19,7 @@ status:
     - accessModes:
         - ReadWriteOnce
       volumeMode: Block
-  cloneStrategy: snapshot
+  cloneStrategy: copy
   dataImportCronSourceFormat: pvc
   provisioner: zfs.csi.openebs.io
   snapshotClass: openebs-zfs
