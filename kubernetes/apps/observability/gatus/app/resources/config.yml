@@ -35,6 +35,16 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: pushover
+  - name: Umami
+    group: external
+    url: https://umi.hsn.dev
+    interval: 1m
+    client:
+      dns-resolver: tcp://1.1.1.1:53
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: pushover
   - name: Nextcloud External
     group: external
     url: https://nc.hsn.dev
