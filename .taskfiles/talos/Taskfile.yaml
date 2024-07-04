@@ -114,7 +114,7 @@ tasks:
           yq -r ".kubernetesVersion" {{.KUBERNETES_DIR}}/bootstrap/talos/talconfig.yaml
       CONTROLPLANE_NODE:
         sh: |
-          talosctl --context {{.cluster}} config info \
+          talosctl --context homelab config info \
           | grep Endpoints: \
           | awk '{split($0,u," "); print u[2]}' \
           | sed -E 's/,//'
