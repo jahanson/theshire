@@ -13,5 +13,6 @@ pkgs.mkShell {
     k9s
     kubectl
     kubevirt
+    fluxcd
   ];
 }
