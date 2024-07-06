@@ -9,9 +9,7 @@ spec:
   interval: 30m
   ref:
     branch: main
-  secretRef:
-    name: git-deploy-key
-  url: ssh://forgejo@git.hsn.dev/jahanson/homelab
+  url: https://git.hsn.dev/jahanson/homelab.git
   ignore: |
     # exclude all
     /*
