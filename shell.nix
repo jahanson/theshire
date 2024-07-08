@@ -5,15 +5,17 @@ pkgs.mkShell {
   NIX_CONFIG = "experimental-features = nix-command flakes";
 
   nativeBuildInputs = with pkgs; [
+    fluxcd
     git
-    go-task
-    sops
-    pre-commit
     gitleaks
+    go-task
+    helmfile
     k9s
     kubectl
     kubevirt
-    fluxcd
+    kubernetes-helm
+    pre-commit
+    sops
   ];
   # Possible inputs needed. Keeping here for posterity
   # age
