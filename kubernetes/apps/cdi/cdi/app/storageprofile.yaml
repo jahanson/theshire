@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/component: storage
     app.kubernetes.io/managed-by: cdi-controller
     cdi.kubevirt.io: ""
-  name: openebs-zfs
+  name: openebs-hostpath
 spec:
   claimPropertySets:
     - accessModes:
@@ -22,5 +22,5 @@ status:
   cloneStrategy: copy
   dataImportCronSourceFormat: pvc
   provisioner: zfs.csi.openebs.io
-  snapshotClass: openebs-zfs
-  storageClass: openebs-zfs
+  snapshotClass: openebs-hostpath
+  storageClass: openebs-hostpath

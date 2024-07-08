@@ -40,7 +40,7 @@ spec:
               featureGates:
               - CPUNodeDiscovery
               - ExpandDisks
-            vmStateStorageClass: openebs-zfs
+            vmStateStorageClass: openebs-hostpath
       target:
         group: kubevirt.io
         kind: KubeVirt

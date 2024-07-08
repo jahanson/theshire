@@ -9,7 +9,7 @@ spec:
     resources:
       requests:
         storage: 2Gi
-    storageClassName: "openebs-zfs"
+    storageClassName: "openebs-hostpath"
     accessModes:
       - "ReadWriteOnce"
   source:
