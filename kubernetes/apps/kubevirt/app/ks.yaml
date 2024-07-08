@@ -8,7 +8,7 @@ metadata:
 spec:
   targetNamespace: kubevirt
   dependsOn:
-    - name: openebs-system
+    - name: openebs
   path: ./deploy
   prune: true
   sourceRef:

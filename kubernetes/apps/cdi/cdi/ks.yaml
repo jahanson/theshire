@@ -9,7 +9,7 @@ spec:
   targetNamespace: cdi
   dependsOn:
     - name: kubevirt
-    - name: openebs-system
+    - name: openebs
   path: ./deploy
   prune: true
   sourceRef:

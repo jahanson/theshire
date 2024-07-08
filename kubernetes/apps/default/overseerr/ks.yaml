@@ -16,7 +16,7 @@ spec:
     kind: GitRepository
     name: homelab
   dependsOn:
-    - name: openebs-system
+    - name: openebs
     - name: volsync
   wait: false
   interval: 30m
