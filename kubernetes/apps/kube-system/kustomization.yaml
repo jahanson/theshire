@@ -13,8 +13,8 @@ resources:
   - ./kubelet-csr-approver/ks.yaml
   - ./metrics-server/ks.yaml
   - ./multus/ks.yaml
-  # - ./nvidia-device-plugin/ks.yaml # Until nvidia-container-plugin issues are resolved with the ZFS extension.
+  - ./nvidia-device-plugin/ks.yaml
   - ./node-feature-discovery/ks.yaml
   - ./reloader/ks.yaml
   - ./spegel/ks.yaml
-  - ./zfs-scrub/ks.yaml
+  # - ./zfs-scrub/ks.yaml # Until nvidia-container-plugin issues are resolved with the ZFS extension.

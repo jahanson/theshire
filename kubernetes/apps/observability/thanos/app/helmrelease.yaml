@@ -65,7 +65,7 @@ spec:
         - --retention.resolution-1h=60d
       persistence: &persistence
         enabled: true
-        storageClass: openebs-zfs
+        storageClass: openebs-hostpath
         size: 10Gi
     query:
       replicas: 1
