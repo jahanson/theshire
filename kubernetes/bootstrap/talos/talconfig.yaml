@@ -36,7 +36,9 @@ nodes:
             - siderolabs/amd-ucode
             - siderolabs/nonfree-kmod-nvidia
             - siderolabs/nvidia-container-toolkit
-            - siderolabs/zfs
+            # Need talos 1.8 for nvidia and zfs to coexist
+            # https://github.com/siderolabs/extensions/issues/380
+            # - siderolabs/zfs
 
     patches:
       - |-
@@ -146,12 +148,19 @@ controlPlane:
                 - 10.1.1.0/24
           extraMounts:
             - destination: /var/openebs/keys
+              type: bind
+              source: /var/openebs/keys
               options:
                 - bind
                 - rshared
                 - rw
-              source: /var/openebs/keys
+            - destination: /var/openebs/local
               type: bind
+              source: /var/openebs/local
+              options:
+                - bind
+                - rshared
+                - rw
 
     # Custom sysctls
     - |-
