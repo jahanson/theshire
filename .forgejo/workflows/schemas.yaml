@@ -131,4 +131,4 @@ jobs:
       - name: Deploy to Cloudflare R2
         shell: bash
         run: |
-          mc cp --recursive $GITHUB_WORKSPACE/crdSchemas r2-ks/kubernetes-schema
+          mc cp --recursive $GITHUB_WORKSPACE/crdSchemas/ r2-ks/kubernetes-schema
