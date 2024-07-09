@@ -16,11 +16,11 @@ spec:
         kind: HelmRepository
         namespace: flux-system
   valuesFrom:
-    - targetPath: driver.config.driver.sshConnection.username
+    - targetPath: driver.config.sshConnection.username
       kind: Secret
       name: democratic-csi-secret
       valuesKey: CSI_USERNAME
-    - targetPath: driver.config.driver.sshConnection.privateKey
+    - targetPath: driver.config.sshConnection.privateKey
       kind: Secret
       name: democratic-csi-secret
       valuesKey: CSI_PRIVATEKEY
@@ -29,7 +29,6 @@ spec:
       # should be globally unique for a given cluster
       name: "org.democratic-csi.nfs"
       fsGroupPolicy: File
-
     storageClasses:
       - name: zfs-generic-nfs-csi
         defaultClass: false
