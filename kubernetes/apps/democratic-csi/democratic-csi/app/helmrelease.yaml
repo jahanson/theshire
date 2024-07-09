@@ -18,11 +18,11 @@ spec:
   valuesFrom:
     - targetPath: driver.config.driver.sshConnection.username
       kind: Secret
-      name: zfs-nfs-csi-username
+      name: democratic-csi
       valuesKey: CSI_USERNAME
     - targetPath: driver.config.driver.sshConnection.privateKey
       kind: Secret
-      name: zfs-nfs-csi-private-key
+      name: democratic-csi
       valuesKey: CSI_PRIVATEKEY
   values:
     csiDriver:
