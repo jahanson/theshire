@@ -50,7 +50,7 @@ spec:
 
         mountOptions:
           - noatime
-          - nfsvers=4.1
+          - nfsvers=4.2
         secrets:
           provisioner-secret:
           controller-publish-secret:
@@ -113,7 +113,7 @@ spec:
           shareStrategy: "setDatasetProperties"
           shareStrategySetDatasetProperties:
             properties:
-              sharenfs: "rw,no_subtree_check,no_root_squash"
-              # sharenfs: "on"
+              # sharenfs: "rw,no_subtree_check,no_root_squash"
+              sharenfs: "on"
               # share: ""
           shareHost: "10.1.1.13"
