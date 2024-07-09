@@ -18,11 +18,11 @@ spec:
   valuesFrom:
     - targetPath: driver.config.driver.sshConnection.username
       kind: Secret
-      name: democratic-csi
+      name: democratic-csi-secret
       valuesKey: CSI_USERNAME
     - targetPath: driver.config.driver.sshConnection.privateKey
       kind: Secret
-      name: democratic-csi
+      name: democratic-csi-secret
       valuesKey: CSI_PRIVATEKEY
   values:
     csiDriver:
