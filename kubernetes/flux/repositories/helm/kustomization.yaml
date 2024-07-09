@@ -10,6 +10,7 @@ resources:
  - cilium.yaml
  - crowdsec.yaml
  - crunchydata.yaml
+ - democratic-csi.yaml
  - descheduler.yaml
  - dragonflydb.yaml
  - elastic.yaml
