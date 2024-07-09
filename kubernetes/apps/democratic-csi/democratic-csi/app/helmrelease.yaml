@@ -76,14 +76,14 @@ spec:
 
         zfs:
           # can be used to override defaults if necessary
-          # the example below is useful for TrueNAS 12
-          #cli:
-          #  sudoEnabled: true
-          #  paths:
-          #    zfs: /usr/local/sbin/zfs
-          #    zpool: /usr/local/sbin/zpool
-          #    sudo: /usr/local/bin/sudo
-          #    chroot: /usr/sbin/chroot
+          # the example below is useful for NixOS
+          cli:
+            sudoEnabled: true
+            paths:
+              zfs: /run/current-system/sw/bin/zfs
+              zpool: /run/current-system/sw/bin/zpool
+              sudo: /run/wrappers/bin/sudo
+              chroot: /run/current-system/sw/bin/chroot
 
           # can be used to set arbitrary values on the dataset/zvol
           # can use handlebars templates with the parameters from the storage class/CO
