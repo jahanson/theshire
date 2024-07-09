@@ -110,10 +110,10 @@ spec:
         # nfs:
         #   # https://docs.oracle.com/cd/E23824_01/html/821-1448/gayne.html
         #   # https://www.hiroom2.com/2016/05/18/ubuntu-16-04-share-zfs-storage-via-nfs-smb/
-        #   shareStrategy: "setDatasetProperties"
-        #   shareStrategySetDatasetProperties:
-        #     properties:
-        #       #sharenfs: "rw,no_subtree_check,no_root_squash"
-        #       sharenfs: "on"
-        #       # share: ""
-        #   shareHost: "10.1.1.13"
+          shareStrategy: "setDatasetProperties"
+          shareStrategySetDatasetProperties:
+            properties:
+              #sharenfs: "rw,no_subtree_check,no_root_squash"
+              sharenfs: "on"
+              # share: ""
+          shareHost: "10.1.1.13"
