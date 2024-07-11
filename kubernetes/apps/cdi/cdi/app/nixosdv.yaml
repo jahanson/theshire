@@ -9,9 +9,9 @@ spec:
     resources:
       requests:
         storage: 2Gi
-    storageClassName: "openebs-hostpath"
+    storageClassName: "zfs-generic-nfs-csi"
     accessModes:
-      - "ReadWriteOnce"
+      - "ReadWriteMany"
   source:
     http:
       url: "https://channels.nixos.org/nixos-24.05/latest-nixos-minimal-x86_64-linux.iso"
