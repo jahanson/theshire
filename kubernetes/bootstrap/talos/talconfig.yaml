@@ -19,6 +19,10 @@ nodes:
     controlPlane: true
     installDiskSelector:
       busPath: /pci0000:20/0000:20:01.2/0000:2c:00.0/nvme/nvme4/nvme4n1
+    machineDisks:
+      - device: /dev/disk/by-id/nvme-SOLIDIGM_SSDPFKNU020TZ_PHEH314201E72P0C
+        partitions:
+          - mountpoint: /var/mnt/nvme1
     networkInterfaces:
       - interface: enp37s0f1
         dhcp: true
@@ -45,6 +49,18 @@ nodes:
         machine:
           sysctls:
             net.core.bpf_jit_harden: 1
+            vm.nr_hugepages: "1024"
+      - &kubelet_extra_mounts |-
+        machine:
+          kubelet:
+            extraMounts:
+              - destination: /var/mnt/nvme1
+                type: bind
+                source: /var/mnt/nvme1
+                options:
+                  - rbind
+                  - rshared
+                  - rw
 controlPlane:
   patches:
      # Disable search domain everywhere
