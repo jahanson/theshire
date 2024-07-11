@@ -1,0 +1,26 @@
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/cdi.kubevirt.io/storageprofile_v1beta1.json
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: StorageProfile
+metadata:
+  labels:
+    app: containerized-data-importer
+    app.kubernetes.io/component: storage
+    app.kubernetes.io/managed-by: cdi-controller
+    cdi.kubevirt.io: ""
+  name: openebs-hostpath
+spec:
+  claimPropertySets:
+    - accessModes:
+        - ReadWriteOnce
+      volumeMode: Filesystem
+status:
+  claimPropertySets:
+    - accessModes:
+        - ReadWriteOnce
+      volumeMode: Block
+  cloneStrategy: copy
+  dataImportCronSourceFormat: pvc
+  provisioner: zfs.csi.openebs.io
+  snapshotClass: openebs-hostpath
+  storageClass: openebs-hostpath

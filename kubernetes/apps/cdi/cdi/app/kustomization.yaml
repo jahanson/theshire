@@ -6,4 +6,5 @@ resources:
   # Flux-Kustomizations
   - ./ingress.yaml
   - ./nixosdv.yaml
-  - ./storageprofile.yaml
+  - ./sp-hostpath.yaml
+  - ./sp-nfs-zfs-csi.yaml

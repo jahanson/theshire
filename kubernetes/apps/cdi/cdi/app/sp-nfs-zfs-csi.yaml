@@ -8,19 +8,16 @@ metadata:
     app.kubernetes.io/component: storage
     app.kubernetes.io/managed-by: cdi-controller
     cdi.kubevirt.io: ""
-  name: openebs-hostpath
+  name: zfs-generic-nfs-csi
 spec:
   claimPropertySets:
     - accessModes:
+        - ReadWriteMany
         - ReadWriteOnce
       volumeMode: Block
 status:
-  claimPropertySets:
-    - accessModes:
-        - ReadWriteOnce
-      volumeMode: Block
-  cloneStrategy: copy
+  cloneStrategy: snapshot
   dataImportCronSourceFormat: pvc
-  provisioner: zfs.csi.openebs.io
-  snapshotClass: openebs-hostpath
-  storageClass: openebs-hostpath
+  provisioner: org.democratic-csi.nfs
+  snapshotClass: zfs-generic-nfs-csi
+  storageClass: zfs-generic-nfs-csi
