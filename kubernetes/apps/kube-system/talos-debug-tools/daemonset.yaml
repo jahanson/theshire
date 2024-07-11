@@ -51,8 +51,6 @@ spec:
               name: sys-dir
             - mountPath: /dev
               name: dev-dir
-            - mountPath: /sys/firmware/efi/efivars
-              name: efivars
       dnsPolicy: ClusterFirstWithHostNet
       hostIPC: true
       hostPID: true
