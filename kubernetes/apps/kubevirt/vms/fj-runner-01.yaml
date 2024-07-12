@@ -49,6 +49,6 @@ spec:
         - name: disk1
           persistentVolumeClaim:
             claimName: fj-runner-01-disk1
-        - dataVolume:
+        - name: nixosiso
+          dataVolume:
             name: "nixos-minimal"
-          name: nixosiso
