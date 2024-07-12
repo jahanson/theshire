@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/component: storage
     app.kubernetes.io/managed-by: cdi-controller
     cdi.kubevirt.io: ""
-  name: openebs-hostpath
+  name: local-hostpath-nvme1
 spec:
   claimPropertySets:
     - accessModes:
@@ -22,5 +22,5 @@ status:
   cloneStrategy: copy
   dataImportCronSourceFormat: pvc
   provisioner: openebs.io/local
-  snapshotClass: openebs-hostpath
-  storageClass: openebs-hostpath
+  snapshotClass: local-hostpath-nvme1
+  storageClass: local-hostpath-nvme1
