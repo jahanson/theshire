@@ -8,5 +8,5 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 80Gi
-  storageClassName: openebs-hostpath
+      storage: 160Gi
+  storageClassName: local-hostpath-nvme1
