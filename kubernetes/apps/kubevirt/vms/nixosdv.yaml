@@ -9,7 +9,7 @@ spec:
     resources:
       requests:
         storage: 2Gi
-    storageClassName: "zfs-generic-nfs-csi"
+    storageClassName: "local-hostpath-nvme1"
     accessModes:
       - "ReadWriteMany"
   source:

@@ -29,8 +29,10 @@ spec:
           registry: quay.io/
           repository: openebs/provisioner-localpv
       hostpathClass:
+        enabled: true
         name: openebs-hostpath
         isDefaultClass: true
+        basePath: /var/mnt/nvme1
     openebs-crds:
       csi:
         volumeSnapshots:
