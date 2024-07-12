@@ -5,7 +5,6 @@ kind: Kustomization
 resources:
   # Flux-Kustomizations
   - ./ingress.yaml
-  - ./nixosdv.yaml
   - ./sp-hostpath.yaml
   - ./sp-hostpath-nvme1.yaml
   - ./sp-nfs-zfs-csi.yaml
