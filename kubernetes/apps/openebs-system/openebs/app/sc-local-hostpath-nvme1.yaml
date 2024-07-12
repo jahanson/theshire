@@ -10,5 +10,6 @@ metadata:
       - name: BasePath
         value: /var/mnt/nvme1
 provisioner: openebs.io/local
+allowVolumeExpansion: true
 reclaimPolicy: Delete
 volumeBindingMode: WaitForFirstConsumer
