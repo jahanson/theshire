@@ -20,7 +20,7 @@ nodes:
     installDiskSelector:
       busPath: /pci0000:20/0000:20:01.2/0000:2c:00.0/nvme/nvme4/nvme4n1
     machineDisks:
-      - device: /dev/disk/by-id/nvme-SOLIDIGM_SSDPFKNU020TZ_PHEH314201E72P0C
+      - device: /dev/disk/by-id/nvme-SOLIDIGM_SSDPFKNU020TZ_PHEH3142017H2P0C
         partitions:
           - mountpoint: /var/mnt/nvme1
     networkInterfaces:
