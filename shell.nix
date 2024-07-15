@@ -11,6 +11,7 @@ pkgs.mkShell {
     go-task
     helmfile
     k9s
+    krew
     kubectl
     kubevirt
     kubernetes-helm
