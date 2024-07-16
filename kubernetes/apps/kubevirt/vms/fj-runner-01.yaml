@@ -44,7 +44,7 @@ spec:
           pod: {}
       nodeSelector:
         kubernetes.io/hostname: shadowfax
-      priorityClassName: vm-standard
+      # priorityClassName: vm-standard
       volumes:
         - name: disk1
           persistentVolumeClaim:

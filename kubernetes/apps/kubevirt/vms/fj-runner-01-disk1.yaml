@@ -9,4 +9,4 @@ spec:
   resources:
     requests:
       storage: 160Gi
-  storageClassName: local-hostpath-nvme1
+  storageClassName: "openebs-hostpath"
