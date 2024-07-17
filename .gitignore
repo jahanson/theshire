@@ -16,3 +16,6 @@ kubeconfig*
 omniconfig.yaml
 config.xml
 .idea/
+.env
+.secrets
+.github
