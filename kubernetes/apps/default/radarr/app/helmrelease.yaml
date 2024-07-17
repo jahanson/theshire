@@ -30,8 +30,8 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/onedr0p/radarr
-              tag: 5.7.0.8882@sha256:67cf7fa3b10fbb9771ef11c62a215d50956a238c1a27b4195f19bdc92b796cc7
+              repository: ghcr.io/onedr0p/radarr-develop
+              tag: 5.8.2.8915
             env:
               RADARR__APP__INSTANCENAME: Radarr
               RADARR__APP__THEME: dark
