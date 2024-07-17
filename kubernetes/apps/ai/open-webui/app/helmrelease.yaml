@@ -34,7 +34,7 @@ spec:
               tag: git-82079e6
             env:
               - name: OLLAMA_BASE_URL
-                value: ollama.ai.svc.cluster.local
+                value: http://ollama.ai.svc.cluster.local:11434
             resources:
               requests:
                 cpu: 500m
