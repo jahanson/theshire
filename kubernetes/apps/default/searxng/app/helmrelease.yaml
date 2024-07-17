@@ -32,6 +32,9 @@ spec:
             image:
               repository: docker.io/searxng/searxng
               tag: 2024.7.7-ef103ba80
+            envFrom:
+              - secretRef:
+                  name: searxng-secret
             env:
               TZ: America/Chicago
               SEARXNG_BASE_URL: https://search.jahanson.tech
