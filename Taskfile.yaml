@@ -18,6 +18,7 @@ includes:
   k8s: .taskfiles/k8s
   flux: .taskfiles/flux
   talos: .taskfiles/talos
+  act: .taskfiles/act
 
 tasks:
   default:
