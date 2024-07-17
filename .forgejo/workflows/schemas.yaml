@@ -19,7 +19,7 @@ jobs:
       packages: write
     steps:
       - name: Checkout
-        uses: https://github.com/actions/checkout@v4
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -42,14 +42,14 @@ jobs:
 
       - name: Write kubeconfig
         id: kubeconfig
-        uses: https://github.com/timheuer/base64-to-file@v1
+        uses: timheuer/base64-to-file@v1
         with:
           encodedString: "${{ secrets.KUBECONFIG }}"
           fileName: kubeconfig
           fileDir: ${{ env.GITHUB_WORKSPACE }}
       - name: Write mc
         id: mcconfig
-        uses: https://github.com/timheuer/base64-to-file@v1
+        uses: timheuer/base64-to-file@v1
         with:
           encodedString: "${{ secrets.MCCONFIG }}"
           fileName: config.json
