@@ -60,6 +60,8 @@ jobs:
         env:
           KUBECONFIG: "${{ steps.kubeconfig.outputs.filePath }}"
         run: |
+          # kubeconfig
+          echo "kubeconfig location: $KUBECONFIG"
           # Create temp folder for CRDs
           TMP_CRD_DIR=$(mktemp -d)
           echo "Temp directory: $TMP_CRD_DIR"
