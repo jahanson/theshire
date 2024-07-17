@@ -14,6 +14,8 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
+  dependsOn:
+    - name: ollama
   install:
     remediation:
       retries: 3
@@ -35,6 +37,16 @@ spec:
             env:
               - name: OLLAMA_BASE_URL
                 value: http://ollama.ai.svc.cluster.local:11434
+              - name: ENABLE_RAG_WEB_SEARCH
+                value: true
+              - name: RAG_WEB_SEARCH_ENGINE
+                value: searxng
+              - name: RAG_WEB_SEARCH_RESULT_COUNT
+                value: 3
+              - name: RAG_WEB_SEARCH_CONCURRENT_REQUESTS
+                value: 10
+              - name: RAG_WEB_SEARCH_QUERY_URL
+                value: http://searxng.default.svc.cluster.local:8080/search?q=<query>
             resources:
               requests:
                 cpu: 500m
