@@ -46,8 +46,7 @@ jobs:
         with:
           encodedString: "${{ secrets.KUBECONFIG }}"
           fileName: kubeconfig
-          fileDir: $GITHUB_WORKSPACE
-
+          fileDir: ${{ env.GITHUB_WORKSPACE }}
       - name: Write mc
         id: mcconfig
         uses: https://github.com/timheuer/base64-to-file@v1
