@@ -41,12 +41,10 @@ spec:
                 value: true
               - name: RAG_WEB_SEARCH_ENGINE
                 value: searxng
-              - name: RAG_WEB_SEARCH_RESULT_COUNT
-                value: 3
-              - name: RAG_WEB_SEARCH_CONCURRENT_REQUESTS
-                value: 10
-              - name: RAG_WEB_SEARCH_QUERY_URL
+              - name: SEARXNG_QUERY_URL
                 value: http://searxng.default.svc.cluster.local:8080/search?q=<query>
+              - name: ENABLE_RAG_WEB_LOADER_SSL_VERIFICATION
+                value: true
             resources:
               requests:
                 cpu: 500m
