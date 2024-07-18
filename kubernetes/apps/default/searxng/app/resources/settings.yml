@@ -9,7 +9,11 @@ redis:
   url: redis://dragonfly.database.svc.cluster.local:6379?db=10
 
 search:
-  autocomplete: google
+  safe_search: 0
+  autocomplete: brave
+  formats:
+    - html
+    - json
 
 general:
   instance_name: HansonSearch
