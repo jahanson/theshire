@@ -69,12 +69,12 @@ spec:
         enabled: true
         existingClaim: stablediffusion-checkpoints
         globalMounts:
-          - path: /models
+          - path: /data/models
       config:
         enabled: true
         existingClaim: comfyui
         globalMounts:
-          - path: /data
+          - path: /data/config
       output:
         enabled: true
         type: emptyDir
