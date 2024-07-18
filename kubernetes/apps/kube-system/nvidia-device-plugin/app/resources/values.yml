@@ -1,7 +1,7 @@
 ---
 version: v1
 flags:
-  migStrategy: "mixed"
+  migStrategy: "single"
   plugin:
     deviceListStrategy: "envvar"
     deviceIDStrategy: "uuid"
