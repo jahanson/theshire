@@ -1,10 +1,12 @@
-runtimeClassName: "nvidia"
-gfd:
-  enabled: false
-nfd:
-  enabled: false
-resources:
-  requests:
-    cpu: 100m
-  limits:
-    memory: 512Mi
+---
+version: v1
+flags:
+  migStrategy: "mixed"
+  plugin:
+    deviceListStrategy: "envvar"
+    deviceIDStrategy: "uuid"
+sharing:
+  timeSlicing:
+    resources:
+      - name: nvidia.com/gpu
+        replicas: 3

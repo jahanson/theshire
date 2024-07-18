@@ -22,8 +22,16 @@ spec:
     remediation:
       retries: 3
       strategy: rollback
-  valuesFrom:
-    - kind: ConfigMap
-      name: nvidia-helm-values
   values:
-    migStrategy: "mixed"
+    config:
+      name: nvidia-helm-values
+    runtimeClassName: "nvidia"
+    gfd:
+      enabled: true
+    nfd:
+      enabled: false
+    resources:
+      requests:
+        cpu: 100m
+      limits:
+        memory: 512Mi
