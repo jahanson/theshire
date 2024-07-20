@@ -39,7 +39,13 @@ spec:
           enabled: false
           keep: false
     zfs-localpv:
-      enabled: false
+      enabled: true
+      zfsNode:
+        encrKeysDir: /var/openebs/keys
+        zfsPlugin:
+          image:
+            registry: quay.io/
+            repository: openebs/zfs-driver
     lvm-localpv:
       enabled: false
     mayastor:
@@ -49,7 +55,7 @@ spec:
         lvm:
           enabled: false
         zfs:
-          enabled: false
+          enabled: true
       replicated:
         mayastor:
           enabled: false
