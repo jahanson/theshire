@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://ks.hsn.dev/talconfig.json
+# yaml-language-server: $schema=https://ks.hsn.dev/talhelper-schema.json
 clusterName: homelab
 
 talosVersion: v1.7.5
