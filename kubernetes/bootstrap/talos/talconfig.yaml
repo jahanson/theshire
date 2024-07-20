@@ -2,7 +2,7 @@
 # yaml-language-server: $schema=https://ks.hsn.dev/talhelper-schema.json
 clusterName: homelab
 
-talosVersion: v1.7.5
+talosVersion: v1.8.0-alpha.1
 kubernetesVersion: 1.30.2
 endpoint: "https://10.1.1.57:6443"
 
@@ -42,7 +42,7 @@ nodes:
             - siderolabs/nvidia-container-toolkit
             # Need talos 1.8 for nvidia and zfs to coexist
             # https://github.com/siderolabs/extensions/issues/380
-            # - siderolabs/zfs
+            - siderolabs/zfs
 
     patches:
       - |-
@@ -117,22 +117,6 @@ controlPlane:
         etcd:
           advertisedSubnets:
             - 10.1.1.0/24
-
-    # Configure containerd
-    - |-
-      machine:
-        files:
-          - op: create
-            path: /etc/cri/conf.d/20-customization.part
-            content: |
-              [plugins]
-                [plugins."io.containerd.grpc.v1.cri"]
-                  enable_unprivileged_ports = true
-                  enable_unprivileged_icmp = true
-              [plugins."io.containerd.grpc.v1.cri".containerd]
-                discard_unpacked_layers = false
-              [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
-                discard_unpacked_layers = false
 
     # Disable default API server admission plugins.
     - |-
