@@ -32,3 +32,8 @@ spec:
         hostPort: 29999
     serviceMonitor:
       enabled: true
+    probes:
+      readiness:
+        enabled: false
+      startup:
+        enabled: false
