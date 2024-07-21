@@ -8,19 +8,20 @@ metadata:
     app.kubernetes.io/component: storage
     app.kubernetes.io/managed-by: cdi-controller
     cdi.kubevirt.io: ""
-  name: local-hostpath-nvme1
+  name: openebs-zfs
 spec:
   claimPropertySets:
     - accessModes:
         - ReadWriteOnce
       volumeMode: Filesystem
+  snapshotClass: openebs-zfs
 status:
   claimPropertySets:
     - accessModes:
         - ReadWriteOnce
       volumeMode: Block
-  cloneStrategy: copy
+  cloneStrategy: clone
   dataImportCronSourceFormat: pvc
   provisioner: openebs.io/local
-  snapshotClass: local-hostpath-nvme1
-  storageClass: local-hostpath-nvme1
+  snapshotClass: openebs-zfs
+  storageClass: openebs-zfs
