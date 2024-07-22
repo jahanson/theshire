@@ -84,7 +84,9 @@ spec:
             securityContext:
               capabilities:
                 add:
-                  - ALL
+                  - NET_ADMIN
+                  - NET_RAW
+                  - SYS_ADMIN
               allowPrivilegeEscalation: true
 
           port-forward:
