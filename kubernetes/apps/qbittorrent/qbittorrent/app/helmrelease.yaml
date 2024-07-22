@@ -82,6 +82,9 @@ spec:
               - secretRef:
                   name: qbittorrent-secret
             securityContext:
+              capabilities:
+                add:
+                  - ALL
               allowPrivilegeEscalation: true
 
           port-forward:
