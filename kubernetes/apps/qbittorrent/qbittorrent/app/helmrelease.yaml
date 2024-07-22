@@ -86,6 +86,7 @@ spec:
                 add:
                   - NET_ADMIN
                   - NET_RAW
+                  - SYS_ADMIN
               allowPrivilegeEscalation: false
 
           port-forward:
