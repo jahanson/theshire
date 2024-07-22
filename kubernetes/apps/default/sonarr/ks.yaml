@@ -30,3 +30,5 @@ spec:
       DB_NAME: sonarr
       DB_USER: sonarr
       VOLSYNC_CAPACITY: 15Gi
+      VOLSYNC_STORAGECLASS: openebs-zfs
+      VOLSYNC_SNAPSHOTCLASS: openebs-zfs
