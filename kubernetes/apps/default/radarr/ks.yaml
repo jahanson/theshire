@@ -29,3 +29,5 @@ spec:
       DB_NAME: radarr
       DB_USER: radarr
       VOLSYNC_CAPACITY: 15Gi
+      VOLSYNC_STORAGECLASS: openebs-zfs
+      VOLSYNC_SNAPSHOTCLASS: openebs-zfs
