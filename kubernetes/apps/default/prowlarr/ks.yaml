@@ -27,5 +27,3 @@ spec:
       APP: *app
       DB_NAME: prowlarr
       DB_USER: prowlarr
-      VOLSYNC_STORAGECLASS: openebs-zfs
-      VOLSYNC_SNAPSHOTCLASS: openebs-zfs
