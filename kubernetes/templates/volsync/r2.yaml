@@ -47,4 +47,4 @@ spec:
       runAsGroup: ${APP_GID:-568}
       fsGroup: ${APP_GID:-568}
     retain:
-      daily: 7
+      daily: 30
