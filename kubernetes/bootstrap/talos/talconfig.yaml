@@ -173,7 +173,7 @@ controlPlane:
           net.core.wmem_max: "2500000"
 
     # Configure nfs mount options
-    - |-
+    - |
       machine:
         files:
           - op: overwrite
