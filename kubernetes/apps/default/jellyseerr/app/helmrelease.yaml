@@ -23,9 +23,6 @@ spec:
       retries: 3
       strategy: rollback
   interval: 30m
-  valuesFrom:
-    - kind: Secret
-      name: jellyseerr-secret
   values:
     controllers:
       jellyseerr:
@@ -33,6 +30,9 @@ spec:
           reloader.stakater.com/auto: "true"
         containers:
           app:
+            envFrom:
+              - secretRef:
+                  name: jellyseerr-secret
             env:
               NODE_ENV: production
             image:
