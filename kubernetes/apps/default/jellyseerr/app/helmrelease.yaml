@@ -55,14 +55,6 @@ spec:
                 drop:
                   - ALL
               readOnlyRootFilesystem: true
-        statefulset:
-          podManagementPolicy: Parallel
-          volumeClaimTemplates:
-            - accessMode: ReadWriteOnce
-              globalMounts:
-                - path: /usr/lib/jellyseerr/config
-              name: config
-              size: 1Mi
         type: statefulset
     defaultPodOptions:
       securityContext:
@@ -91,3 +83,7 @@ spec:
         ports:
           http:
             port: 5055
+    persistence:
+      config:
+        enabled: true
+        existingClaim: radarr
