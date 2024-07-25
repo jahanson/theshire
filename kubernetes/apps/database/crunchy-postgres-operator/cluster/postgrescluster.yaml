@@ -98,6 +98,11 @@ spec:
         - sonarr_main
       password:
         type: AlphaNumeric
+    - name: jellyseerr
+      databases:
+        - jellyseerr
+      password:
+        type: AlphaNumeric
 
 
   backups:
