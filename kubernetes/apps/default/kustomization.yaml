@@ -8,6 +8,7 @@ resources:
   # Flux-Kustomizations
   - ./atuin/ks.yaml
   - ./excalidraw/ks.yaml
+  - ./jellyseerr/ks.yaml
   - ./maintainerr/ks.yaml
   - ./overseerr/ks.yaml
   - ./prowlarr/ks.yaml
