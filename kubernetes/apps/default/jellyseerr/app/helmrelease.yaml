@@ -56,14 +56,6 @@ spec:
                   - ALL
               readOnlyRootFilesystem: true
         type: statefulset
-    defaultPodOptions:
-      securityContext:
-        fsGroup: 568
-        runAsGroup: 568
-        runAsNonRoot: true
-        runAsUser: 568
-        seccompProfile:
-          type: RuntimeDefault
     ingress:
       app:
         annotations:
