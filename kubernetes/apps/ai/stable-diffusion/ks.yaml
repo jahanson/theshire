@@ -30,3 +30,4 @@ spec:
       VOLSYNC_CAPACITY: 5Gi
       VOLSYNC_STORAGECLASS: openebs-zfs
       VOLSYNC_SNAPSHOTCLASS: openebs-zfs
+      GATUS_SUBDOMAIN: comfyui
