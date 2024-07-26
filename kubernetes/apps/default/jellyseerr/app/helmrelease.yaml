@@ -21,7 +21,7 @@ spec:
     cleanupOnFail: true
     remediation:
       retries: 3
-      strategy: rollback
+      strategy: uninstall
   interval: 30m
   values:
     controllers:
@@ -89,7 +89,9 @@ spec:
         existingClaim: jellyseerr
         globalMounts:
           - path: /app/config
+            readOnly: false
       logs:
         type: emptyDir
         globalMounts:
           - path: /app/config/logs/
+            readOnly: false
