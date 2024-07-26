@@ -87,3 +87,5 @@ spec:
       config:
         enabled: true
         existingClaim: jellyseerr
+        globalMounts:
+          - path: /app/config
