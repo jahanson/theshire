@@ -63,12 +63,15 @@ spec:
           external-dns.alpha.kubernetes.io/target: external.hsn.dev
         className: external-nginx
         hosts:
-          - host: jellyseerr.hsn.dev
+          - host: &host jellyseerr.hsn.dev
             paths:
               - path: /
                 service:
                   identifier: app
                   port: http
+        tls:
+          - hosts:
+              - *host
     service:
       app:
         controller: jellyseerr
