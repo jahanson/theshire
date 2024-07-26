@@ -89,4 +89,6 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /app/config/logs/
+          - path: /app/node_modules
+          - path: /app/.next
             readOnly: false
