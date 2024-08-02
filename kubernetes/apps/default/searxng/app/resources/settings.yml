@@ -48,4 +48,4 @@ hostnames:
     - (.*\.)?askubuntu.com$
     - (.*\.)?superuser.com$
   replace:
-    (www\.)?reddit\.com$: red.jahanson.tech
+    (www\.)?reddit\.com$: red.hsn.dev
