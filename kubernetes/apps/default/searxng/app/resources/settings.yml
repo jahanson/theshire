@@ -47,5 +47,5 @@ hostnames:
     - (.*\.)?stackoverflow.com$
     - (.*\.)?askubuntu.com$
     - (.*\.)?superuser.com$
-  # replace:
-    # (www\.)?reddit\.com$: redlib.rostvik.site
+  replace:
+    (www\.)?reddit\.com$: red.jahanson.tech
