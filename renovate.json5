@@ -5,7 +5,9 @@
     "local>jahanson/homelab//.renovate/customManagers.json5",
     "local>jahanson/homelab//.renovate/autoMerge.json5"
   ],
-  "ignorePaths": [".archive/**"],
+  "ignorePaths": [
+    ".archive/**"
+  ],
   "flux": {
     "fileMatch": [
       "kubernetes/.+\\.ya?ml$"
@@ -217,8 +219,27 @@
       ],
       "group": {
         "commitMessageTopic": "{{{groupName}}} group"
-      },
+      }
     },
-    // Version strategies
-  ]
-}
+    {
+      "description": "Ollama combine datasources.",
+      "groupName": "Ollama",
+      "matchPackagePatterns": [
+        "docker.io/ollama/ollama",
+        "ollama"
+      ],
+      "matchDatasources": [
+        "docker",
+        "github-releases"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
+      }
+    }
+      // Version strategies
+    ]
+  }
