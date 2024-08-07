@@ -3,7 +3,8 @@
   "extends": [
     "config:recommended",
     "local>jahanson/homelab//.renovate/customManagers.json5",
-    "local>jahanson/homelab//.renovate/autoMerge.json5"
+    "local>jahanson/homelab//.renovate/autoMerge.json5",
+    "local>jahanson/homelab//.renovate/packageRules.json5"
   ],
   "ignorePaths": [
     ".archive/**"
