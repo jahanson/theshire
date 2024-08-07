@@ -82,11 +82,13 @@ spec:
               - secretRef:
                   name: qbittorrent-secret
             securityContext:
-              allowPrivilegeEscalation: true
+              allowPrivilegeEscalation: false
               capabilities:
                 add:
                   - NET_ADMIN
-              privileged: true
+                drop:
+                  - ALL
+              # privileged: true
 
           port-forward:
             image:
@@ -155,3 +157,10 @@ spec:
           qbittorrent:
             app:
               - path: /data/nas-media
+      qbtun:
+        type: hostPath
+        hostPath: /dev/net
+        advancedMounts:
+          qbittorrent:
+            gluetun:
+              - path: /dev/net
