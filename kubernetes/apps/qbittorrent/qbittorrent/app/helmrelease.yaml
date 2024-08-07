@@ -169,4 +169,4 @@ spec:
         advancedMounts:
           qbittorrent:
             gluetun:
-              - /etc/unbound
+              - path: /etc/unbound
