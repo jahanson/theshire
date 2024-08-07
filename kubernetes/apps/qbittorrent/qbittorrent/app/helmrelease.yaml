@@ -82,7 +82,9 @@ spec:
               - secretRef:
                   name: qbittorrent-secret
             securityContext:
+              runAsUser: 568
               runAsGroup: 568
+              runAsNonRoot: true
               allowPrivilegeEscalation: false
               capabilities:
                 add:
@@ -165,9 +167,3 @@ spec:
           qbittorrent:
             gluetun:
               - path: /dev/net
-      unbound:
-        type: emptyDir
-        advancedMounts:
-          qbittorrent:
-            gluetun:
-              - path: /etc/unbound
