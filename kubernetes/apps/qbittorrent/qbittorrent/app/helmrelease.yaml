@@ -164,3 +164,9 @@ spec:
           qbittorrent:
             gluetun:
               - path: /dev/net
+      unbound:
+        type: emptyDir
+        advancedMounts:
+          qbittorrent:
+            gluetun:
+              - /etc/unbound
