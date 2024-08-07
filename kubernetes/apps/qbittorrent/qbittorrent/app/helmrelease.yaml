@@ -86,7 +86,6 @@ spec:
               capabilities:
                 add:
                   - NET_ADMIN
-              privileged: true
 
           port-forward:
             image:
@@ -155,10 +154,3 @@ spec:
           qbittorrent:
             app:
               - path: /data/nas-media
-      # qbtun:
-      #   type: hostPath
-      #   hostPath: /dev/net/tun
-      #   advancedMounts:
-      #     qbittorrent:
-      #       gluetun:
-      #         - path: /dev/net/tun
