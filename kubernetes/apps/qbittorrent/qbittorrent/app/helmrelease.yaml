@@ -82,6 +82,8 @@ spec:
               - secretRef:
                   name: qbittorrent-secret
             securityContext:
+              runAsUser: 568
+              runAsGroup: 568
               allowPrivilegeEscalation: false
               capabilities:
                 add:
