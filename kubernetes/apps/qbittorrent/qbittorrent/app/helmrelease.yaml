@@ -156,3 +156,10 @@ spec:
           qbittorrent:
             app:
               - path: /data/nas-media
+      qbtun:
+        type: hostPath
+        hostPath: /dev/net/tun
+        advancedMounts:
+          qbittorrent:
+            gluetun:
+              - path: /dev/net/tun
