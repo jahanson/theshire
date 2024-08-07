@@ -86,6 +86,7 @@ spec:
               capabilities:
                 add:
                   - NET_ADMIN
+              privileged: true
 
           port-forward:
             image:
