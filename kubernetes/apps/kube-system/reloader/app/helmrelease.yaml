@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: reloader
-      version: 1.0.120
+      version: 1.0.119
       sourceRef:
         kind: HelmRepository
         name: stakater
@@ -19,3 +19,11 @@ spec:
   values:
     reloader:
       reloadStrategy: annotations
+      deployment:
+        resources:
+          requests:
+            cpu: 15m
+            memory: 63Mi
+          limits:
+            cpu: 45m
+            memory: 200Mi
