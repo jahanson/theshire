@@ -19,11 +19,3 @@ spec:
   values:
     reloader:
       reloadStrategy: annotations
-      deployment:
-        resources:
-          requests:
-            cpu: 15m
-            memory: 63Mi
-          limits:
-            cpu: 45m
-            memory: 400Mi
