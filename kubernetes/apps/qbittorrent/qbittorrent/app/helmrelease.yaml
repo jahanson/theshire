@@ -22,7 +22,7 @@ spec:
     cleanupOnFail: true
     remediation:
       retries: 3
-      strategy: uninstall
+      strategy: rollback
   values:
     controllers:
       qbittorrent:
@@ -82,17 +82,13 @@ spec:
               - secretRef:
                   name: qbittorrent-secret
             securityContext:
-              runAsUser: 568
-              runAsGroup: 568
-              runAsNonRoot: true
-              allowPrivilegeEscalation: false
+              # until I can debug the issues on talos 1.8.
+              privileged: true
               capabilities:
                 add:
                   - NET_ADMIN
-                  - NET_RAW
                 drop:
                   - ALL
-              # privileged: true
 
           port-forward:
             image:
