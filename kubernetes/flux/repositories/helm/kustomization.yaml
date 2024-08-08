@@ -21,16 +21,17 @@ resources:
  - ingress-nginx.yaml
  - intel.yaml
  - jetstack.yaml
+ - kubernetes-sigs-external-dns.yaml
+ - kubernetes-sigs-metrics-server.yaml
  - kubernetes-sigs-nfd.yaml
  - kyverno.yaml
- - kubernetes-sigs-metrics-server.yaml
- - kubernetes-sigs-external-dns.yaml
  - nvidia.yaml
  - openebs.yaml
  - piraeus.yaml
  - postfinance.yaml
  - prometheus-community.yaml
  - rook-ceph.yaml
+ - spegel-org.yaml
  - stakater.yaml
  - stevehipwell.yaml
- - spegel-org.yaml
+ - victoria-metrics.yaml
