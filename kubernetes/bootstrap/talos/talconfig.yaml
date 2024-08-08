@@ -76,6 +76,14 @@ nodes:
                   - rbind
                   - rshared
                   - rw
+      # disables new feature that forwards kube-dns to host-dns 10.96.0.10 --> 10.96.0.9
+      - |-
+        machine:
+          features:
+            hostDNS:
+              enabled: true
+              forwardKubeDNSToHost: false
+
 controlPlane:
   patches:
      # Disable search domain everywhere
