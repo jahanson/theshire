@@ -4,13 +4,13 @@ clusterName: homelab
 
 talosVersion: v1.8.0-alpha.1
 kubernetesVersion: 1.30.2
-endpoint: "https://10.1.1.57:6443"
+endpoint: "https://${clusterEndpointIP}:6443"
 
-additionalApiServerCertSans:
-  - 10.1.1.57
+additionalApiServerCertSans: &san
+  - ${clusterEndpointIP}
+  - "127.0.0.1" # KubePrism
 
-additionalMachineCertSans:
-  - 10.1.1.57
+additionalMachineCertSans: *san
 
 nodes:
   - hostname: shadowfax
@@ -24,10 +24,25 @@ nodes:
         partitions:
           - mountpoint: /var/mnt/nvme1
     networkInterfaces:
-      - interface: enp37s0f1
+      - interface: bond0
         dhcp: true
-      - interface: enp37s0f0
-        dhcp: false
+        bond:
+          mode: 802.3ad
+          xmitHashPolicy: layer3+4
+          lacpRate: fast
+          miimon: 100
+          deviceSelectors:
+            - hardwareAddr: 04:42:1a:ef:35:74
+              driver: ixgbe
+            - hardwareAddr: 04:42:1a:ef:35:75
+              driver: ixgbe
+        vlans:
+          - &vlan-iot
+            vlanId: 30
+            mtu: 1500
+            dhcp: true
+            dhcpOptions:
+              routeMetric: 4096
     kernelModules:
       - name: nvidia
       - name: nvidia_uvm
