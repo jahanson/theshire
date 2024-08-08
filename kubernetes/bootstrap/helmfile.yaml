@@ -26,9 +26,9 @@ releases:
     version: 1.2.2
     values: ["../apps/kube-system/kubelet-csr-approver/app/helm-values.yaml"]
     needs: ["cilium"]
-  - name: spegel
-    namespace: kube-system
-    chart: oci://ghcr.io/spegel-org/helm-charts/spegel
-    version: v0.0.23
-    values: ["../apps/kube-system/spegel/app/resources/values.yml"]
-    wait: true
+  # - name: spegel
+  #   namespace: kube-system
+  #   chart: oci://ghcr.io/spegel-org/helm-charts/spegel
+  #   version: v0.0.23
+  #   values: ["../apps/kube-system/spegel/app/resources/values.yml"]
+  #   wait: true
