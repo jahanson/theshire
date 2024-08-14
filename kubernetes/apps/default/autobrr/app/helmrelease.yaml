@@ -78,7 +78,7 @@ spec:
       app:
         className: internal-nginx
         hosts:
-          - host: "{{ .Release.Name }}.jhanson.tech"
+          - host: "{{ .Release.Name }}.jahanson.tech"
             paths:
               - path: /
                 service:
