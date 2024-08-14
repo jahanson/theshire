@@ -7,4 +7,4 @@ resources:
   - ./namespace.yaml
   # Flux-Kustomizations
   - ./gatus/ks.yaml
-  - ./smartctl-exporter/ks.yaml
+  # - ./smartctl-exporter/ks.yaml
