@@ -11,6 +11,7 @@ resources:
   - ./excalidraw/ks.yaml
   - ./jellyseerr/ks.yaml
   - ./maintainerr/ks.yaml
+  - ./omegabrr/ks.yaml
   - ./overseerr/ks.yaml
   - ./prowlarr/ks.yaml
   - ./radarr/ks.yaml
