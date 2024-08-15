@@ -41,7 +41,7 @@ spec:
               tag: 4.6.5@sha256:60bbc09640953f5c218b9a217b905f5f5b2f9b31cca9b6fdfed6409ceeb315af
             env:
               UMASK: "022"
-              QBITTORRENT__PORT: &port 8080
+              QBITTORRENT__PORT: &port 80
               QBT_Preferences__WebUI__AlternativeUIEnabled: false
               QBT_Preferences__WebUI__AuthSubnetWhitelistEnabled: true
               QBT_Preferences__WebUI__AuthSubnetWhitelist: |-
@@ -76,7 +76,7 @@ spec:
               WIREGUARD_ENDPOINT_PORT: 51820
               VPN_PORT_FORWARDING: on
               VPN_PORT_FORWARDING_PROVIDER: protonvpn
-              FIREWALL_INPUT_PORTS: 8080
+              FIREWALL_INPUT_PORTS: *port
               FIREWALL_OUTBOUND_SUBNETS: 10.32.0.0/16 # Allow access to k8s subnets
             envFrom:
               - secretRef:
@@ -127,7 +127,7 @@ spec:
         ports:
           bittorrent:
             enabled: true
-            port: 8080
+            port: *port
             protocol: TCP
 
 
