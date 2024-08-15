@@ -35,7 +35,7 @@ metadata:
   name: &app qbittorrent-tools
   namespace: flux-system
 spec:
-  targetNamespace: default
+  targetNamespace: qbittorrent
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
