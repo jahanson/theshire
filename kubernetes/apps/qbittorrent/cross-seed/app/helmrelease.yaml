@@ -89,4 +89,3 @@ spec:
         path: /volume1/Media
         globalMounts:
           - path: /data/nas-media
-            subPath: qb/downloads
