@@ -25,8 +25,8 @@ spec:
     substitute:
       APP: *app
       VOLSYNC_CAPACITY: 2Gi
-      VOLSYNC_STORAGECLASS: openebs-zfs
-      VOLSYNC_SNAPSHOTCLASS: openebs-zfs
+      VOLSYNC_STORAGECLASS: zfs-generic-nfs-csi
+      VOLSYNC_SNAPSHOTCLASS: zfs-generic-nfs-csi
 ---
 # yaml-language-server: $schema=https://ks.hsn.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
