@@ -8,4 +8,4 @@ resources:
   # Flux-Kustomizations
   - ./gatus/ks.yaml
   # - ./smartctl-exporter/ks.yaml
-  - ./victoria-metrics/ks.yaml
+  # - ./victoria-metrics/ks.yaml
