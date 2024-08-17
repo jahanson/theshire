@@ -33,7 +33,7 @@ spec:
           app:
             image:
               repository: git.hsn.dev/jahanson/cert-manager-webhook-dnsimple
-              tag: v1.1.2
+              tag: v1.1.3
             args:
               - --secure-port=8443
               - --tls-cert-file=/tls/tls.crt
