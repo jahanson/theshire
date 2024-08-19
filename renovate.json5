@@ -68,6 +68,11 @@
   ],
   "packageRules": [
     {
+      "description": "Update Gluetun only daily",
+      "matchDepNames": ["ghcr.io/qdm12/gluetun"],
+      "extends": ["schedule:daily"]
+    },
+    {
       "description": "Use custom versioning for Vector",
       "matchDatasources": [
         "docker"
