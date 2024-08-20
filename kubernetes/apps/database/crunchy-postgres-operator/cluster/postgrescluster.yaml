@@ -85,6 +85,11 @@ spec:
         - grafana
       password:
         type: AlphaNumeric
+    - name: kasm
+      databases:
+        - kasm
+      password:
+        type: AlphaNumeric
     - name: prowlarr
       databases:
         - prowlarr_logs
