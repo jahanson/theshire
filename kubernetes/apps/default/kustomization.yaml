@@ -9,6 +9,7 @@ resources:
   - ./atuin/ks.yaml
   - ./autobrr/ks.yaml
   - ./excalidraw/ks.yaml
+  - ./it-tools/ks.yaml
   - ./jellyseerr/ks.yaml
   - ./maintainerr/ks.yaml
   - ./omegabrr/ks.yaml
