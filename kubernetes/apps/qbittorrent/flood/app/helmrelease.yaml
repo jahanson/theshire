@@ -41,6 +41,8 @@ spec:
           reloader.stakater.com/auto: "true"
         containers:
           app:
+            args:
+              - /usr/bin/flood
             image:
               repository: jesec/flood
               tag: master@sha256:3d20df051209bff2905dec4e8328c1c464d5375e730ef7d81ca21422e2ccf06a
