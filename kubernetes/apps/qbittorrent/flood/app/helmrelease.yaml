@@ -29,9 +29,9 @@ spec:
   values:
     defaultPodOptions:
       securityContext:
-        runAsUser: 568
-        runAsGroup: 568
-        fsGroup: 568
+        runAsUser: 1001 # 1001 is required for the flood container to run without errors.
+        runAsGroup: 1001
+        fsGroup: 1001
         fsGroupChangePolicy: OnRootMismatch
     controllers:
       flood:
@@ -41,7 +41,7 @@ spec:
           app:
             image:
               repository: jesec/flood
-              tag: master@sha256:449f93644402b60929cb87e61aedd2494781c07012467e5c7ac35e70d983323b
+              tag: master@sha256:3d20df051209bff2905dec4e8328c1c464d5375e730ef7d81ca21422e2ccf06a
             env:
               FLOOD_OPTION_RUNDIR: /data
               FLOOD_OPTION_AUTH: none
