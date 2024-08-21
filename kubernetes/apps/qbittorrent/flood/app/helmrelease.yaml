@@ -29,7 +29,7 @@ spec:
   values:
     defaultPodOptions:
       securityContext:
-        runAsUser: 568 # volsync user id
+        runAsUser: 1000
         runAsGroup: 1001 # group 1001 is required for the flood container to run without errors.
         fsGroup: 1001
         fsGroupChangePolicy: OnRootMismatch
