@@ -29,10 +29,12 @@ spec:
   values:
     defaultPodOptions:
       securityContext:
-        runAsUser: 1000
-        runAsGroup: 1001 # group 1001 is required for the flood container to run without errors.
-        fsGroup: 1001
-        fsGroupChangePolicy: OnRootMismatch
+        fsGroup: 568
+        runAsGroup: 568
+        runAsNonRoot: true
+        runAsUser: 568
+        seccompProfile:
+          type: RuntimeDefault
     controllers:
       flood:
         annotations:
@@ -52,6 +54,17 @@ spec:
                 cpu: 15m
               limits:
                 memory: 512Mi
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                  - ALL
+              readOnlyRootFilesystem: true
     service:
       app:
         controller: *app
