@@ -1,0 +1,146 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app kasm
+  namespace: default
+spec:
+  chart:
+    spec:
+      chart: app-template
+      version: 3.3.2
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+      strategy: rollback
+  interval: 30m
+  values:
+    controllers:
+      kasm:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        initContainers:
+          kasm-www-update:
+            env:
+              KASM_VERSION: "1.15.0"
+              KASM_BUILD: "06fdc8"
+              KASM_TAR_URL: https://kasm-static-content.s3.amazonaws.com/kasm_release_${KASM_VERSION}.${KASM_BUILD}.tar.gz
+            image:
+              repository: alpine
+              tag: latest
+            command:
+              - /bin/sh
+              - -c
+            args:
+              - >
+                apk add --no-cache curl;
+                rm -rf /www/*;
+                mkdir -p /tmp/kasm_download &&
+                curl -o /tmp/kasm_download/kasm_release.tar.gz "${KASM_TAR_URL}" &&
+                tar -xzvf /tmp/kasm_download/kasm_release.tar.gz -C /tmp/kasm_download kasm_release/www/ &&
+                cp -r /tmp/kasm_download/kasm_release/www/* /www/;
+          install:
+            image:
+              repository: kasmweb/api
+              tag: &version 1.15.0-rolling-alpine
+            command:
+              - /usr/bin/kasm_server.so
+              - --initialize-database
+              - --cfg
+              - /opt/kasm/current/conf/app/api.app.config.yaml
+              - --populate-production
+              - --seed-file
+              - /tmp/default_properties.yaml
+        containers:
+          manager:
+            envFrom:
+              - secretRef:
+                  name: kasm-manager-secret
+            image:
+              repository: kasmweb/manager
+              tag: *version
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+          api:
+            image:
+              repository: kasmweb/api
+              tag: *version
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+          guac:
+            image:
+              repository: kasmweb/kasm-guac
+              tag: *version
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+
+    service:
+      manager:
+        controller: kasm
+        ports:
+          http:
+            port: &manger-port 80
+      api:
+        controller: kasm
+        ports:
+          http:
+            port: &api-port 80
+    ingress:
+      manager:
+        className: internal-nginx
+        hosts:
+          - host: &host kasm.jahanson.tech
+            paths:
+              # - path: /
+              #   service:
+              #     identifier: static
+              #     port: http
+              - path: /api/
+                service:
+                  identifier: api
+                  port: http
+              - path: /api/admin/
+                service:
+                  identifier: api
+                  port: http
+              - path: /manager_api/
+                service:
+                  identifier: manager
+                  port: http
+        tls:
+          - hosts:
+              - *host
+    persistence:
+      config:
+        existingClaim: kasm
+        globalMounts:
+          - path: /opt/kasm/current/conf
+      logs:
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        globalMounts:
+          - path: /opt/kasm/current/log
+      tmp:
+        type: emptyDir
+        globalMounts:
+          - path: /opt/kasm/current/tmp
+      www:
+        existingClaim: kasm-www

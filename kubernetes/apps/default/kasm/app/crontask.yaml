@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kasm-www-update
+spec:
+  template:
+    spec:
+      containers:
+        - name: kasm-www-update
+          image: docker.io/library/alpine:latest
+          command: ["/bin/sh", "-c"]
+          env:
+            - name: KASM_VERSION
+              value: "1.15.0.06fdc8"
+          args:
+            - >
+              apk add --no-cache curl;
+              rm -rf /srv/www/*;
+              mkdir -p /tmp/kasm_download &&
+              curl -o /tmp/kasm_download/kasm_release.tar.gz https://kasm-static-content.s3.amazonaws.com/kasm_release_${KASM_VERSION}.tar.gz &&
+              tar -xzvf /tmp/kasm_download/kasm_release.tar.gz -C /tmp/kasm_download kasm_release/www/ &&
+              cp -r /tmp/kasm_download/kasm_release/www/* /srv/www/;
+          volumeMounts:
+            - name: kasm-www
+              mountPath: /srv/www
+      restartPolicy: OnFailure
+      volumes:
+        - name: kasm-www
+          persistentVolumeClaim:
+            claimName: kasm-www
