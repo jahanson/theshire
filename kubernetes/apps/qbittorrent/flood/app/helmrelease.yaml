@@ -44,11 +44,13 @@ spec:
             image:
               repository: jesec/flood
               tag: master@sha256:3d20df051209bff2905dec4e8328c1c464d5375e730ef7d81ca21422e2ccf06a
+            envFrom:
+              - secretRef:
+                  name: flood-secret
             env:
               FLOOD_OPTION_RUNDIR: /data
               FLOOD_OPTION_AUTH: none
               FLOOD_OPTION_QBURL: http://qbittorrent.qbittorrent.svc.cluster.local
-              FLOOD_OPTION_QBUSER: jahanson
             resources:
               requests:
                 memory: 250Mi
@@ -71,7 +73,7 @@ spec:
         controller: *app
         ports:
           http:
-            port: 3000
+            port: 80
     ingress:
       app:
         enabled: true
