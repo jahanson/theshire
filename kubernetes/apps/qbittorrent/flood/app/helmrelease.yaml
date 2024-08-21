@@ -51,6 +51,8 @@ spec:
               FLOOD_OPTION_RUNDIR: /data
               FLOOD_OPTION_AUTH: none
               FLOOD_OPTION_QBURL: http://qbittorrent.qbittorrent.svc.cluster.local
+              # FLOOD_OPTION_QBUSER is required but not used.
+              # FLOOD_OPTION_QBPASS is required but not used.
             resources:
               requests:
                 memory: 250Mi
