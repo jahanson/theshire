@@ -28,6 +28,7 @@ spec:
   values:
     controllers:
       cross-seed:
+        nameOverride: cross-seed
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
