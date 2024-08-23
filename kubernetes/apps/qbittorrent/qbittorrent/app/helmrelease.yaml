@@ -42,6 +42,7 @@ spec:
             env:
               UMASK: "022"
               QBITTORRENT__PORT: &port 80
+              QBITTORRENT__BT_PORT: &bittorrentPort 50413
               QBT_Preferences__WebUI__AlternativeUIEnabled: false
               QBT_Preferences__WebUI__AuthSubnetWhitelistEnabled: true
               QBT_Preferences__WebUI__AuthSubnetWhitelist: |-
@@ -115,25 +116,20 @@ spec:
     service:
       app:
         controller: *app
+        type: LoadBalancer
+        annotations:
+          io.cilium/lb-ipam-ips: 10.1.1.34
         nameOverride: *app
         ports:
           http:
             port: *port
-      bittorrent:
-        controller: qbittorrent
-        type: LoadBalancer
-        annotations:
-          io.cilium/lb-ipam-ips: 10.1.1.34
-        ports:
           bittorrent:
             enabled: true
-            port: *port
+            port: *bittorrentPort
             protocol: TCP
-
 
     ingress:
       app:
-        enabled: true
         className: "internal-nginx"
         hosts:
           - host: "qb.jahanson.tech"
@@ -148,7 +144,6 @@ spec:
 
     persistence:
       config:
-        enabled: true
         existingClaim: qbittorrent
       media:
         type: nfs
