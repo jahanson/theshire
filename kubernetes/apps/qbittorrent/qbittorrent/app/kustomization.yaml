@@ -6,5 +6,11 @@ resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
   - ../../../../templates/volsync
+configMapGenerator:
+  - name: qbittorrent-scripts
+    files:
+      - cross-seed.sh=./resources/cross-seed.sh
 generatorOptions:
   disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
