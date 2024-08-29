@@ -25,7 +25,9 @@ nodes:
           - mountpoint: /var/mnt/nvme1
     networkInterfaces:
       - interface: bond0
-        dhcp: true
+        dhcp: false
+        addresses:
+          - 10.1.1.61
         bond:
           mode: 802.3ad
           xmitHashPolicy: layer3+4
