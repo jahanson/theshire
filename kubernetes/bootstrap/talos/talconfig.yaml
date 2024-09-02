@@ -29,8 +29,7 @@ nodes:
         addresses:
           - 10.1.1.61
         bond:
-          mode: 802.3ad
-          xmitHashPolicy: layer3+4
+          mode: active-backup
           lacpRate: fast
           miimon: 100
           deviceSelectors:
