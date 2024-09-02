@@ -24,7 +24,7 @@ spec:
       strategy: rollback
   values:
     controllers:
-       unpackerr:
+      unpackerr:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
@@ -76,8 +76,8 @@ spec:
     persistence:
       media:
         type: nfs
-        server: 10.1.1.11
-        path: /volume1/Media
+        server: 10.1.1.13
+        path: /eru/media
         advancedMounts:
           unpackerr:
             app:

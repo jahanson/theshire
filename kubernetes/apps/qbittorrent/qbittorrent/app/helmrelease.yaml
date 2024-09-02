@@ -112,8 +112,8 @@ spec:
             readOnly: true
       media:
         type: nfs
-        server: 10.1.1.11
-        path: /volume1/Media
+        server: 10.1.1.13
+        path: /eru/media
         advancedMounts:
           qbittorrent:
             app:
