@@ -1,13 +1,13 @@
 ---
 autoDirectNodeRoutes: true
 bandwidthManager:
-  enabled: true
   bbr: true
+  enabled: true
 bpf:
   masquerade: true
   tproxy: true
 cgroup:
-  automount:
+  autoMount:
     enabled: false
   hostRoot: /sys/fs/cgroup
 cluster:
@@ -15,8 +15,6 @@ cluster:
   name: homelab
 cni:
   exclusive: false
-containerRuntime:
-  integration: containerd
 devices: bond+
 socketLB:
   enabled: false # supposed to be default off, but it's enabled anyway, and looks fun lol # TODO: 2024-06-02: temporarily turned off to attempt fixing endpoint creation timeout
@@ -24,8 +22,10 @@ socketLB:
 enableRuntimeDeviceDetection: true
 endpointRoutes:
   enabled: true
+envoy:
+  enabled: false
 ipam:
-  mode: kubernetes
+  mode: "kubernetes"
 ipv4NativeRoutingCIDR: 10.244.0.0/16
 k8sServiceHost: 127.0.0.1
 k8sServicePort: 7445
