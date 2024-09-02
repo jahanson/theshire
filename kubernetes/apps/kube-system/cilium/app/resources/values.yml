@@ -16,9 +16,9 @@ cluster:
 cni:
   exclusive: false
 devices: bond+
-socketLB:
-  enabled: false # supposed to be default off, but it's enabled anyway, and looks fun lol # TODO: 2024-06-02: temporarily turned off to attempt fixing endpoint creation timeout
-  hostNamespaceOnly: true # KubeVirt compatibility
+# socketLB:
+  # enabled: false # supposed to be default off, but it's enabled anyway, and looks fun lol # TODO: 2024-06-02: temporarily turned off to attempt fixing endpoint creation timeout
+  # hostNamespaceOnly: true # KubeVirt compatibility
 enableRuntimeDeviceDetection: true
 endpointRoutes:
   enabled: true
