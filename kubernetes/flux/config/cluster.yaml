@@ -3,13 +3,13 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: homelab
+  name: theshire
   namespace: flux-system
 spec:
   interval: 30m
   ref:
     branch: main
-  url: https://git.hsn.dev/jahanson/homelab.git
+  url: https://git.hsn.dev/jahanson/theshire.git
   ignore: |
     # exclude all
     /*
@@ -29,7 +29,7 @@ spec:
   wait: false
   sourceRef:
     kind: GitRepository
-    name: homelab
+    name: theshire
   decryption:
     provider: sops
     secretRef:

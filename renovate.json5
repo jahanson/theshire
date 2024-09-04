@@ -2,13 +2,11 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended",
-    "local>jahanson/homelab//.renovate/customManagers.json5",
-    "local>jahanson/homelab//.renovate/autoMerge.json5",
-    "local>jahanson/homelab//.renovate/packageRules.json5"
+    "local>jahanson/theshire//.renovate/customManagers.json5",
+    "local>jahanson/theshire//.renovate/autoMerge.json5",
+    "local>jahanson/theshire//.renovate/packageRules.json5"
   ],
-  "ignorePaths": [
-    ".archive/**"
-  ],
+  "ignorePaths": [".archive/**"],
   "flux": {
     "fileMatch": [
       "kubernetes/.+\\.ya?ml$"
@@ -67,11 +65,6 @@
     }
   ],
   "packageRules": [
-    {
-      "description": "Update Gluetun only daily",
-      "matchDepNames": ["ghcr.io/qdm12/gluetun"],
-      "extends": ["schedule:daily"]
-    },
     {
       "description": "Use custom versioning for Vector",
       "matchDatasources": [
@@ -225,27 +218,8 @@
       ],
       "group": {
         "commitMessageTopic": "{{{groupName}}} group"
-      }
+      },
     },
-    {
-      "description": "Ollama combine datasources.",
-      "groupName": "Ollama",
-      "matchPackagePatterns": [
-        "docker.io/ollama/ollama",
-        "ollama"
-      ],
-      "matchDatasources": [
-        "docker",
-        "github-releases"
-      ],
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
-      "group": {
-        "commitMessageTopic": "{{{groupName}}} group"
-      }
-    }
-      // Version strategies
-    ]
-  }
+    // Version strategies
+  ]
+}

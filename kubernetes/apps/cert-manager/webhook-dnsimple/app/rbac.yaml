@@ -10,9 +10,9 @@ rules:
   - apiGroups:
       - acme.hsn.dev
     resources:
-      - '*'
+      - "*"
     verbs:
-      - 'create'
+      - "create"
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -77,23 +77,23 @@ subjects:
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
- namespace: "cert-manager"
- name: webhook-dnsimple:access-secret
+  namespace: "cert-manager"
+  name: webhook-dnsimple:access-secret
 rules:
-- apiGroups: [""]
-  resources: ["secrets"]
-  verbs: ["get", "watch"]
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["get", "watch"]
 ---
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
- name: webhook-dnsimple:access-secret
- namespace: "cert-manager"
-subjects:
-- kind: ServiceAccount
-  name: webhook-dnsimple
+  name: webhook-dnsimple:access-secret
   namespace: "cert-manager"
+subjects:
+  - kind: ServiceAccount
+    name: webhook-dnsimple
+    namespace: "cert-manager"
 roleRef:
- kind: Role
- name: webhook-dnsimple:access-secret
- apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: webhook-dnsimple:access-secret
+  apiGroup: rbac.authorization.k8s.io

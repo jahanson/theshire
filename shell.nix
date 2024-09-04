@@ -17,6 +17,6 @@ pkgs.mkShell {
     kubernetes-helm
     pre-commit
     sops
-    cachix
+    age
   ];
 }

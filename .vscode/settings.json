@@ -1,6 +1,10 @@
 {
+  "ansible.validation.lint.arguments": "-c .ansible-lint",
   "files.associations": {
       "*.json5": "jsonc",
+      "**/ansible/**/*.yaml": "ansible",
+      "**/ansible/**/*.sops.yaml": "yaml",
+      "**/ansible/**/inventory/**/*.yaml": "yaml",
       "**/kubernetes/**/*.sops.toml": "plaintext"
   },
   "material-icon-theme.folders.associations": {
@@ -20,6 +24,7 @@
   },
   "yaml.schemaStore.enable": true,
   "yaml.schemas": {
+    "ansible": "ansible/**/*.yaml",
     "kubernetes": "kubernetes/**/*.yaml"
   },
   "editor.fontFamily": "FiraCode Nerd Font",
@@ -35,5 +40,7 @@
   ],
   "explorer.autoReveal": false,
   "files.trimTrailingWhitespace": true,
+  "ansible.python.interpreterPath": "/usr/bin/python3",
   "sops.defaults.ageKeyFile": "age.key",
+  "ansible.validation.lint.path": "~/projects/valinor/.venv/bin/ansible-lint"
 }

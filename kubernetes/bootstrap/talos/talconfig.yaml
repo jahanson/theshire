@@ -1,91 +1,139 @@
 ---
-# yaml-language-server: $schema=https://ks.hsn.dev/talhelper-schema.json
-clusterName: homelab
+# yaml-language-server: $schema=https://ks.hsn.dev/talconfig.json
+clusterName: theshire
 
-talosVersion: v1.8.0-alpha.1
+talosVersion: v1.7.6
 kubernetesVersion: 1.30.2
-endpoint: "https://${clusterEndpointIP}:6443"
+endpoint: "https://10.1.1.57:6444"
 
-additionalApiServerCertSans: &san
-  - ${clusterEndpointIP}
-  - "127.0.0.1" # KubePrism
+additionalApiServerCertSans:
+  - 10.1.1.57
 
-additionalMachineCertSans: *san
+additionalMachineCertSans:
+  - 10.1.1.57
 
 nodes:
-  - hostname: shadowfax
+  - hostname: bilbo
     disableSearchDomain: true
-    ipAddress: 10.1.1.61
+    ipAddress: 10.1.1.62
     controlPlane: true
     installDiskSelector:
-      busPath: /pci0000:20/0000:20:01.2/0000:2c:00.0/nvme/nvme4/nvme4n1
-    machineDisks:
-      - device: /dev/disk/by-id/nvme-SOLIDIGM_SSDPFKNU020TZ_PHEH3142017H2P0C
-        partitions:
-          - mountpoint: /var/mnt/nvme1
+      busPath: /pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/
     networkInterfaces:
-      - interface: bond0
-        dhcp: false
-        addresses:
-          - 10.1.1.61
-        bond:
-          mode: active-backup
-          lacpRate: fast
-          miimon: 100
-          deviceSelectors:
-            - hardwareAddr: 04:42:1a:ef:35:74
-              driver: ixgbe
-            - hardwareAddr: 04:42:1a:ef:35:75
-              driver: ixgbe
-        vlans:
-          - &vlan-iot
-            vlanId: 30
-            mtu: 1500
-            dhcp: true
-            dhcpOptions:
-              routeMetric: 4096
-    kernelModules:
-      - name: nvidia
-      - name: nvidia_uvm
-      - name: nvidia_drm
-      - name: nvidia_modeset
-    schematic:
-      customization:
-        systemExtensions:
-          officialExtensions:
-            - siderolabs/amd-ucode
-            - siderolabs/nonfree-kmod-nvidia
-            - siderolabs/nvidia-container-toolkit
-            # Need talos 1.8 for nvidia and zfs to coexist
-            # https://github.com/siderolabs/extensions/issues/380
-            - siderolabs/zfs
-
+      - interface: eno1
+        dhcp: true
     patches:
       - |-
         machine:
           sysctls:
-            net.core.bpf_jit_harden: 1
             vm.nr_hugepages: "1024"
-      - &kubelet_extra_mounts |-
-        machine:
-          kubelet:
-            extraMounts:
-              - destination: /var/mnt/nvme1
-                type: bind
-                source: /var/mnt/nvme1
-                options:
-                  - rbind
-                  - rshared
-                  - rw
-      # disables new feature that forwards kube-dns to host-dns 10.96.0.10 --> 10.96.0.9
+
+  - hostname: frodo
+    disableSearchDomain: true
+    ipAddress: 10.1.1.63
+    controlPlane: true
+    installDiskSelector:
+      busPath: /pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/
+    networkInterfaces:
+      - interface: eno1
+        dhcp: true
+    patches:
       - |-
         machine:
-          features:
-            hostDNS:
-              enabled: true
-              forwardKubeDNSToHost: false
+          sysctls:
+            vm.nr_hugepages: "1024"
 
+  - hostname: sam
+    disableSearchDomain: true
+    ipAddress: 10.1.1.64
+    controlPlane: true
+    installDiskSelector:
+      busPath: /pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/
+    networkInterfaces:
+      - interface: eno1
+        dhcp: true
+    patches:
+      - |-
+        machine:
+          sysctls:
+            vm.nr_hugepages: "1024"
+
+  - hostname: pippin
+    disableSearchDomain: true
+    ipAddress: 10.1.1.65
+    controlPlane: false
+    installDiskSelector:
+      busPath: /pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/
+    networkInterfaces:
+      - interface: eno1
+        dhcp: true
+    patches:
+      - |-
+        machine:
+          sysctls:
+            vm.nr_hugepages: "1024"
+
+  - hostname: merry
+    disableSearchDomain: true
+    ipAddress: 10.1.1.66
+    controlPlane: false
+    installDiskSelector:
+      busPath: /pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/
+    networkInterfaces:
+      - interface: eno1
+        dhcp: true
+    patches:
+      - |-
+        machine:
+          sysctls:
+            vm.nr_hugepages: "1024"
+
+  - hostname: rosie
+    disableSearchDomain: true
+    ipAddress: 10.1.1.67
+    controlPlane: false
+    installDiskSelector:
+      busPath: /pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/
+    networkInterfaces:
+      - interface: eno1
+        dhcp: true
+    patches:
+      - |-
+        machine:
+          sysctls:
+            vm.nr_hugepages: "1024"
+  - hostname: gandalf-01
+    disableSearchDomain: true
+    ipAddress: 10.1.1.68
+    controlPlane: false
+    installDiskSelector:
+      busPath: /pci0000:00/0000:00:01.1/0000:02:00.0/virtio6/host6/target6:0:0/6:0:0:1/
+    networkInterfaces:
+      - interface: enp5s0
+        dhcp: true
+    patches:
+      - |-
+        machine:
+          sysctls:
+            vm.nr_hugepages: "1024"
+worker:
+  schematic:
+    customization:
+      extraKernelArgs:
+        - net.ifnames=1
+      systemExtensions:
+        officialExtensions:
+          - siderolabs/intel-ucode
+          - siderolabs/i915-ucode
 controlPlane:
+  schematic:
+    customization:
+      extraKernelArgs:
+        - net.ifnames=1
+      systemExtensions:
+        officialExtensions:
+          - siderolabs/intel-ucode
+          - siderolabs/i915-ucode
   patches:
      # Disable search domain everywhere
     - |-
@@ -116,6 +164,21 @@ controlPlane:
             enabled: true
             port: 7445
 
+    # hostDNS configuration
+    - |-
+      machine:
+        features:
+          hostDNS:
+            enabled: true
+            resolveMemberNames: true
+            forwardKubeDNSToHost: false
+
+    # coreDNS configuration
+    - |-
+      cluster:
+        coreDNS:
+          disabled: true
+
     # Cluster configuration
     - |-
       cluster:
@@ -141,6 +204,22 @@ controlPlane:
         etcd:
           advertisedSubnets:
             - 10.1.1.0/24
+
+    # Configure containerd
+    - |-
+      machine:
+        files:
+          - op: create
+            path: /etc/cri/conf.d/20-customization.part
+            content: |
+              [plugins]
+                [plugins."io.containerd.grpc.v1.cri"]
+                  enable_unprivileged_ports = true
+                  enable_unprivileged_icmp = true
+              [plugins."io.containerd.grpc.v1.cri".containerd]
+                discard_unpacked_layers = false
+              [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
+                discard_unpacked_layers = false
 
     # Disable default API server admission plugins.
     - |-
@@ -170,21 +249,6 @@ controlPlane:
           nodeIP:
             validSubnets:
                 - 10.1.1.0/24
-          extraMounts:
-            - destination: /var/openebs/keys
-              type: bind
-              source: /var/openebs/keys
-              options:
-                - bind
-                - rshared
-                - rw
-            - destination: /var/openebs/local
-              type: bind
-              source: /var/openebs/local
-              options:
-                - bind
-                - rshared
-                - rw
 
     # Custom sysctls
     - |-
@@ -197,7 +261,7 @@ controlPlane:
           net.core.wmem_max: "2500000"
 
     # Configure nfs mount options
-    - |
+    - |-
       machine:
         files:
           - op: overwrite

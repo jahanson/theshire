@@ -15,10 +15,10 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: homelab
+    name: theshire
   wait: false
   dependsOn:
-    - name: openebs
+    - name: rook-ceph-cluster
     - name: volsync
     - name: external-secrets-stores
   postBuild:
@@ -27,5 +27,5 @@ spec:
       VOLSYNC_CAPACITY: 1Gi
       APP_GID: "1000"
       APP_UID: "1000"
-      VOLSYNC_STORAGECLASS: openebs-zfs
-      VOLSYNC_SNAPSHOTCLASS: openebs-zfs
+      VOLSYNC_STORAGECLASS: ceph-block
+      VOLSYNC_SNAPSHOTCLASS: csi-ceph-blockpool

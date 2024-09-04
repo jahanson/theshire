@@ -5,8 +5,8 @@ metadata:
   name: kbench-pvc
 spec:
   # storageClassName: zfs-generic-nfs-csi
-  storageClassName: openebs-hostpath
-  # storageClassName: openebs-zfs
+  # storageClassName: openebs-hostpath
+  storageClassName: ceph-block
   accessModes:
     - ReadWriteOnce
   resources:

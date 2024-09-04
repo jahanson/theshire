@@ -12,5 +12,5 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: homelab
+    name: theshire
   wait: true

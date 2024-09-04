@@ -18,7 +18,7 @@ talosctl bootstrap --nodes=10.1.1.61
 
 ### Install Cilium & Spegel
 ```sh
-helmfile apply -f kubernetes/bootstrap/helmfile.yaml
+helmfile apply -f kubernetes/bootstrap/talos/apps/helmfile.yaml
 ```
 
 ## Flux Prep

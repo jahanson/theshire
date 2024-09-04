@@ -57,6 +57,6 @@ spec:
   issuerRef:
     name: webhook-dnsimple-ca
   dnsNames:
-  - webhook-dnsimple
-  - webhook-dnsimple.cert-manager
-  - webhook-dnsimple.cert-manager.svc
+    - webhook-dnsimple
+    - webhook-dnsimple.cert-manager
+    - webhook-dnsimple.cert-manager.svc
