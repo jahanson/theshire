@@ -22,38 +22,35 @@ vars:
   VOLSYNC_RESOURCES_DIR: "{{.ROOT_DIR}}/.taskfiles/volsync/resources"
 
 tasks:
-
   state-*:
     desc: Suspend or Resume Volsync
     summary: |
-      cluster: Cluster to run command against (required)
       state: resume or suspend (required)
+    dotenv: ['{{.VOLSYNC_RESOURCES_DIR}}/.env']
     cmds:
-      - flux --context {{.cluster}} {{.state}} kustomization volsync
-      - flux --context {{.cluster}} -n {{.ns}} {{.state}} helmrelease volsync
-      - kubectl --context {{.cluster}} -n {{.ns}} scale deployment volsync --replicas {{if eq "suspend" .state}}0{{else}}1{{end}}
+      - flux --context $CLUSTER {{.state}} kustomization volsync
+      - flux --context $CLUSTER -n {{.ns}} {{.state}} helmrelease volsync
+      - kubectl --context $CLUSTER -n {{.ns}} scale deployment volsync --replicas {{if eq "suspend" .state}}0{{else}}1{{end}}
     env: *env-vars
     vars:
       ns: '{{.ns | default "volsync-system"}}'
       state: '{{index .MATCH 0}}'
-    requires:
-      vars: ["cluster"]
 
   list:
     desc: List snapshots for an application
     summary: |
-      cluster: Cluster to run command against (required)
       ns: Namespace the PVC is in (default: default)
       app: Application to list snapshots for (required)
+    dotenv: ['{{.VOLSYNC_RESOURCES_DIR}}/.env']
     cmds:
-      - /etc/profiles/per-user/jahanson/bin/envsubst < <(cat {{.VOLSYNC_RESOURCES_DIR}}/list.tmpl.yaml) | kubectl --context {{.cluster}} apply -f -
-      - bash {{.VOLSYNC_RESOURCES_DIR}}/wait-for-job.sh {{.job}} {{.ns}} {{.cluster}}
-      - kubectl --context {{.cluster}} -n {{.ns}} wait job/{{.job}} --for condition=complete --timeout=1m
-      - kubectl --context {{.cluster}} -n {{.ns}} logs job/{{.job}} --container main
-      - kubectl --context {{.cluster}} -n {{.ns}} delete job {{.job}}
+      - /etc/profiles/per-user/jahanson/bin/envsubst < <(cat {{.VOLSYNC_RESOURCES_DIR}}/list.tmpl.yaml) | kubectl --context $CLUSTER apply -f -
+      - bash {{.VOLSYNC_RESOURCES_DIR}}/wait-for-job.sh {{.job}} {{.ns}} $CLUSTER
+      - kubectl --context $CLUSTER -n {{.ns}} wait job/{{.job}} --for condition=complete --timeout=1m
+      - kubectl --context $CLUSTER -n {{.ns}} logs job/{{.job}} --container main
+      - kubectl --context $CLUSTER -n {{.ns}} delete job {{.job}}
     env: *env-vars
     requires:
-      vars: ["cluster", "app"]
+      vars: ["app"]
     vars:
       ns: '{{.ns | default "default"}}'
       job: volsync-list-{{.app}}
@@ -66,19 +63,19 @@ tasks:
   unlock:
     desc: Unlock a Restic repository for an application
     summary: |
-      cluster: Cluster to run command against (required)
       ns: Namespace the PVC is in (default: default)
       app: Application to unlock (required)
+    dotenv: ['{{.VOLSYNC_RESOURCES_DIR}}/.env']
     cmds:
-      - /etc/profiles/per-user/jahanson/bin/envsubst < <(cat {{.VOLSYNC_RESOURCES_DIR}}/unlock.tmpl.yaml) | kubectl --context {{.cluster}} apply -f -
-      - bash {{.VOLSYNC_RESOURCES_DIR}}/wait-for-job.sh {{.job}} {{.ns}} {{.cluster}}
-      - kubectl --context {{.cluster}} -n {{.ns}} wait job/{{.job}} --for condition=complete --timeout=1m
-      - kubectl --context {{.cluster}} -n {{.ns}} logs job/{{.job}} --container minio
-      - kubectl --context {{.cluster}} -n {{.ns}} logs job/{{.job}} --container r2
-      - kubectl --context {{.cluster}} -n {{.ns}} delete job {{.job}}
+      - /etc/profiles/per-user/jahanson/bin/envsubst < <(cat {{.VOLSYNC_RESOURCES_DIR}}/unlock.tmpl.yaml) | kubectl --context $CLUSTER apply -f -
+      - bash {{.VOLSYNC_RESOURCES_DIR}}/wait-for-job.sh {{.job}} {{.ns}} $CLUSTER
+      - kubectl --context $CLUSTER -n {{.ns}} wait job/{{.job}} --for condition=complete --timeout=1m
+      - kubectl --context $CLUSTER -n {{.ns}} logs job/{{.job}} --container minio
+      - kubectl --context $CLUSTER -n {{.ns}} logs job/{{.job}} --container r2
+      - kubectl --context $CLUSTER -n {{.ns}} delete job {{.job}}
     env: *env-vars
     requires:
-      vars: ["cluster", "app"]
+      vars: ["app"]
     vars:
       ns: '{{.ns | default "default"}}'
       job: volsync-unlock-{{.app}}

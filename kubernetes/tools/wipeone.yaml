@@ -6,16 +6,16 @@ metadata:
   namespace: kube-system
 spec:
   restartPolicy: Never
-  nodeName: shadowfax
+  nodeName: gandalf-01
   containers:
     - name: disk-wipe
-      image: docker.io/library/alpine:3.20.2
+      image: docker.io/library/alpine:latest
       securityContext:
         privileged: true
       resources: {}
       env:
         - name: CEPH_DISK
-          value: "/dev/nvme2n1"
+          value: "/dev/nvme0n1"
       command:
         [
           "/bin/sh",

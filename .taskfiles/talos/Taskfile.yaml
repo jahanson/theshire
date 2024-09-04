@@ -7,13 +7,13 @@ tasks:
     desc: Bootstrap Talos
     summary: |
       Args:
-        cluster: Cluster to run command against (default: homelab)
+        cluster: Cluster to run command against (default: theshire)
         controller: Controller node to run command against (required) (IP/DNS)
     prompt: Bootstrap Talos on the cluster... continue?
     cmds:
       - task: bootstrap-etcd
         vars: &vars
-          cluster: '{{.cluster | default "homelab"}}'
+          cluster: '{{.cluster | default "theshire"}}'
           controller: "{{.controller}}"
       - task: fetch-kubeconfig
         vars: *vars
@@ -93,7 +93,7 @@ tasks:
             --env-file {{.KUBERNETES_DIR}}/bootstrap/talos/talenv.sops.yaml \
             --config-file {{.KUBERNETES_DIR}}/bootstrap/talos/talconfig.yaml
     cmds:
-      - talosctl --context {{.cluster}} upgrade -n {{.node}} --image {{.TALOS_IMAGE }} --preserve # single node talos cluster needs to be preserved
+      - talosctl --context {{.cluster}} upgrade -n {{.node}} --image {{.TALOS_IMAGE }}
     requires:
       vars:
         - cluster
@@ -114,7 +114,7 @@ tasks:
           yq -r ".kubernetesVersion" {{.KUBERNETES_DIR}}/bootstrap/talos/talconfig.yaml
       CONTROLPLANE_NODE:
         sh: |
-          talosctl --context homelab config info \
+          talosctl --context theshire config info \
           | grep Endpoints: \
           | awk '{split($0,u," "); print u[2]}' \
           | sed -E 's/,//'
@@ -163,6 +163,7 @@ tasks:
         --nodes "{{.hostname}}"
         --file "{{.KUBERNETES_DIR}}/bootstrap/talos/clusterconfig/{{.filename}}"
         {{ if eq "true" .dry_run }}--dry-run{{ end }}
+        #--insecure
     requires:
       vars:
         - cluster

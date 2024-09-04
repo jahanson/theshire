@@ -1,8 +1,0 @@
----
-version: "3"
-
-tasks:
-  run:
-    desc: Run ACT with custom image
-    cmds:
-      - act -P ubuntu-x86_64=catthehacker/ubuntu:act-latest

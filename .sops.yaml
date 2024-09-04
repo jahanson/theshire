@@ -5,20 +5,20 @@ creation_rules:
     input_type: yaml
     encrypted_regex: ^(token|crt|key|id|secret|secretboxencryptionsecret|ca|bootstraptoken)$
     age: >-
-      age1eqlaq205y5jre9hu5hvulywa7w3d4qyxwmafneamxcn7nejesedsf4q9g6
+      age1gr4js8ln65khjzjkf9gs5c32a2vrrv6jlv5asuz6hccqq8pddc4sjflprn
   - path_regex: kubernetes/.*/talos/.*\.sops\.ya?ml$
     age: >-
-      age1eqlaq205y5jre9hu5hvulywa7w3d4qyxwmafneamxcn7nejesedsf4q9g6
+      age1gr4js8ln65khjzjkf9gs5c32a2vrrv6jlv5asuz6hccqq8pddc4sjflprn
   - path_regex: kubernetes/.*\.sops\.ya?ml
     encrypted_regex: "^(data|stringData)$"
     # Homelab
     age: >-
-      age1eqlaq205y5jre9hu5hvulywa7w3d4qyxwmafneamxcn7nejesedsf4q9g6
+      age1gr4js8ln65khjzjkf9gs5c32a2vrrv6jlv5asuz6hccqq8pddc4sjflprn
   - path_regex: .*\.sops\.(env|ini|json|toml)
     # Homelab
     age: >-
-      age1eqlaq205y5jre9hu5hvulywa7w3d4qyxwmafneamxcn7nejesedsf4q9g6
+      age1gr4js8ln65khjzjkf9gs5c32a2vrrv6jlv5asuz6hccqq8pddc4sjflprn
   - path_regex: (ansible|terraform|talos)/.*\.sops\.ya?ml
     # Homelab
     age: >-
-      age1eqlaq205y5jre9hu5hvulywa7w3d4qyxwmafneamxcn7nejesedsf4q9g6
+      age1gr4js8ln65khjzjkf9gs5c32a2vrrv6jlv5asuz6hccqq8pddc4sjflprn
