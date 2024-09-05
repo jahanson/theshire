@@ -6,8 +6,6 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  # - ./excalidraw/ks.yaml
-  # - ./it-tools/ks.yaml
   - ./maintainerr/ks.yaml
   - ./radarr/ks.yaml
   - ./sonarr/ks.yaml
@@ -20,3 +18,5 @@ resources:
   - ./overseerr/ks.yaml
   - ./autobrr/ks.yaml
   - ./omegabrr/ks.yaml
+  - ./it-tools/ks.yaml
+  - ./excalidraw/ks.yaml
