@@ -15,3 +15,5 @@ resources:
   - ./atuin/ks.yaml
   - ./prowlarr/ks.yaml
   - ./unpackerr/ks.yaml
+  - ./tautulli/ks.yaml
+  - ./redlib/ks.yaml
