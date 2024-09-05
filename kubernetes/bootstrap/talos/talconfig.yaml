@@ -72,6 +72,17 @@ nodes:
         machine:
           sysctls:
             vm.nr_hugepages: "1024"
+      - &kubelet_extra_mounts |-
+        machine:
+          kubelet:
+            extraMounts:
+              - destination: /var/openebs/local
+                type: bind
+                source: /var/openebs/local
+                options:
+                  - bind
+                  - rshared
+                  - rw
 
   - hostname: merry
     disableSearchDomain: true
@@ -87,6 +98,7 @@ nodes:
         machine:
           sysctls:
             vm.nr_hugepages: "1024"
+      - *kubelet_extra_mounts
 
   - hostname: rosie
     disableSearchDomain: true
@@ -102,6 +114,7 @@ nodes:
         machine:
           sysctls:
             vm.nr_hugepages: "1024"
+      - *kubelet_extra_mounts
   - hostname: gandalf-01
     disableSearchDomain: true
     ipAddress: 10.1.1.68
@@ -116,17 +129,8 @@ nodes:
         machine:
           sysctls:
             vm.nr_hugepages: "1024"
-      - &kubelet_extra_mounts |-
-        machine:
-          kubelet:
-            extraMounts:
-              - destination: /var/openebs/local
-                type: bind
-                source: /var/openebs/local
-                options:
-                  - bind
-                  - rshared
-                  - rw
+      - *kubelet_extra_mounts
+
   - hostname: shadowfax-01
     disableSearchDomain: true
     ipAddress: 10.1.1.69
