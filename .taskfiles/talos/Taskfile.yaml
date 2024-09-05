@@ -2,6 +2,12 @@
 # yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: "3"
 
+vars:
+  RESOURCES_DIR: "{{.ROOT_DIR}}/.taskfiles/talos/resources"
+  CONTROLLER:
+    sh: talosctl --context {{.cluster}} config info --output json | jq --raw-output '.endpoints[]' | shuf -n 1
+  cluster: theshire
+
 tasks:
   bootstrap:
     desc: Bootstrap Talos
@@ -9,11 +15,11 @@ tasks:
       Args:
         cluster: Cluster to run command against (default: theshire)
         controller: Controller node to run command against (required) (IP/DNS)
+    dotenv: ["{{.RESOURCES_DIR}}/.env"]
     prompt: Bootstrap Talos on the cluster... continue?
     cmds:
       - task: bootstrap-etcd
         vars: &vars
-          cluster: '{{.cluster | default "theshire"}}'
           controller: "{{.controller}}"
       - task: fetch-kubeconfig
         vars: *vars
@@ -25,56 +31,44 @@ tasks:
 
   bootstrap-etcd:
     desc: Bootstrap Etcd
-    cmd: until talosctl --context {{.cluster}} --nodes {{.controller}} bootstrap; do sleep 10; done
+    dotenv: ["{{.RESOURCES_DIR}}/.env"]
+    cmd: until talosctl --context $CLUSTER --nodes {{.controller}} bootstrap; do sleep 10; done
     requires:
       vars:
-        - cluster
         - controller
 
   bootstrap-integrations:
     desc: Bootstrap core integrations needed for Talos
+    dotenv: ["{{.RESOURCES_DIR}}/.env"]
     cmds:
-      - until kubectl --context {{.cluster}} wait --for=condition=Ready=False nodes --all --timeout=600s; do sleep 10; done
-      - helmfile --kube-context {{.cluster}} --file {{.KUBERNETES_DIR}}/bootstrap/helmfile.yaml apply --skip-diff-on-install --suppress-diff
-      - until kubectl --context {{.cluster}} wait --for=condition=Ready nodes --all --timeout=600s; do sleep 10; done
-    requires:
-      vars:
-        - cluster
+      - until kubectl --context $CLUSTER wait --for=condition=Ready=False nodes --all --timeout=600s; do sleep 10; done
+      - helmfile --kube-context $CLUSTER --file {{.KUBERNETES_DIR}}/bootstrap/helmfile.yaml apply --skip-diff-on-install --suppress-diff
+      - until kubectl --context $CLUSTER wait --for=condition=Ready nodes --all --timeout=600s; do sleep 10; done
     preconditions:
       - which helmfile
-      - sh: kubectl config get-contexts {{.cluster}}
-        msg: "Kubectl context {{.cluster}} not found"
+      - sh: kubectl config get-contexts $CLUSTER
+        msg: "Kubectl context $CLUSTER not found"
       - test -f {{.KUBERNETES_DIR}}/bootstrap/helmfile.yaml
 
   fetch-kubeconfig:
     desc: Fetch kubeconfig from Talos controllers
-    vars:
-      CONTROLPLANE_NODE:
-        sh: |
-          talosctl --context {{.cluster}} config info \
-          | grep Endpoints: \
-          | awk '{split($0,u," "); print u[2]}' \
-          | sed -E 's/,//'
+    dotenv: ["{{.RESOURCES_DIR}}/.env"]
+    env: *vars
     cmd: |
-      talosctl --context {{.cluster}} kubeconfig --nodes {{.CONTROLPLANE_NODE}} \
-          --force --force-context-name {{.cluster}} {{.ROOT_DIR}}/kubeconfig
-    requires:
-      vars:
-        - cluster
+      talosctl --context $CLUSTER kubeconfig --nodes {{ .CONTROLLER }} \
+          --force --force-context-name $CLUSTER {{.ROOT_DIR}}/kubeconfig
     preconditions:
-      - talosctl config get-contexts | grep {{.cluster}}
+      - talosctl config get-contexts | grep $CLUSTER
 
   generate-clusterconfig:
     desc: Generate clusterconfig for Talos
+    dotenv: ["{{.RESOURCES_DIR}}/.env"]
     cmds:
       - talhelper genconfig
         --env-file {{.KUBERNETES_DIR}}/bootstrap/talos/talenv.sops.yaml
         --secret-file {{.KUBERNETES_DIR}}/bootstrap/talos/talsecret.sops.yaml
         --config-file {{.KUBERNETES_DIR}}/bootstrap/talos/talconfig.yaml
         --out-dir {{.KUBERNETES_DIR}}/bootstrap/talos/clusterconfig
-    requires:
-      vars:
-        - cluster
     preconditions:
       - which talhelper
       - test -f {{.KUBERNETES_DIR}}/bootstrap/talos/talenv.sops.yaml
@@ -83,6 +77,7 @@ tasks:
 
   upgrade:
     desc: Upgrade Talos version for a node
+    dotenv: ["{{.RESOURCES_DIR}}/.env"]
     vars:
       TALOS_VERSION:
         sh: |
@@ -93,14 +88,13 @@ tasks:
             --env-file {{.KUBERNETES_DIR}}/bootstrap/talos/talenv.sops.yaml \
             --config-file {{.KUBERNETES_DIR}}/bootstrap/talos/talconfig.yaml
     cmds:
-      - talosctl --context {{.cluster}} upgrade -n {{.node}} --image {{.TALOS_IMAGE }}
+      - talosctl --context $CLUSTER upgrade -n {{.node}} --image {{.TALOS_IMAGE }}
     requires:
       vars:
-        - cluster
         - node
     preconditions:
       - which talhelper
-      - talosctl config get-contexts | grep {{.cluster}}
+      - talosctl config get-contexts | grep $CLUSTER
       - test -f {{.KUBERNETES_DIR}}/bootstrap/talos/talenv.sops.yaml
       - test -f {{.KUBERNETES_DIR}}/bootstrap/talos/talconfig.yaml
       - msg: "Talos image could not be determined for {{.node}}"
@@ -108,33 +102,32 @@ tasks:
 
   upgrade-k8s:
     desc: Upgrade Kubernetes version for a Talos cluster
+    dotenv: ["{{.RESOURCES_DIR}}/.env"]
     vars:
       KUBERNETES_VERSION:
         sh: |
           yq -r ".kubernetesVersion" {{.KUBERNETES_DIR}}/bootstrap/talos/talconfig.yaml
       CONTROLPLANE_NODE:
         sh: |
-          talosctl --context theshire config info \
+          talosctl --context $CLUSTER config info \
           | grep Endpoints: \
           | awk '{split($0,u," "); print u[2]}' \
           | sed -E 's/,//'
     cmds:
       - talosctl upgrade-k8s -n {{.CONTROLPLANE_NODE}} --to {{.KUBERNETES_VERSION}}
-    requires:
-      vars:
-        - cluster
     preconditions:
       - which talhelper
-      - talosctl config get-contexts | grep {{.cluster}}
+      - talosctl config get-contexts | grep $CLUSTER
       - test -f {{.KUBERNETES_DIR}}/bootstrap/talos/talenv.sops.yaml
       - test -f {{.KUBERNETES_DIR}}/bootstrap/talos/talconfig.yaml
-      - msg: "Kubernetes version could not be determined for cluster {{.cluster}}"
+      - msg: "Kubernetes version could not be determined for cluster $CLUSTER"
         sh: 'test -n "{{.KUBERNETES_VERSION}}"'
-      - msg: "Control plane node could not be determined for cluster {{.cluster}}"
+      - msg: "Control plane node could not be determined for cluster $CLUSTER"
         sh: 'test -n "{{.CONTROLPLANE_NODE}}"'
 
   apply-clusterconfig:
     desc: Apply clusterconfig for a Talos cluster
+    dotenv: ["{{.RESOURCES_DIR}}/.env"]
     vars:
       CLUSTERCONFIG_FILES:
         sh: find {{.KUBERNETES_DIR}}/bootstrap/talos/clusterconfig -type f -name '*.yaml' -printf '%f\n'
@@ -143,32 +136,31 @@ tasks:
           var: CLUSTERCONFIG_FILES
         task: _apply-machineconfig
         vars:
-          cluster: "{{ .cluster }}"
           filename: "{{.ITEM}}"
           hostname: |-
             {{ trimPrefix (printf "%s-" .cluster) .ITEM | trimSuffix ".yaml" }}
           dry_run: "{{ .dry_run }}"
-    requires:
-      vars:
-        - cluster
     preconditions:
-      - talosctl config get-contexts | grep {{.cluster}}
+      - talosctl config get-contexts | grep $CLUSTER
       - test -d {{.KUBERNETES_DIR}}/bootstrap/talos/clusterconfig
 
   _apply-machineconfig:
     internal: true
     desc: Apply a single Talos machineConfig to a Talos node
+    dotenv: ["{{.RESOURCES_DIR}}/.env"]
     cmds:
-      - talosctl --context {{.cluster}} apply-config
+      - talosctl --context theshire apply-config
         --nodes "{{.hostname}}"
         --file "{{.KUBERNETES_DIR}}/bootstrap/talos/clusterconfig/{{.filename}}"
         {{ if eq "true" .dry_run }}--dry-run{{ end }}
         #--insecure
     requires:
       vars:
-        - cluster
         - hostname
         - filename
     preconditions:
-      - talosctl config get-contexts | grep {{.cluster}}
+      - talosctl config get-contexts | grep $CLUSTER
       - test -f {{.KUBERNETES_DIR}}/bootstrap/talos/clusterconfig/{{.filename}}
+  version:
+    desc: Show Talos version
+    cmd: talosctl version
