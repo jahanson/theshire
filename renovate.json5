@@ -2,10 +2,13 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended",
-    "local>jahanson/theshire//.renovate/customManagers.json5",
     "local>jahanson/theshire//.renovate/autoMerge.json5",
-    "local>jahanson/theshire//.renovate/packageRules.json5",
-    "local>jahanson/theshire//.renovate/groups.json5"
+    "local>jahanson/theshire//.renovate/commitMessage.json5",
+    "local>jahanson/theshire//.renovate/customManagers.json5",
+    "local>jahanson/theshire//.renovate/grafanaDashboards.json5",
+    "local>jahanson/theshire//.renovate/groups.json5",
+    "local>jahanson/theshire//.renovate/labels.json5",
+    "local>jahanson/theshire//.renovate/packageRules.json5"
   ],
   "ignorePaths": ["**/*.sops.*", "**/.archive/**", "**/resources/**"],
   "flux": {
