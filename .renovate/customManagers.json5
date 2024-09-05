@@ -1,37 +1,49 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "customDatasources": {
-      "grafana-dashboards": {
-        "defaultRegistryUrlTemplate": "https://grafana.com/api/dashboards/{{packageName}}",
-        "format": "json",
-        "transformTemplates": [
-          "{\"releases\":[{\"version\": $string(revision)}]}"
-        ]
-      }
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "customDatasources": {
+    "grafana-dashboards": {
+      "defaultRegistryUrlTemplate": "https://grafana.com/api/dashboards/{{packageName}}",
+      "format": "json",
+      "transformTemplates": [
+        "{\"releases\":[{\"version\": $string(revision)}]}"
+      ]
+    }
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Process Grafana dashboards",
+      "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$"],
+      "matchStrings": [
+        "depName=\"(?<depName>\\S+)\"\\n.*?gnetId: (?<packageName>\\d+)\\n.*?revision: (?<currentValue>\\d+)"
+      ],
+      "datasourceTemplate": "custom.grafana-dashboards",
+      "versioningTemplate": "regex:^(?<major>\\d+)$"
     },
-    "customManagers": [
-      {
-        "customType": "regex",
-        "description": "Process Grafana dashboards",
-        "fileMatch": [
-          "(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$"
-        ],
-        "matchStrings": [
-          "depName=\"(?<depName>\\S+)\"\\n.*?gnetId: (?<packageName>\\d+)\\n.*?revision: (?<currentValue>\\d+)"
-        ],
-        "datasourceTemplate": "custom.grafana-dashboards",
-        "versioningTemplate": "regex:^(?<major>\\d+)$"
-      }
-    ],
-    "packageRules": [
-      {
-        "addLabels": ["renovate/grafana-dashboard"],
-        "commitMessageExtra": "to revision {{newVersion}}",
-        "commitMessageTopic": "dashboard {{depName}}",
-        "matchDatasources": ["grafana-dashboards", "custom.grafana-dashboards"],
-        "matchUpdateTypes": ["major"],
-        "semanticCommitScope": "grafana-dashboards",
-        "semanticCommitType": "chore"
-      }
-    ]
-  }
+    {
+      "customType": "regex",
+      "description": ["Process custom dependencies"],
+      "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"],
+      "matchStrings": [
+        // # renovate: datasource=helm depName=cilium repository=https://helm.cilium.io
+        // version: 1.15.1
+        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+: (&\\S+\\s)?(?<currentValue>\\S+)",
+        // # renovate: datasource=github-releases depName=rancher/system-upgrade-controller
+        // https://github.com/rancher/system-upgrade-controller/releases/download/v0.13.2/crd.yaml
+        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n.+/(?<currentValue>(v|\\d)[^/]+)"
+      ],
+      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
+    }
+  ],
+  "packageRules": [
+    {
+      "addLabels": ["renovate/grafana-dashboard"],
+      "commitMessageExtra": "to revision {{newVersion}}",
+      "commitMessageTopic": "dashboard {{depName}}",
+      "matchDatasources": ["grafana-dashboards", "custom.grafana-dashboards"],
+      "matchUpdateTypes": ["major"],
+      "semanticCommitScope": "grafana-dashboards",
+      "semanticCommitType": "chore"
+    }
+  ]
+}

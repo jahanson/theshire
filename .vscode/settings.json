@@ -42,5 +42,9 @@
   "files.trimTrailingWhitespace": true,
   "ansible.python.interpreterPath": "/usr/bin/python3",
   "sops.defaults.ageKeyFile": "age.key",
-  "ansible.validation.lint.path": "~/projects/valinor/.venv/bin/ansible-lint"
+  "ansible.validation.lint.path": "~/projects/valinor/.venv/bin/ansible-lint",
+  "prettier.quoteProps": "preserve",
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
 }
