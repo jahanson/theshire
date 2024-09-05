@@ -1,0 +1,98 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app flood
+  namespace: default
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  dependsOn:
+    - name: qbittorrent
+      namespace: qbittorrent
+  values:
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 568
+        runAsGroup: 568
+        runAsNonRoot: true
+        runAsUser: 568
+        seccompProfile:
+          type: RuntimeDefault
+    controllers:
+      flood:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: jesec/flood
+              tag: master@sha256:3d20df051209bff2905dec4e8328c1c464d5375e730ef7d81ca21422e2ccf06a
+            envFrom:
+              - secretRef:
+                  name: flood-secret
+            env:
+              FLOOD_OPTION_RUNDIR: /data
+              FLOOD_OPTION_AUTH: none
+              FLOOD_OPTION_QBURL: http://qbittorrent.qbittorrent.svc.cluster.local
+              # FLOOD_OPTION_QBUSER is required but not used.
+              # FLOOD_OPTION_QBPASS is required but not used.
+            resources:
+              requests:
+                memory: 250Mi
+                cpu: 15m
+              limits:
+                memory: 512Mi
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                  - ALL
+              readOnlyRootFilesystem: true
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: 3000
+    ingress:
+      app:
+        enabled: true
+        className: "internal-nginx"
+        hosts:
+          - host: &host "flood.jahanson.tech"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - hosts:
+              - *host
+    persistence:
+      config:
+        enabled: true
+        existingClaim: *app
+        globalMounts:
+          - path: /data
