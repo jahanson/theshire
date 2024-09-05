@@ -18,3 +18,5 @@ resources:
   - ./tautulli/ks.yaml
   - ./redlib/ks.yaml
   - ./overseerr/ks.yaml
+  - ./autobrr/ks.yaml
+  - ./omegabrr/ks.yaml
