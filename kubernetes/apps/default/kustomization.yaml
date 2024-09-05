@@ -10,4 +10,3 @@ resources:
   # - ./it-tools/ks.yaml
   - ./maintainerr/ks.yaml
   - ./radarr/ks.yaml
-  - ./sonaar/ks.yaml
