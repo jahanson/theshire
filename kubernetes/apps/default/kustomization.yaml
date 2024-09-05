@@ -20,3 +20,4 @@ resources:
   - ./omegabrr/ks.yaml
   - ./it-tools/ks.yaml
   - ./excalidraw/ks.yaml
+  - ./recyclarr/ks.yaml
