@@ -17,3 +17,4 @@ resources:
   - ./unpackerr/ks.yaml
   - ./tautulli/ks.yaml
   - ./redlib/ks.yaml
+  - ./overseerr/ks.yaml
