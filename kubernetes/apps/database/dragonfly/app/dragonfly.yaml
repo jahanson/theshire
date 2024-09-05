@@ -1,0 +1,30 @@
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/dragonflydb.io/dragonfly_v1alpha1.json
+apiVersion: dragonflydb.io/v1alpha1
+kind: Dragonfly
+metadata:
+  labels:
+    app.kubernetes.io/name: dragonfly
+  name: dragonfly
+spec:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 500m
+      memory: 500Mi
+    limits:
+      memory: 3Gi
+  args:
+    - "--proactor_threads=4"
+    - "--default_lua_flags=allow-undeclared-keys"
+
+  # Need retention policy before this is enabled
+  # Or add S3 details and enable retention policy on the bucket.
+  # snapshot:
+  #   cron: "*/5 * * * *"
+  #   persistentVolumeClaimSpec:
+  #     accessModes:
+  #     - ReadWriteOnce
+  #     resources:
+  #       requests:
+  #         storage: 2Gi
