@@ -4,9 +4,10 @@
     "config:recommended",
     "local>jahanson/theshire//.renovate/customManagers.json5",
     "local>jahanson/theshire//.renovate/autoMerge.json5",
-    "local>jahanson/theshire//.renovate/packageRules.json5"
+    "local>jahanson/theshire//.renovate/packageRules.json5",
+    "local>jahanson/theshire//.renovate/groups.json5"
   ],
-  "ignorePaths": [".archive/**"],
+  "ignorePaths": ["**/*.sops.*", "**/.archive/**", "**/resources/**"],
   "flux": {
     "fileMatch": ["kubernetes/.+\\.ya?ml$"]
   },
@@ -14,7 +15,10 @@
     "fileMatch": ["kubernetes/.+\\.ya?ml$"]
   },
   "kubernetes": {
-    "fileMatch": ["kubernetes/.+\\.ya?ml$"]
+    "fileMatch": [
+      "(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$",
+      "(^|/)\\.taskfiles/.+\\.ya?ml(?:\\.j2)?$"
+    ]
   },
   "regexManagers": [
     {
