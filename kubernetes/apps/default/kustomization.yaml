@@ -21,3 +21,4 @@ resources:
   - ./it-tools/ks.yaml
   - ./excalidraw/ks.yaml
   - ./recyclarr/ks.yaml
+  - ./searxng/ks.yaml
