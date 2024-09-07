@@ -14,7 +14,7 @@ spec:
     - name: nvidia-device-plugin
     - name: node-feature-discovery
     - name: volsync
-    - name: openebs
+    - name: rook-ceph-cluster
   path: ./kubernetes/apps/ai/ollama/app
   prune: true
   sourceRef:
@@ -28,5 +28,3 @@ spec:
     substitute:
       APP: *app
       VOLSYNC_CAPACITY: 1Gi
-      VOLSYNC_STORAGECLASS: openebs-zfs
-      VOLSYNC_SNAPSHOTCLASS: openebs-zfs
