@@ -9,5 +9,5 @@ spec:
   interval: 5m
   type: oci
   # url: https://bjw-s.github.io/helm-charts/
-  url: oci://ghcr.io/bernd-schorgers/helm
+  url: oci://ghcr.io/bjw-s/helm
   timeout: 3m
