@@ -48,7 +48,7 @@ spec:
         targetPort: &port 80
       # off until it's online for the first time
       readinessProbe:
-        enabled: true
+        enabled: false
         # If you need to use a http path instead of the default exec
         # path: /v1/sys/health?standbyok=true
         # Port number on which readinessProbe will be checked.
