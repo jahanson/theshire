@@ -54,6 +54,8 @@ spec:
         # path: /v1/sys/health?standbyok=true
         # Port number on which readinessProbe will be checked.
         port: *port
+      extraEnvironmentVars:
+        VAULT_CLUSTER_ADDR: http://$(HOSTNAME).vault-internal:8201
       extraSecretEnvironmentVars:
         - envName: AWS_SECRET_ACCESS_KEY
           secretName: vault-secret
