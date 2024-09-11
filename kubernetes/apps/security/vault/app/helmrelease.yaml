@@ -44,7 +44,12 @@ spec:
         targetPort: *port
       # off until it's online for the first time
       readinessProbe:
-        enabled: false
+        enabled: true
+        path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
+      livenessProbe:
+        enabled: true
+        path: "/v1/sys/health?standbyok=true"
+        initialDelaySeconds: 60
         # If you need to use a http path instead of the default exec
         # path: /v1/sys/health?standbyok=true
         # Port number on which readinessProbe will be checked.
@@ -82,7 +87,6 @@ spec:
         # maxUnavailable will default to (n/2)-1 where n is the number of replicas
         # so if you have 6 replicas, maxUnavailable will be 2 unless you set it specifically.
         replicas: 3
-        # clusterAddr: "https://vault-active.security.svc.cluster.local:8201"
         config: ""
         raft:
           enabled: true
