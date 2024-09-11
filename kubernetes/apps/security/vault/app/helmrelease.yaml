@@ -55,7 +55,7 @@ spec:
         VAULT_CLUSTER_ADDR: "http://$(POD_IP):8201"
       # These are defaults but explicitly set here for clarity.
       dataStorage:
-        size: 10Gi
+        size: 4Gi
         mountPath: /vault/data
         storageClass: ceph-block
       auditStorage:
