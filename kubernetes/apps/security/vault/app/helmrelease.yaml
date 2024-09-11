@@ -54,8 +54,6 @@ spec:
         # path: /v1/sys/health?standbyok=true
         # Port number on which readinessProbe will be checked.
         port: *port
-      extraEnvironmentVars:
-        VAULT_CLUSTER_ADDR: "http://vault-internal.security.svc.cluster.local:8201"
       extraSecretEnvironmentVars:
         - envName: AWS_SECRET_ACCESS_KEY
           secretName: vault-secret
@@ -85,6 +83,7 @@ spec:
         # maxUnavailable will default to (n/2)-1 where n is the number of replicas
         # so if you have 6 replicas, maxUnavailable will be 2 unless you set it specifically.
         replicas: 3
+        clusterAddr: "http://$(HOSTNAME).vault-internal:8201"
         config: ""
         raft:
           enabled: true
