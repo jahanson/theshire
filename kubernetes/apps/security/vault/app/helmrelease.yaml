@@ -49,6 +49,13 @@ spec:
         # path: /v1/sys/health?standbyok=true
         # Port number on which readinessProbe will be checked.
         port: *port
+      extraEnvironmentVars:
+        - name: VAULT_ADDR
+          value: "http://127.0.0.1:8200"
+        - name: VAULT_API_ADDR
+          value: "http://$(POD_IP):8200"
+        - name: VAULT_CLUSTER_ADDR
+          value: "http://$(POD_IP):8201"
       # These are defaults but explicitly set here for clarity.
       dataStorage:
         size: 10Gi
@@ -87,9 +94,10 @@ spec:
 
             storage "raft" {
               path = "/vault/data"
-              retry_join {
-                leader_api_addr = "http://vault-5.vault-internal:8200"
-              }
+                retry_join {
+                  auto_join = "provider=k8s label_selector=\"app.kubernetes.io/name=vault,component=server\" namespace=\"security\""
+                  auto_join_scheme = "http"
+                }
             }
 
             service_registration "kubernetes" {}
