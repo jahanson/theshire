@@ -38,14 +38,14 @@ spec:
               - path: /
                 service:
                   identifier: vault
-                  port: http
+                  port: &port 8200
         tls:
           - hosts:
               - *host
       service:
         type: "ClusterIP"
-        port: &internalPort 8200
-        targetPort: &port 80
+        port: *port
+        targetPort: *port
       # off until it's online for the first time
       readinessProbe:
         enabled: false
@@ -115,5 +115,5 @@ spec:
       # The service should only contain selectors for active Vault pod
       activeVaultPodOnly: true
       serviceType: "LoadBalancer"
-      externalPort: *internalPort
+      externalPort: *port
       targetPort: *port
