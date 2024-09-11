@@ -53,6 +53,16 @@ spec:
         VAULT_ADDR: "http://127.0.0.1:8200"
         VAULT_API_ADDR: "http://$(POD_IP):8200"
         VAULT_CLUSTER_ADDR: "http://$(POD_IP):8201"
+      extraSecretEnvironmentVars:
+        - envName: AWS_SECRET_ACCESS_KEY
+          secretName: vault-secret
+          secretKey: AWS_SECRET_ACCESS_KEY
+        - envName: AWS_ACCESS_KEY_ID
+          secretName: vault-secret
+          secretKey: AWS_ACCESS_KEY_ID
+        - envName: VAULT_AWSKMS_SEAL_KEY_ID
+          secretName: vault-secret
+          secretKey: VAULT_AWSKMS_SEAL_KEY_ID
       # These are defaults but explicitly set here for clarity.
       dataStorage:
         size: 4Gi
@@ -71,7 +81,7 @@ spec:
         enabled: true
         # maxUnavailable will default to (n/2)-1 where n is the number of replicas
         # so if you have 6 replicas, maxUnavailable will be 2 unless you set it specifically.
-        replicas: 6
+        replicas: 3
         # clusterAddr: "https://vault-active.security.svc.cluster.local:8201"
         config: ""
         raft:
@@ -97,10 +107,8 @@ spec:
                 }
             }
 
-            seal "kubernetes" {
-              secret_name = "vault-unseal-keys"
-              secret_namespace = "security"
-              key_names = ["key1", "key2", "key3"]
+            seal "awskms" {
+              region = "us-east-2"
             }
 
             service_registration "kubernetes" {}
