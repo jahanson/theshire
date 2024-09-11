@@ -97,6 +97,12 @@ spec:
                 }
             }
 
+            seal "kubernetes" {
+              secret_name = "vault-unseal-keys"
+              secret_namespace = "security"
+              key_names = ["key1", "key2", "key3"]
+            }
+
             service_registration "kubernetes" {}
       statefulSet:
         securityContext:
