@@ -37,7 +37,7 @@ spec:
             paths:
               - path: /
                 service:
-                  identifier: app
+                  identifier: vault
                   port: http
         tls:
           - hosts:
