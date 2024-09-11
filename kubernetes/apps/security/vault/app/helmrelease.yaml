@@ -55,6 +55,8 @@ spec:
         # Port number on which readinessProbe will be checked.
         port: *port
       extraEnvironmentVars:
+        # This is required because they will lose their values when the pod is upgraded in my experience.
+        # Probably a Flux thing.
         VAULT_CLUSTER_ADDR: http://$(HOSTNAME).vault-internal:8201
       extraSecretEnvironmentVars:
         - envName: AWS_SECRET_ACCESS_KEY
