@@ -34,17 +34,13 @@ spec:
         ingressClassName: internal-nginx
         hosts:
           - host: &host "vault.jahanson.tech"
-            paths:
-              - path: /
-                service:
-                  identifier: vault
-                  port: &port 8200
+            paths: []
         tls:
           - hosts:
               - *host
       service:
         type: "ClusterIP"
-        port: *port
+        port: &port 8200
         targetPort: *port
       # off until it's online for the first time
       readinessProbe:
