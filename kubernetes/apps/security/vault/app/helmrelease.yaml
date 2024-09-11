@@ -105,7 +105,7 @@ spec:
             supplementalGroups: [10000]
           container:
             allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
+            readOnlyRootFilesystem: false
             capabilities:
               drop:
                 - "ALL"
