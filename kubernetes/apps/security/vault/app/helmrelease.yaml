@@ -68,7 +68,7 @@ spec:
         # maxUnavailable will default to (n/2)-1 where n is the number of replicas
         # so if you have 6 replicas, maxUnavailable will be 2 unless you set it specifically.
         replicas: 6
-        clusterAddr: "http://vault.security.svc.cluster.local:8201"
+        # clusterAddr: "https://vault-internal.security.svc.cluster.local:8201"
         config: ""
         raft:
           enabled: true
