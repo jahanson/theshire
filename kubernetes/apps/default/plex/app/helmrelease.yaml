@@ -128,7 +128,7 @@ spec:
       media:
         type: nfs
         server: 10.1.1.61
-        path: /moria/Media
+        path: /moria/media
         globalMounts:
           - path: /media
             readOnly: true
