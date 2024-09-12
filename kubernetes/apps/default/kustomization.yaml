@@ -6,19 +6,20 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  - ./maintainerr/ks.yaml
-  - ./radarr/ks.yaml
-  - ./sonarr/ks.yaml
-  - ./sabnzbd/ks.yaml
   - ./atuin/ks.yaml
-  - ./prowlarr/ks.yaml
-  - ./unpackerr/ks.yaml
-  - ./tautulli/ks.yaml
-  - ./redlib/ks.yaml
-  - ./overseerr/ks.yaml
   - ./autobrr/ks.yaml
-  - ./omegabrr/ks.yaml
-  - ./it-tools/ks.yaml
   - ./excalidraw/ks.yaml
+  - ./it-tools/ks.yaml
+  - ./maintainerr/ks.yaml
+  - ./omegabrr/ks.yaml
+  - ./overseerr/ks.yaml
+  - ./plex.yaml
+  - ./prowlarr/ks.yaml
+  - ./radarr/ks.yaml
   - ./recyclarr/ks.yaml
+  - ./redlib/ks.yaml
+  - ./sabnzbd/ks.yaml
   - ./searxng/ks.yaml
+  - ./sonarr/ks.yaml
+  - ./tautulli/ks.yaml
+  - ./unpackerr/ks.yaml
