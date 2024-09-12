@@ -109,9 +109,9 @@ spec:
         path: /eru/media
         globalMounts:
           - path: /data/nas-media
-      sting-media:
+      moria-media:
         type: nfs
-        server: 10.1.1.12
-        path: /mnt/user/Media/
+        server: 10.1.1.61
+        path: /moria/media/
         globalMounts:
-          - path: /data/sting-media
+          - path: /data/moria-media
