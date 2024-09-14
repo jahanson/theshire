@@ -131,6 +131,15 @@ radarr:
               - WEBDL-1080p
               - WEBRip-1080p
           - name: HDTV-1080p
+      - name: SQP-1 (1080p)
+        reset_unmatched_scores:
+          enabled: true
+
+    include:
+      - template: radarr-quality-definition-sqp-streaming
+      - template: radarr-quality-profile-sqp-1-1080p
+      - template: radarr-custom-formats-sqp-1-1080p
+
     custom_formats:
       - trash_ids:
           # Audio
@@ -177,7 +186,7 @@ radarr:
           - cc5e51a9e85a6296ceefe097a77f12f4  # BCORE
           - 2a6039655313bf5dab1e43523b62c374  # MA
           - 16622a6911d1ab5d5b8b713d5b0036d4  # CRiT
-        quality_profiles:
+        assign_scores_to:
           - name: Remux/Web 1080p
       - trash_ids:
           # Streaming Services
@@ -195,6 +204,16 @@ radarr:
           - c9fd353f8f5f1baf56dc601c4cb29920  # PCOK
           - e36a0ba1bc902b26ee40818a1d59b8bd  # PMTP
           - c2863d2a50c9acad1fb50e53ece60817  # STAN
-        quality_profiles:
+        assign_scores_to:
           - name: Remux/Web 1080p
             score: 0
+      - trash_ids:
+          - 9f6cbff8cfe4ebbc1bde14c7b7bec0de # IMAX Enhanced
+          - b6832f586342ef70d9c128d40c07b872 # Bad Dual Groups
+          - 90cedc1fea7ea5d11298bebd3d1d3223 # EVO (no WEBDL)
+          - ae9b7c9ebde1f3bd336a8cbd1ec4c5e5 # No-RlsGroup
+          - 7357cf5161efbf8c4d5d0c30b4815ee2 # Obfuscated
+          - 5c44f52a8714fdd79bb4d98e2673be1f # Retags
+          - f537cf427b64c38c8e36298f657e4828 # Scene
+        assign_scores_to:
+          - name: SQP-1 (1080p)
