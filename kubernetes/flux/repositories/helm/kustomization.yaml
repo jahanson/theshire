@@ -8,6 +8,7 @@ resources:
   - backube.yaml
   - bjw-s.yaml
   - cilium.yaml
+  - coder.yaml
   - coredns.yaml
   - crowdsec.yaml
   - crunchydata.yaml
