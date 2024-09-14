@@ -1,0 +1,48 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app coder
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: coder
+      version: 2.15.0
+      sourceRef:
+        kind: HelmRepository
+        name: coder
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    coder:
+      podAnnotations:
+        secret.reloader.stakater.com/reload: coder-secret
+      env:
+        - name: CODER_ACCESS_URL
+          value: https://coder.hsn.dev
+        - name: CODER_WILDCARD_ACCESS_URL
+          value: "*.coder.hsn.dev"
+        - name: CODER_PROMETHEUS_ENABLE
+          value: "true"
+      envFrom:
+        - secretRef:
+            name: coder-secret
+      ingress:
+        enable: true
+        className: external-nginx
+        annotations:
+          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+          external-dns.alpha.kubernetes.io/target: external.hsn.dev
+
+        host: "coder.hsn.dev"
+        wildcardHost: "*.coder.hsn.dev"
