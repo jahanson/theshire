@@ -6,14 +6,14 @@ metadata:
   name: &app coder
   namespace: flux-system
 spec:
-  targetNamespace: default
+  targetNamespace: coder
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: external-secrets-stores
     - name: crunchy-postgres-operator-cluster
-  path: ./kubernetes/apps/default/coder/app
+  path: ./kubernetes/apps/coder/coder/app
   prune: false
   sourceRef:
     kind: GitRepository
