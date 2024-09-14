@@ -6,7 +6,7 @@ metadata:
   name: &app coder
   namespace: flux-system
 spec:
-  targetNamespace: coder
+  targetNamespace: default
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
