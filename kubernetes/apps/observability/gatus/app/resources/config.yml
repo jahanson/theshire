@@ -78,24 +78,6 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: pushover
-  - name: Shadowfax
-    group: internal
-    url: icmp://shadowfax.jahanson.tech
-    interval: 1m
-    client:
-      dns-resolver: tcp://10.1.1.1:53
-    conditions:
-      - "[CONNECTED] == true"
-    alerts:
-      - type: pushover
-  - name: Gandalf
-    group: internal
-    url: icmp://gandalf.jahanson.tech
-    interval: 1m
-    conditions:
-      - "[CONNECTED] == true"
-    alerts:
-      - type: pushover
   - name: Gollum
     group: internal
     url: http://gollum.jahanson.tech
@@ -119,13 +101,34 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: pushover
-  - name: Home Assistant
-    group: internal
-    url: icmp://hass.jahanson.tech
-    interval: 1m
-    client:
-      dns-resolver: tcp://10.1.1.1:53
-    conditions:
-      - "[CONNECTED] == true"
-    alerts:
-      - type: pushover
+  ### No clue why icmp is not working.
+  # - name: Shadowfax
+  #   group: internal
+  #   url: icmp://shadowfax.jahanson.tech
+  #   interval: 1m
+  #   client:
+  #     dns-resolver: tcp://10.1.1.1:53
+  #   conditions:
+  #     - "[CONNECTED] == true"
+  #   alerts:
+  #     - type: pushover
+  # - name: Gandalf
+  #   group: internal
+  #   url: icmp://gandalf.jahanson.tech
+  #   interval: 1m
+  #   client:
+  #     dns-resolver: tcp://10.1.1.1:53
+  #   conditions:
+  #     - "[CONNECTED] == true"
+  #   alerts:
+  #     - type: pushover
+  # - name: Home Assistant
+  #   group: internal
+  #   url: icmp://hass.jahanson.tech
+  #   interval: 1m
+  #   client:
+  #     dns-resolver: tcp://10.1.1.1:53
+  #   conditions:
+  #     - "[CONNECTED] == true"
+  #   alerts:
+  #     - type: pushover
