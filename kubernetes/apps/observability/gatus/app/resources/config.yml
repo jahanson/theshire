@@ -92,8 +92,6 @@ endpoints:
     group: internal
     url: icmp://gandalf.jahanson.tech
     interval: 1m
-    client:
-      dns-resolver: tcp://10.1.1.1:53
     conditions:
       - "[CONNECTED] == true"
     alerts:
