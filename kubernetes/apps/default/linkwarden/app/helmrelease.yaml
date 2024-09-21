@@ -61,3 +61,6 @@ spec:
     persistence:
       data:
         existingClaim: linkwarden
+        globalMounts:
+          - path: /data
+            subPath: data
