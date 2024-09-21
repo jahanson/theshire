@@ -35,6 +35,7 @@ spec:
             env:
               TIMEZONE: "America/Chicago"
               NEXTAUTH_URL: "https://{{ .Release.Name }}.jahanson.tech/api/v1/auth"
+              STORAGE_FOLDER: "/config"
             envFrom:
               - secretRef:
                   name: linkwarden-secret
@@ -59,8 +60,5 @@ spec:
           - hosts:
               - *host
     persistence:
-      data:
+      config:
         existingClaim: linkwarden
-        globalMounts:
-          - path: /data
-            subPath: data
