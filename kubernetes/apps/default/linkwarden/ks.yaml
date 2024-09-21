@@ -10,6 +10,11 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  dependsOn:
+    - name: crunchy-postgres-operator
+    - name: external-secrets-stores
+    - name: volsync
+    - name: rook-ceph-cluster
   path: ./kubernetes/apps/default/linkwarden/app
   prune: true
   sourceRef:
@@ -22,4 +27,3 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      GATUS_SUBDOMAIN: links

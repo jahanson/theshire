@@ -34,6 +34,7 @@ spec:
               tag: v2.7.1@sha256:bbd22798ee726184d4571ea4f4d831d57475c86c4965c2bb1c3c2d3de88c728a
             env:
               TIMEZONE: "America/Chicago"
+              NEXTAUTH_URL: "https://{{ .Release.Name }}.jahanson.tech/api/v1/auth"
             envFrom:
               - secretRef:
                   name: linkwarden-secret
@@ -48,7 +49,7 @@ spec:
         enabled: true
         className: internal-nginx
         hosts:
-          - host: &host "links.jahanson.tech"
+          - host: &host "{{ .Release.Name }}.jahanson.tech"
             paths:
               - path: /
                 service:
