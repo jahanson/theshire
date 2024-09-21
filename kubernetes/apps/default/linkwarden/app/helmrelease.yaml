@@ -59,4 +59,4 @@ spec:
               - *host
     persistence:
       data:
-        existingClaim: linkwarden-data
+        existingClaim: linkwarden
