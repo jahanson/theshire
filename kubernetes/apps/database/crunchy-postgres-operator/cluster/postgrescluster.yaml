@@ -95,6 +95,11 @@ spec:
         - kasm
       password:
         type: AlphaNumeric
+    - name: linkwarden
+      databases:
+        - linkwarden
+      password:
+        type: AlphaNumeric
     - name: prowlarr
       databases:
         - prowlarr_logs

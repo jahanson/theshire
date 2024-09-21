@@ -10,6 +10,7 @@ resources:
   - ./autobrr/ks.yaml
   - ./excalidraw/ks.yaml
   - ./it-tools/ks.yaml
+  - ./linkwarden/ks.yaml
   - ./maintainerr/ks.yaml
   - ./omegabrr/ks.yaml
   - ./overseerr/ks.yaml
