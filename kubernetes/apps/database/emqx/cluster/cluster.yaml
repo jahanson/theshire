@@ -24,11 +24,11 @@ spec:
             type = built_in_database
             enable = true
             rules = [
-              {allow, {pattern, "tasmota_"}, publish, ["tasmota/discovery/#"]}.
+              {allow, {username, "tasmota"}, publish, ["tasmota/discovery/#"]}.
               {allow, all, subscribe, ["tasmota/discovery/#"]}.
-              {allow, {pattern, "tasmota_"}, publish, ["cmnd/tasmota_+/#"]}.
-              {allow, {pattern, "tasmota_"}, publish, ["stat/tasmota_+/#"]}.
-              {allow, {pattern, "tasmota_"}, publish, ["tele/tasmota_+/#"]}.
+              {allow, {username, "tasmota"}, publish, ["cmnd/tasmota_+/#"]}.
+              {allow, {username, "tasmota"}, publish, ["stat/tasmota_+/#"]}.
+              {allow, {username, "tasmota"}, publish, ["tele/tasmota_+/#"]}.
               {allow, all, subscribe, ["cmnd/tasmota_+/#", "stat/tasmota_+/#", "tele/tasmota_+/#"]}.
             ]
           }
