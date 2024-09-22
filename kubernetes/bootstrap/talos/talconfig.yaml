@@ -22,11 +22,6 @@ nodes:
     networkInterfaces:
       - interface: eno1
         dhcp: true
-    patches:
-      - |-
-        machine:
-          sysctls:
-            vm.nr_hugepages: "1024"
 
   - hostname: frodo
     disableSearchDomain: true
@@ -37,11 +32,6 @@ nodes:
     networkInterfaces:
       - interface: eno1
         dhcp: true
-    patches:
-      - |-
-        machine:
-          sysctls:
-            vm.nr_hugepages: "1024"
 
   - hostname: sam
     disableSearchDomain: true
@@ -52,11 +42,6 @@ nodes:
     networkInterfaces:
       - interface: eno1
         dhcp: true
-    patches:
-      - |-
-        machine:
-          sysctls:
-            vm.nr_hugepages: "1024"
 
   - hostname: pippin
     disableSearchDomain: true
@@ -67,22 +52,6 @@ nodes:
     networkInterfaces:
       - interface: eno1
         dhcp: true
-    patches:
-      - |-
-        machine:
-          sysctls:
-            vm.nr_hugepages: "1024"
-      - &kubelet_extra_mounts |-
-        machine:
-          kubelet:
-            extraMounts:
-              - destination: /var/openebs/local
-                type: bind
-                source: /var/openebs/local
-                options:
-                  - bind
-                  - rshared
-                  - rw
 
   - hostname: merry
     disableSearchDomain: true
@@ -93,12 +62,6 @@ nodes:
     networkInterfaces:
       - interface: eno1
         dhcp: true
-    patches:
-      - |-
-        machine:
-          sysctls:
-            vm.nr_hugepages: "1024"
-      - *kubelet_extra_mounts
 
   - hostname: rosie
     disableSearchDomain: true
@@ -109,12 +72,6 @@ nodes:
     networkInterfaces:
       - interface: eno1
         dhcp: true
-    patches:
-      - |-
-        machine:
-          sysctls:
-            vm.nr_hugepages: "1024"
-      - *kubelet_extra_mounts
   - hostname: gandalf-01
     disableSearchDomain: true
     ipAddress: 10.1.1.68
@@ -124,12 +81,6 @@ nodes:
     networkInterfaces:
       - interface: enp5s0
         dhcp: true
-    patches:
-      - |-
-        machine:
-          sysctls:
-            vm.nr_hugepages: "1024"
-      - *kubelet_extra_mounts
 
   - hostname: shadowfax-01
     disableSearchDomain: true
@@ -145,8 +96,6 @@ nodes:
         machine:
           sysctls:
             net.core.bpf_jit_harden: 1
-            vm.nr_hugepages: "1024"
-      - *kubelet_extra_mounts
 
     kernelModules:
       - name: nvidia
@@ -171,6 +120,23 @@ worker:
           - siderolabs/intel-ucode
           - siderolabs/i915-ucode
   patches:
+    # hugepages
+    - &hugepages |-
+        machine:
+          sysctls:
+            vm.nr_hugepages: "1024"
+    # Kubelet local mount
+    - &kubelet_extra_mounts |-
+        machine:
+          kubelet:
+            extraMounts:
+              - destination: /var/openebs/local
+                type: bind
+                source: /var/openebs/local
+                options:
+                  - bind
+                  - rshared
+                  - rw
     # Configure containerd
     - &containerd |-
       machine:
@@ -247,6 +213,10 @@ controlPlane:
           - siderolabs/intel-ucode
           - siderolabs/i915-ucode
   patches:
+    # hugepages
+    - *hugepages
+    # Kubelet local mount
+    - *kubelet_extra_mounts
     # Disable search domain everywhere
     - *searchDomain
 
