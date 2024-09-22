@@ -23,14 +23,6 @@ spec:
           {
             type = built_in_database
             enable = true
-            rules = [
-              {allow, {username, "tasmota"}, publish, ["tasmota/discovery/#"]}.
-              {allow, all, subscribe, ["tasmota/discovery/#"]}.
-              {allow, {username, "tasmota"}, publish, ["cmnd/tasmota_+/#"]}.
-              {allow, {username, "tasmota"}, publish, ["stat/tasmota_+/#"]}.
-              {allow, {username, "tasmota"}, publish, ["tele/tasmota_+/#"]}.
-              {allow, all, subscribe, ["cmnd/tasmota_+/#", "stat/tasmota_+/#", "tele/tasmota_+/#"]}.
-            ]
           }
         ]
         no_match: "deny"
