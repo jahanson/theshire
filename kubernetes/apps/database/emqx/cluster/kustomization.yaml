@@ -11,7 +11,7 @@ patchesStrategicMerge:
 configMapGenerator:
   - name: emqx-conf
     files:
-      - resources/emqx.conf
+      - emqx.conf=./resources/emqx.conf
 replacements:
   - source:
       kind: ConfigMap
