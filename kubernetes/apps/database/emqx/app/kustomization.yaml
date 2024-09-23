@@ -9,3 +9,5 @@ configMapGenerator:
   - name: emqx-conf
     files:
       - emqx.conf=./resources/emqx.conf
+generatorOptions:
+  disableNameSuffixHash: true
