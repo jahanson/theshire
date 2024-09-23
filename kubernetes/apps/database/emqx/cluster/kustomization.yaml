@@ -6,3 +6,24 @@ resources:
   - ./cluster.yaml
   - ./ingress.yaml
   - ./podmonitor.yaml
+patchesStrategicMerge:
+  - cluster.yaml
+configMapGenerator:
+  - name: emqx-conf
+    files:
+      - resources/emqx.conf
+replacements:
+  - source:
+      kind: ConfigMap
+      name: emqx-conf
+      fieldPath: data.emqx.conf
+    targets:
+      - select:
+          kind: EMQX
+          name: emqx
+        fieldPaths:
+          - spec.config.data
+        options:
+          delimiter: |
+generatorOptions:
+  disableNameSuffixHash: true

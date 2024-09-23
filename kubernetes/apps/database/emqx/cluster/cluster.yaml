@@ -7,26 +7,9 @@ metadata:
 spec:
   image: public.ecr.aws/emqx/emqx:5.8.0
   config:
+    mode: Merge
     data: |
-      authentication {
-        backend = "built_in_database"
-        mechanism = "password_based"
-        password_hash_algorithm {
-            name = "bcrypt",
-        }
-        user_id_type = "username"
-        bootstrap_file = "/opt/init-user.json"
-        bootstrap_type = "plain"
-      }
-      authorization {
-        sources = [
-          {
-            type = built_in_database
-            enable = true
-          }
-        ]
-        no_match: "deny"
-      }
+      $(emqx-conf)
   coreTemplate:
     metadata:
       annotations:
