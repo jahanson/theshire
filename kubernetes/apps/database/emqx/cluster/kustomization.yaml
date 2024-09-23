@@ -12,7 +12,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: emqx-conf
-      fieldPath: data.emqx\.conf
+      fieldPath: data
     targets:
       - select:
           kind: EMQX
