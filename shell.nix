@@ -18,5 +18,7 @@ pkgs.mkShell {
     pre-commit
     sops
     age
+    mqttui
+    kustomize
   ];
 }
