@@ -9,5 +9,17 @@ configMapGenerator:
   - name: emqx-conf
     files:
       - emqx.conf=./resources/emqx.conf
+replacements:
+  - source:
+      kind: ConfigMap
+      name: emqx-conf
+    targets:
+      - fieldPaths:
+          - spec.config.data
+        options:
+          create: true
+        select:
+          kind: EMQX
+          name: emqx
 generatorOptions:
   disableNameSuffixHash: true

@@ -8,8 +8,6 @@ spec:
   image: public.ecr.aws/emqx/emqx:5.8.0
   config:
     mode: Merge
-    data: |
-      $(emqx-conf)
   coreTemplate:
     metadata:
       annotations:
