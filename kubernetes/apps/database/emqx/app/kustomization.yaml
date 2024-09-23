@@ -5,3 +5,7 @@ kind: Kustomization
 resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
+configMapGenerator:
+  - name: emqx-conf
+    files:
+      - emqx.conf=./resources/emqx.conf

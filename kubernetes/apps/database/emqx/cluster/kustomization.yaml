@@ -8,10 +8,6 @@ resources:
   - ./podmonitor.yaml
 patchesStrategicMerge:
   - cluster.yaml
-configMapGenerator:
-  - name: emqx-conf
-    files:
-      - emqx.conf=./resources/emqx.conf
 replacements:
   - source:
       kind: ConfigMap
