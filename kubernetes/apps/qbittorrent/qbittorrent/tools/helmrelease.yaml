@@ -143,4 +143,3 @@ spec:
           orphaned:
             app:
               - path: /data/nas-media
-                subPath: qb/downloads
