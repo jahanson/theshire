@@ -15,8 +15,6 @@ cluster:
   name: theshire
 cni:
   exclusive: false
-containerRuntime:
-  integration: containerd
 # devices: eno+|enp+
 enableRuntimeDeviceDetection: true
 endpointRoutes:
