@@ -147,7 +147,7 @@ spec:
           external-dns.alpha.kubernetes.io/target: external.hsn.dev
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           nginx.ingress.kubernetes.io/enable-cors: "true"
-          nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.hsn.dev, https://piped-api.hsn.dev, https://piped-proxy.hsn.dev"
+          nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.hsn.dev, https://piped-api.hsn.dev, https://piped-proxy.jahanson.tech"
         hosts:
           - host: piped-api.hsn.dev
             paths:
@@ -161,7 +161,7 @@ spec:
           external-dns.alpha.kubernetes.io/target: external.hsn.dev
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           nginx.ingress.kubernetes.io/enable-cors: "true"
-          nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.hsn.dev, https://piped-api.hsn.dev, https://piped-proxy.hsn.dev"
+          nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.hsn.dev, https://piped-api.hsn.dev, https://piped-proxy.jahanson.tech"
         hosts:
           - host: piped.hsn.dev
             paths:
@@ -170,14 +170,13 @@ spec:
                   identifier: frontend
                   port: http
       ytproxy:
-        className: "external-nginx"
+        className: "internal-nginx"
         annotations:
-          external-dns.alpha.kubernetes.io/target: external.hsn.dev
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           nginx.ingress.kubernetes.io/enable-cors: "true"
-          nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.hsn.dev, https://piped-api.hsn.dev, https://piped-proxy.hsn.dev"
+          nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.hsn.dev, https://piped-api.hsn.dev, https://piped-proxy.jahanson.tech"
         hosts:
-          - host: piped-proxy.hsn.dev
+          - host: piped-proxy.jahanson.tech
             paths:
               - path: /
                 service:
