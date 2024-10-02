@@ -16,6 +16,7 @@ resources:
   - ./nicehash/ks.yaml
   - ./omegabrr/ks.yaml
   - ./overseerr/ks.yaml
+  - ./piped/ks.yaml
   - ./plex/ks.yaml
   - ./prowlarr/ks.yaml
   - ./radarr/ks.yaml
