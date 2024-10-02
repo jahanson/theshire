@@ -6,16 +6,16 @@ metadata:
   name: &appname piped
   namespace: flux-system
 spec:
-  targetNamespace: media
+  targetNamespace: default
   commonMetadata:
     labels:
       app.kubernetes.io/name: *appname
   interval: 10m
-  path: "./kubernetes/apps/media/piped/app"
+  path: "./kubernetes/apps/default/piped/app"
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-ops-kubernetes
+    name: theshire
   wait: false
   dependsOn:
     - name: external-secrets-stores
