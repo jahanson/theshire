@@ -172,7 +172,6 @@ spec:
       ytproxy:
         className: "internal-nginx"
         annotations:
-          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           nginx.ingress.kubernetes.io/enable-cors: "true"
           nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.hsn.dev, https://piped-api.hsn.dev, https://piped-proxy.jahanson.tech"
         hosts:
