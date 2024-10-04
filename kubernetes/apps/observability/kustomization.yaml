@@ -6,6 +6,5 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  - ./kube-prometheus-stack/ks.yaml
   - ./prometheus-operator-crds/ks.yaml
   - ./gatus/ks.yaml
