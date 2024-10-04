@@ -8,4 +8,4 @@ resources:
   # Flux-Kustomizations
   - ./gatus/ks.yaml
   - ./prometheus-operator-crds/ks.yaml
-  - ./vicotria-metrics/ks.yaml
+  - ./victoria-metrics/ks.yaml
