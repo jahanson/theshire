@@ -16,3 +16,4 @@ kubeconfig*
 omniconfig.yaml
 config.xml
 .idea/
+*.secrets

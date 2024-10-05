@@ -53,7 +53,7 @@ jobs:
         with:
           encodedString: "${{ secrets.MCCONFIG }}"
           fileName: config.json
-          fileDir: $HOME/.mc
+          fileDir: ${{ env.GITHUB_WORKSPACE }}
 
       - name: Extracting CRDs to yaml and converting to JSON schema
         env:
@@ -130,6 +130,9 @@ jobs:
           rm -rf $TMP_CRD_DIR
 
       - name: Deploy to Cloudflare R2
-        shell: bash
+        env:
+          MC_CONFIG_DIR: "${{ steps.mcconfig.outputs.fileDir }}"
+          shell: bash
         run: |
+          echo $GITHUB_WORKSPACE/crdSchemas/
           mc cp --recursive $GITHUB_WORKSPACE/crdSchemas/ r2-ks/kubernetes-schema
