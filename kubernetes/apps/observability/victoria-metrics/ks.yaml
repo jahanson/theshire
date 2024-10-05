@@ -33,7 +33,7 @@ spec:
   dependsOn:
     - name: openebs
     - name: vm-operator
-  path: ./kubernetes/apps/observability/victoriametrics/cluster
+  path: ./kubernetes/apps/observability/victoria-metrics/cluster
   prune: true
   sourceRef:
     kind: GitRepository
