@@ -1,0 +1,32 @@
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/operator.victoriametrics.com/vmalert_v1beta1.json
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMAlert
+metadata:
+  name: cluster
+spec:
+  datasource:
+    url: http://vmsingle-cluster.observability.svc:8429
+  evaluationInterval: 1m
+  notifiers:
+    - url: http://alertmanager.observability.svc:9093
+  remoteRead:
+    url: http://vmsingle-cluster.observability.svc:8429
+  remoteWrite:
+    url: http://vmsingle-cluster.observability.svc:8429
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: 3m
+    limits:
+      memory: 128Mi
+  selectAllByDefault: true
+  topologySpreadConstraints:
+    - maxSkew: 1
+      topologyKey: kubernetes.io/hostname
+      whenUnsatisfiable: DoNotSchedule
+      labelSelector:
+        matchLabels:
+          app.kubernetes.io/instance: cluster
+          app.kubernetes.io/name: vmalert
+  useStrictSecurity: true
