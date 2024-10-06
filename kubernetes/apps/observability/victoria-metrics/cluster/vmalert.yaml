@@ -10,10 +10,10 @@ spec:
   evaluationInterval: 1m
   notifiers:
     - url: http://alertmanager.observability.svc:9093
-  remoteRead:
-    url: http://vmsingle-cluster.observability.svc:8429
-  remoteWrite:
-    url: http://vmsingle-cluster.observability.svc:8429
+  # remoteRead:
+  #   url: http://vmsingle-cluster.observability.svc:8429
+  # remoteWrite:
+  #   url: http://vmsingle-cluster.observability.svc:8429
   replicaCount: 1
   resources:
     requests:
