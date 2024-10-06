@@ -9,7 +9,7 @@ spec:
     dedup.minScrapeInterval: 10s
     maxLabelsPerTimeseries: "40"
     search.minStalenessInterval: 5m
-    vmalert.proxyURL: http://vmalert-cluster.observability.svc:8080
+    # vmalert.proxyURL: http://vmalert-cluster.observability.svc:8080
   replicaCount: 1
   resources:
     requests:
