@@ -3,7 +3,7 @@
 apiVersion: operator.victoriametrics.com/v1beta1
 kind: VMAlert
 metadata:
-  name: cluster
+  name: victoria
 spec:
   evaluationInterval: 1m
   useStrictSecurity: true
@@ -32,5 +32,5 @@ spec:
       whenUnsatisfiable: DoNotSchedule
       labelSelector:
         matchLabels:
-          app.kubernetes.io/instance: cluster
+          app.kubernetes.io/instance: victoria
           app.kubernetes.io/name: vmalert
