@@ -9,13 +9,13 @@ spec:
   useStrictSecurity: true
   selectAllByDefault: true
   datasource:
-    url: http://vmsingle-cluster.observability.svc:8429
+    url: http://vmsingle-victoria.observability.svc:8429
   notifiers:
     - url: http://alertmanager.observability.svc:9093
   remoteRead:
-    url: http://vmsingle-cluster.observability.svc:8429
+    url: http://vmsingle-victoria.observability.svc:8429
   remoteWrite:
-    url: http://vmsingle-cluster.observability.svc:8429
+    url: http://vmsingle-victoria.observability.svc:8429
   securityContext:
     runAsUser: 65534
     runAsGroup: 65534
