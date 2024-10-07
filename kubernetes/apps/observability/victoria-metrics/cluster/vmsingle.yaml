@@ -3,33 +3,24 @@
 apiVersion: operator.victoriametrics.com/v1beta1
 kind: VMSingle
 metadata:
-  name: cluster
+  name: victoria
 spec:
+  # Possible units character: h(ours), d(ays), w(eeks), y(ears). Min 24h.
+  retentionPeriod: "6" # months if not specified
+  useStrictSecurity: true
   extraArgs:
     dedup.minScrapeInterval: 10s
     maxLabelsPerTimeseries: "40"
     search.minStalenessInterval: 5m
     # vmalert.proxyURL: http://vmalert-cluster.observability.svc:8080
-  replicaCount: 1
   resources:
     requests:
       cpu: 5m
     limits:
       memory: 2Gi
-  # -- Data retention period. Possible units character: h(ours), d(ays), w(eeks), y(ears), if no unit character specified - month. The minimum retention period is 24h. See these [docs](https://docs.victoriametrics.com/single-server-victoriametrics/#retention)
-  retentionPeriod: "6"
   storage:
     accessModes: [ReadWriteOnce]
     resources:
       requests:
         storage: 10Gi
     storageClassName: openebs-hostpath
-  topologySpreadConstraints:
-    - maxSkew: 1
-      topologyKey: kubernetes.io/hostname
-      whenUnsatisfiable: DoNotSchedule
-      labelSelector:
-        matchLabels:
-          app.kubernetes.io/instance: cluster
-          app.kubernetes.io/name: vmsingle
-  useStrictSecurity: true
