@@ -13,6 +13,11 @@ spec:
     maxLabelsPerTimeseries: "40"
     search.minStalenessInterval: 5m
     # vmalert.proxyURL: http://vmalert-cluster.observability.svc:8080
+  securityContext:
+    runAsUser: 65534
+    runAsGroup: 65534
+    runAsNonRoot: true
+    fsGroup: 65534
   resources:
     requests:
       cpu: 5m
