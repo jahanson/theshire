@@ -13,7 +13,6 @@ resources:
   - ./it-tools/ks.yaml
   - ./linkwarden/ks.yaml
   - ./maintainerr/ks.yaml
-  - ./nicehash/ks.yaml
   - ./omegabrr/ks.yaml
   - ./overseerr/ks.yaml
   - ./piped/ks.yaml
