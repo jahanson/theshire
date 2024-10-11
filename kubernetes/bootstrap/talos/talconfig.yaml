@@ -2,7 +2,7 @@
 # yaml-language-server: $schema=https://ks.hsn.dev/talconfig.json
 clusterName: theshire
 
-talosVersion: v1.8.0
+talosVersion: v1.8.1
 kubernetesVersion: 1.30.2
 endpoint: "https://10.1.1.57:6444"
 
