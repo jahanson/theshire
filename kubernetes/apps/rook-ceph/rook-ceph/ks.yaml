@@ -17,7 +17,6 @@ spec:
     name: theshire
   wait: false
   interval: 30m
-  retryInterval: 1m
   timeout: 5m
 ---
 # yaml-language-server: $schema=https://ks.hsn.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
@@ -38,5 +37,4 @@ spec:
     name: theshire
   wait: false
   interval: 30m
-  retryInterval: 1m
   timeout: 15m
