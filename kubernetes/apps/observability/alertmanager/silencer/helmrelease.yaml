@@ -23,7 +23,7 @@ spec:
       retries: 3
       strategy: rollback
   dependsOn:
-    - name: kube-prometheus-stack
+    - name: alertmanager
       namespace: observability
   values:
     controllers:
