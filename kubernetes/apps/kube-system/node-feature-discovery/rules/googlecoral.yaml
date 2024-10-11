@@ -3,14 +3,14 @@
 apiVersion: nfd.k8s-sigs.io/v1alpha1
 kind: NodeFeatureRule
 metadata:
-  name: nvidia-device
+  name: google-coral-device
 spec:
   rules:
-    - # NVIDIA GPU
-      name: nvidia.com/gpu
+    - # Google Coral USB Accelerator
+      name: google.coral
       labels:
-        nvidia.com/gpu.present: "true"
+        google.feature.node.kubernetes.io/coral: "true"
       matchFeatures:
-        - feature: pci.device
+        - feature: usb.device
           matchExpressions:
-            vendor: { op: In, value: ["10de"] }
+            vendor: {op: In, value: ["1a6e", "18d1"]}
