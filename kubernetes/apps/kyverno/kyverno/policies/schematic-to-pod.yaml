@@ -1,6 +1,6 @@
 ---
 # yaml-language-server: $schema=https://ks.hsn.dev/kyverno.io/clusterpolicy_v1.json
-apiVersion: kyverno.io/v2beta1
+apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
   name: mutate-pod-binding
