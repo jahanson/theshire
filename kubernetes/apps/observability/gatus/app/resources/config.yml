@@ -81,16 +81,3 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: pushover
-  - name: Home Assistant
-    group: internal
-    url: https://hass.jahanson.tech
-    interval: 1m
-    ui:
-      hide-url: true
-      hide-hostname: true
-    client:
-      dns-resolver: tcp://10.1.1.1:53
-    conditions:
-      - "[STATUS] == 200"
-    alerts:
-      - type: pushover
