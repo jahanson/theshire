@@ -32,7 +32,7 @@ spec:
           app:
             image:
               repository: ghcr.io/koush/scrypted
-              tag: v0.119.1-jammy-full
+              tag: v0.119.1-jammy-nvidia
             probes:
               liveness:
                 enabled: true
@@ -59,10 +59,12 @@ spec:
           http:
             port: 11080
             primary: true
-          # rebroadcast1:
-          #   port: 34135
-          # rebroadcast2:
-          #   port: 34136
+          rebroadcast1: # driveway
+            port: 39655
+          rebroadcast2: # sideyard
+            port: 46561
+          rebroadcast3: # doorbell
+            port: 44759
 
     ingress:
       app:
