@@ -6,13 +6,13 @@ metadata:
   name: &appname scrypted
   namespace: flux-system
 spec:
-  targetNamespace: home-automation
+  targetNamespace: default
   commonMetadata:
     labels:
       app.kubernetes.io/name: *appname
   interval: 30m
   timeout: 5m
-  path: "./kubernetes/apps/home-automation/scrypted/app"
+  path: "./kubernetes/apps/default/scrypted/app"
   prune: true
   sourceRef:
     kind: GitRepository
