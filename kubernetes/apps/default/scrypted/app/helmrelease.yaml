@@ -101,9 +101,9 @@ spec:
         type: hostPath
         hostPath: /sys/bus/usb
         hostPathType: Directory
-      recs:
+      recordings:
         type: nfs
         server: shadowfax.jahanson.tech
         path: /nahar/scrypted
         globalMounts:
-          - path: /rec
+          - path: /recordings
