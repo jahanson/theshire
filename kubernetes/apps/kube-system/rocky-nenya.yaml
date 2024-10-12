@@ -4,13 +4,13 @@ metadata:
   name: rocky-nenya
   namespace: kube-system
 spec:
-  #  nodeName: nenya
+  nodeName: shadowfax-01
   containers:
     - name: rocky
       image: rockylinux:9
       securityContext:
         privileged: true
-      command: ["/bin/bash", "-c", "while true; do sleep 10; done"]
+      command: ["/bin/bash", "-c", "dnf install -y iputils dnsutils && while true; do sleep 10; done"]
       resources:
         requests:
           cpu: 100m
