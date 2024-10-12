@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: scrypted
+  name: &app scrypted
 spec:
   interval: 30m
   chart:
@@ -54,7 +54,11 @@ spec:
               privileged: true
     service:
       app:
-        controller: scrypted
+        controller: *app
+        type: LoadBalancer
+        annotations:
+          io.cilium/lb-ipam-ips: 10.1.1.32
+        nameOverride: *app
         ports:
           http:
             port: 11080
@@ -69,6 +73,7 @@ spec:
             port: 42010
           homekit-bridge: # bridge
             port: 33961
+
 
     ingress:
       app:
