@@ -35,16 +35,6 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: pushover
-  # - name: Umami
-  #   group: external
-  #   url: https://umi.hsn.dev/script.js
-  #   interval: 1m
-  #   client:
-  #     dns-resolver: tcp://1.1.1.1:53
-  #   conditions:
-  #     - "[STATUS] == 200"
-  #   alerts:
-  #     - type: pushover
   - name: Nextcloud External
     group: external
     url: https://nc.hsn.dev
@@ -78,16 +68,6 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: pushover
-  - name: Gollum
-    group: internal
-    url: http://gollum.jahanson.tech
-    interval: 1m
-    client:
-      dns-resolver: tcp://10.1.1.1:53
-    conditions:
-      - "[STATUS] == 200"
-    alerts:
-      - type: pushover
   - name: Nextcloud Internal
     group: internal
     url: https://nc.hsn.dev
@@ -101,34 +81,16 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: pushover
-  ### No clue why icmp is not working.
-  # - name: Shadowfax
-  #   group: internal
-  #   url: icmp://shadowfax.jahanson.tech
-  #   interval: 1m
-  #   client:
-  #     dns-resolver: tcp://10.1.1.1:53
-  #   conditions:
-  #     - "[CONNECTED] == true"
-  #   alerts:
-  #     - type: pushover
-  # - name: Gandalf
-  #   group: internal
-  #   url: icmp://gandalf.jahanson.tech
-  #   interval: 1m
-  #   client:
-  #     dns-resolver: tcp://10.1.1.1:53
-  #   conditions:
-  #     - "[CONNECTED] == true"
-  #   alerts:
-  #     - type: pushover
-  # - name: Home Assistant
-  #   group: internal
-  #   url: icmp://hass.jahanson.tech
-  #   interval: 1m
-  #   client:
-  #     dns-resolver: tcp://10.1.1.1:53
-  #   conditions:
-  #     - "[CONNECTED] == true"
-  #   alerts:
-  #     - type: pushover
+  - name: Home Assistant
+    group: internal
+    url: https://hass.jahanson.tech
+    interval: 1m
+    ui:
+      hide-url: true
+      hide-hostname: true
+    client:
+      dns-resolver: tcp://10.1.1.1:53
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: pushover
