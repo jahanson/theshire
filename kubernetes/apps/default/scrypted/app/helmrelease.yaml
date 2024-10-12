@@ -80,7 +80,7 @@ spec:
               - *host
     persistence:
       config:
-        existingClaim: scrypted-config
+        existingClaim: scrypted
         advancedMounts:
           scrypted:
             app:
