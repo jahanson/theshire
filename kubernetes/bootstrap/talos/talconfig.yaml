@@ -20,8 +20,21 @@ nodes:
     installDiskSelector:
       busPath: /pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/
     networkInterfaces:
-      - interface: eno1
+      - interface: bond0
         dhcp: true
+        bond:
+          mode: active-backup
+          deviceSelectors:
+            - hardwareAddr: b8:ca:3a:8d:cb:c1
+              driver: e1000e
+        vlans:
+          - &vlan-iot
+            vlanId: 30
+            mtu: 1500
+            dhcp: true
+            dhcpOptions:
+              routeMetric: 4096
+
 
   - hostname: frodo
     disableSearchDomain: true
@@ -30,8 +43,15 @@ nodes:
     installDiskSelector:
       busPath: /pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/
     networkInterfaces:
-      - interface: eno1
+      - interface: bond0
         dhcp: true
+        bond:
+          mode: active-backup
+          deviceSelectors:
+            - hardwareAddr: b8:ca:3a:73:09:ab
+              driver: e1000e
+        vlans:
+          - *vlan-iot
 
   - hostname: sam
     disableSearchDomain: true
@@ -40,8 +60,15 @@ nodes:
     installDiskSelector:
       busPath: /pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/
     networkInterfaces:
-      - interface: eno1
+      - interface: bond0
         dhcp: true
+        bond:
+          mode: active-backup
+          deviceSelectors:
+            - hardwareAddr: 90:b1:1c:a5:df:67
+              driver: e1000e
+        vlans:
+          - *vlan-iot
 
   - hostname: pippin
     disableSearchDomain: true
@@ -50,8 +77,15 @@ nodes:
     installDiskSelector:
       busPath: /pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/
     networkInterfaces:
-      - interface: eno1
+      - interface: bond0
         dhcp: true
+        bond:
+          mode: active-backup
+          deviceSelectors:
+            - hardwareAddr: b8:ca:3a:af:b2:e6
+              driver: e1000e
+        vlans:
+          - *vlan-iot
 
   - hostname: merry
     disableSearchDomain: true
@@ -60,8 +94,15 @@ nodes:
     installDiskSelector:
       busPath: /pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/
     networkInterfaces:
-      - interface: eno1
+      - interface: bond0
         dhcp: true
+        bond:
+          mode: active-backup
+          deviceSelectors:
+            - hardwareAddr: b8:ca:3a:af:fa:62
+              driver: e1000e
+        vlans:
+          - *vlan-iot
 
   - hostname: rosie
     disableSearchDomain: true
@@ -70,8 +111,15 @@ nodes:
     installDiskSelector:
       busPath: /pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/
     networkInterfaces:
-      - interface: eno1
+      - interface: bond0
         dhcp: true
+        bond:
+          mode: active-backup
+          deviceSelectors:
+            - hardwareAddr: 90:b1:1c:96:e1:7b
+              driver: e1000e
+        vlans:
+          - *vlan-iot
   - hostname: gandalf-01
     disableSearchDomain: true
     ipAddress: 10.1.1.68
@@ -79,8 +127,15 @@ nodes:
     installDiskSelector:
       busPath: /pci0000:00/0000:00:01.1/0000:02:00.0/virtio6/host6/target6:0:0/6:0:0:1/
     networkInterfaces:
-      - interface: enp5s0
+      - interface: bond0
         dhcp: true
+        bond:
+          mode: active-backup
+          deviceSelectors:
+            - hardwareAddr: 00:25:90:85:51:c9
+              driver: igb
+        vlans:
+          - *vlan-iot
 
   - hostname: shadowfax-01
     disableSearchDomain: true
@@ -89,8 +144,15 @@ nodes:
     installDiskSelector:
       busPath: /pci0000:00/0000:00:01.1/0000:02:00.0/virtio6/host0/target0:0:0/0:0:0:1/
     networkInterfaces:
-      - interface: enp5s0
+      - interface: bond0
         dhcp: true
+        bond:
+          mode: active-backup
+          deviceSelectors:
+            - hardwareAddr: 04:42:1a:ef:35:74
+              driver: ixgbe
+        vlans:
+          - *vlan-iot
     patches:
       - |-
         machine:
