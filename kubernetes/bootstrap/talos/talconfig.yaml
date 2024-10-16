@@ -76,8 +76,7 @@ nodes:
     disableSearchDomain: true
     ipAddress: 10.1.1.68
     controlPlane: false
-    installDiskSelector:
-      busPath: /pci0000:00/0000:00:01.1/0000:02:00.0/virtio6/host6/target6:0:0/6:0:0:1/
+    installDisk: /dev/sda
     networkInterfaces:
       - interface: enp5s0
         dhcp: true
