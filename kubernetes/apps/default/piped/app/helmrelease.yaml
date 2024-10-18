@@ -18,19 +18,17 @@ spec:
   values:
     defaultPodOptions:
       automountServiceAccountToken: false
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: "OnRootMismatch"
 
     controllers:
       backend:
         strategy: RollingUpdate
         annotations:
           secret.reloader.stakater.com/reload: piped-secret
-
-        pod:
-          securityContext:
-            runAsUser: 1000
-            runAsGroup: 1000
-            fsGroup: 1000
-            fsGroupChangePolicy: "OnRootMismatch"
 
         containers:
           app:
@@ -58,21 +56,13 @@ spec:
 
       frontend:
         strategy: RollingUpdate
-        pod:
-          securityContext:
-            runAsUser: 101
-            runAsGroup: 101
-            fsGroup: 101
-            fsGroupChangePolicy: "OnRootMismatch"
 
         containers:
           app:
             image:
               repository: ghcr.io/bjw-s-labs/piped-frontend
-              tag: latest@sha256:07ab90aa25302bcc6673d7a52b5d4b129490a8fb543d5648b87ed1d366ce547e
+              tag: 2024.10.17@sha256:2d11886aef42a280e6ee924126882f7bb3593d87f0b27f8d035067cbc29c8edb
             env:
-              HTTP_PORT: 8080
-              HTTP_WORKERS: 4
               BACKEND_HOSTNAME: piped-api.hsn.dev
             probes:
               liveness:
@@ -87,15 +77,13 @@ spec:
                 memory: 256Mi
             securityContext:
               allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                  - ALL
+              readOnlyRootFilesystem: true
 
       ytproxy:
         strategy: RollingUpdate
-        pod:
-          securityContext:
-            runAsUser: 1000
-            runAsGroup: 1000
-            fsGroup: 1000
-            fsGroupChangePolicy: "OnRootMismatch"
 
         containers:
           app:
