@@ -3,9 +3,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: democratic-csi
+  name: vector
   namespace: flux-system
 spec:
-  interval: 30m
-  url: https://democratic-csi.github.io/charts/
-  timeout: 3m
+  interval: 2h
+  url: https://helm.vector.dev
