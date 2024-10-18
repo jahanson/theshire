@@ -40,6 +40,7 @@ spec:
               SCRIPT_NAME: alertmanager-silencer.sh
               ALERTMANAGER_URL: http://alertmanager.observability.svc.cluster.local:9093
               MATCHERS_0: alertname=CephPGImbalance job=rook-ceph-exporter
+              MATCHERS_1: alertname=CephMonClockSkew job=rook-ceph-mgr
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
