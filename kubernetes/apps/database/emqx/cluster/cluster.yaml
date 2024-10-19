@@ -22,10 +22,10 @@ spec:
           mountPath: /opt/init-user.json
           subPath: init-user.json
           readOnly: true
-        - name: acl-conf
-          mountPath: /opt/acl.conf
-          subPath: acl.conf
-          readOnly: true
+        # - name: acl-conf
+        #   mountPath: /opt/acl.conf
+        #   subPath: acl.conf
+        #   readOnly: true
       extraVolumes:
         - name: init-user
           secret:
