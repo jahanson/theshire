@@ -3,11 +3,14 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: nvidia-device-plugin
+  name: &app nvidia-device-plugin
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
   targetNamespace: kube-system
   interval: 10m
   path: "./kubernetes/apps/kube-system/nvidia-device-plugin/app"

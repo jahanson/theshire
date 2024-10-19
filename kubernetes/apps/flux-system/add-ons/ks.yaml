@@ -3,11 +3,14 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: flux-webhooks
+  name: &app flux-webhooks
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
   interval: 10m
   path: ./kubernetes/apps/flux-system/add-ons/webhooks
   prune: true
@@ -20,11 +23,14 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: flux-monitoring
+  name: &app flux-monitoring
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
   interval: 10m
   path: ./kubernetes/apps/flux-system/add-ons/monitoring
   prune: true
