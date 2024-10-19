@@ -26,6 +26,8 @@ spec:
     - name: cert-manager
       namespace: cert-manager
   values:
+    podannotations:
+      reloader.stakater.com/auto: "true"
     fullnameOverride: emqx-operator
     image:
       repository: ghcr.io/emqx/emqx-operator
