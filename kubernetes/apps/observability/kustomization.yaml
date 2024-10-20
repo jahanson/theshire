@@ -8,6 +8,7 @@ resources:
   # Flux-Kustomizations
   - ./alertmanager/ks.yaml
   - ./gatus/ks.yaml
+  - ./node-exporter/ks.yaml
   - ./prometheus-operator-crds/ks.yaml
   - ./vector-agent/ks.yaml
   - ./vector-aggregator/ks.yaml
