@@ -9,5 +9,6 @@ resources:
   - ./alertmanager/ks.yaml
   - ./gatus/ks.yaml
   - ./prometheus-operator-crds/ks.yaml
+  - ./vector-agent/ks.yaml
   - ./vector-aggregator/ks.yaml
   - ./victoria-metrics/ks.yaml
