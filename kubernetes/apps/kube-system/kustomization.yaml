@@ -8,6 +8,7 @@ resources:
   # Flux-Kustomizations
   - ./cilium/ks.yaml
   - ./coredns/ks.yaml
+  - ./descheduler/ks.yaml
   - ./dnsimple-webhook-rbac.yaml
   - ./fstrim/ks.yaml
   - ./kubelet-csr-approver/ks.yaml
