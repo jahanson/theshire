@@ -23,7 +23,13 @@ spec:
     pgmonitor:
       exporter:
         # https://github.com/CrunchyData/postgres-operator-examples/blob/main/helm/install/values.yaml
-        image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres-exporter:ubi8-0.15.0-3
+        # image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres-exporter:ubi8-0.15.0-12
+        resources:
+          requests:
+            cpu: 10m
+            memory: 64M
+          limits:
+            memory: 512M
 
   patroni: # turn on sync writes to at least 1 other replica
     dynamicConfiguration:
