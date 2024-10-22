@@ -5,3 +5,4 @@ kind: Kustomization
 resources:
   - ./remove-cpu-limits.yaml
   - ./schematic-to-pod.yaml
+  - ./volsync-movers.yaml

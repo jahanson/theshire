@@ -1,0 +1,46 @@
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/kyverno.io/clusterpolicy_v1.json
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: volsync-movers
+  annotations:
+    policies.kyverno.io/title: Set custom config on the Volsync mover Jobs
+    policies.kyverno.io/description: |
+      This policy sets custom configuration on the Volsync mover Jobs.
+    policies.kyverno.io/subject: Pod
+spec:
+  generateExistingOnPolicyUpdate: true
+  rules:
+    - name: set-volsync-movers-custom-config
+      match:
+        any:
+          - resources:
+              kinds: ["batch/v1/Job"]
+              namespaces: ["default"]
+              selector:
+                matchLabels:
+                  app.kubernetes.io/created-by: volsync
+      mutate:
+        patchStrategicMerge:
+          spec:
+            podReplacementPolicy: Failed
+            podFailurePolicy:
+              rules:
+                - action: FailJob
+                  onExitCodes:
+                    containerName: restic
+                    operator: In
+                    values: [11]
+            template:
+              spec:
+                containers:
+                  - name: restic
+                    volumeMounts:
+                      - name: repository
+                        mountPath: /repository
+                volumes:
+                  - name: repository
+                    nfs:
+                      server: shadowfax.jahanson.tech
+                      path: /nahar/volsync
