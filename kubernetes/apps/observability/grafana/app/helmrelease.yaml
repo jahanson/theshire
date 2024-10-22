@@ -212,7 +212,8 @@ spec:
           gnetId: 19376
           revision: 1
           datasource:
-            - { name: DS_PROMETHEUS, value: Prometheus }
+            # - { name: DS_PROMETHEUS, value: Prometheus }
+            - { name: DS_VICTORIA-METRICS, value: Prometheus }
       flux:
         flux-cluster:
           url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/cluster.json
