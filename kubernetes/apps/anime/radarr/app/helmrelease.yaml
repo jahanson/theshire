@@ -41,10 +41,20 @@ spec:
               RADARR__LOG__LEVEL: info
               RADARR__SERVER__PORT: &port 80
               RADARR__UPDATE__BRANCH: develop
+              PUSHOVER_TOKEN:
+                secretKeyRef:
+                  name: radarr-secret
+                  key: PUSHOVER_TOKEN
+              PUSHOVER_USER_KEY:
+                secretKeyRef:
+                  name: radarr-secret
+                  key: PUSHOVER_USER_KEY
+              RADARR__AUTH__APIKEY:
+                secretKeyRef:
+                  name: radarr-secret
+                  key: RADARR__AUTH__APIKEY
               TZ: America/Chicago
             envFrom:
-              - secretRef:
-                  name: radarr-secret
               - secretRef:
                   name: radarr-db-secret
             probes:
