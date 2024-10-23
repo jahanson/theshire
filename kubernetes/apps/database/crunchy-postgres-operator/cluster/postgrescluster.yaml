@@ -125,7 +125,7 @@ spec:
         type: AlphaNumeric
     - name: radarr-anime
       databases:
-        - radarr_main
+        - radarr_anime
       password:
         type: AlphaNumeric
     - name: sonarr
@@ -136,7 +136,7 @@ spec:
         type: AlphaNumeric
     - name: sonarr-anime
       databases:
-        - sonarr_main
+        - sonarr_anime
       password:
         type: AlphaNumeric
     - name: jellyseerr
