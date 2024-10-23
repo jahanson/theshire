@@ -1,0 +1,13 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization.json
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  # Pre Flux-Kustomizations
+  - ./namespace.yaml
+  # Flux-Kustomizations
+  # - ./jellyfin/ks.yaml    # sqlite
+  # - ./jellyseerr/ks.yaml  # sqlite
+  - ./radarr/ks.yaml      # postgres
+  # - ./shoko/ks.yaml       # sqlite
+  - ./sonarr/ks.yaml      # postgres

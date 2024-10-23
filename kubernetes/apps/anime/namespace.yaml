@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: anime
+  labels:
+    kustomize.toolkit.fluxcd.io/prune: disabled
+    volsync.backube/privileged-movers: "true"
+    pgo-enabled-hsn.dev: "true"

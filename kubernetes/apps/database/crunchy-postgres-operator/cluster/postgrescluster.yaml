@@ -123,9 +123,19 @@ spec:
         - radarr_main
       password:
         type: AlphaNumeric
+    - name: radarr-anime
+      databases:
+        - radarr_main
+      password:
+        type: AlphaNumeric
     - name: sonarr
       databases:
         - sonarr_logs
+        - sonarr_main
+      password:
+        type: AlphaNumeric
+    - name: sonarr-anime
+      databases:
         - sonarr_main
       password:
         type: AlphaNumeric
