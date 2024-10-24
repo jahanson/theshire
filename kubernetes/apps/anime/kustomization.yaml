@@ -6,7 +6,7 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  # - ./jellyfin/ks.yaml    # sqlite
+  - ./jellyfin/ks.yaml    # sqlite
   # - ./jellyseerr/ks.yaml  # sqlite
   - ./radarr/ks.yaml      # postgres
   # - ./shoko/ks.yaml       # sqlite
