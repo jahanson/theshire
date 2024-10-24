@@ -67,16 +67,18 @@ spec:
               limits:
                 nvidia.com/gpu: 1 # requesting 1 GPU
                 memory: 4Gi
-        pod:
-          nodeSelector:
-            nvidia.com/gpu.present: "true"
-          securityContext:
-            runAsUser: 568
-            runAsGroup: 568
-            runAsNonRoot: true
-            fsGroup: 568
-            fsGroupChangePolicy: OnRootMismatch
-            supplementalGroups: [44, 10000]
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+        supplementalGroups: [44, 10000]
+        seccompProfile: { type: RuntimeDefault }
+      nodeSelector:
+        nvidia.com/gpu.present: "true"
+      runtimeClassName: nvidia
     service:
       app:
         controller: *app
