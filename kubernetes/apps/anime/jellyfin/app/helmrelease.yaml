@@ -85,7 +85,6 @@ spec:
         type: LoadBalancer
         annotations:
           io.cilium/lb-ipam-ips: 10.1.1.40
-          external-dns.alpha.kubernetes.io/hostname: jellyfin.jahanson.tech
         ports:
           http:
             port: *port
@@ -103,6 +102,18 @@ spec:
                 service:
                   identifier: app
                   port: *port
+      internal:
+        className: internal-nginx
+        hosts:
+          - host: &host "{{ .Release.Name }}.jahanson.tech"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: *port
+        tls:
+          - hosts:
+              - *host
     persistence:
       config:
         enabled: true
