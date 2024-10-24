@@ -47,7 +47,6 @@ spec:
                 value: "24h"
             resources:
               requests:
-                nvidia.com/gpu: 1 # requesting 1 GPU
                 cpu: 500m
                 memory: 2Gi
               limits:
