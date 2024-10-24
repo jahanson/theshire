@@ -92,7 +92,6 @@ spec:
       app:
         annotations:
           external-dns.alpha.kubernetes.io/target: external.hsn.dev
-          nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
         className: external-nginx
         hosts:
