@@ -1,0 +1,87 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app influxdb
+  namespace: monitoring
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+      strategy: rollback
+  values:
+    controllers:
+      influxdb:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: docker.io/influxdb
+              tag: 2.7.10-alpine
+              pullPolicy: IfNotPresent
+            env:
+              INFLUXDB_ADMIN_USER_PASSWORD: "admin"
+              INFLUXDB_ADMIN_USER_TOKEN: ""
+              INFLUXD_REPORTING_DISABLED: true
+            probes:
+              liveness: &probe
+                type: "HTTP"
+                path: "/health"
+                port: &port 8086
+                spec:
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+
+              readiness: *probe
+
+              startup:
+                enabled: false
+            resources:
+              limits:
+                cpu: 10m
+                memory: 50Mi
+
+    service:
+      app:
+        controller: influxdb
+        ports:
+          http:
+            port: *port
+
+    ingress:
+      main:
+        className: internal-nginx
+        hosts:
+          - host: &host "{{ Release.Name }}.jahanson.tech"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - hosts:
+              - *host
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: *app
+        globalMounts:
+          - path: /var/lib/influxdb2
