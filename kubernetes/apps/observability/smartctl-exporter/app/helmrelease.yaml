@@ -18,6 +18,17 @@ spec:
     controllers:
       smartctl-exporter:
         type: daemonset
+        pod:
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                  - matchExpressions:
+                      - key: kubernetes.io/hostname
+                        operator: NotIn
+                        values:
+                          - gandalf-01
+                          - shadowfax-01
         containers:
           app:
             image:
@@ -28,7 +39,6 @@ spec:
               - --smartctl.interval=120s
               - --web.listen-address=0.0.0.0:9633
               - --web.telemetry-path=/metrics
-              - --smartctl.device-exclude=".*incus_root.*"
             securityContext:
               privileged: true
               runAsUser: 0
