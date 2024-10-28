@@ -48,7 +48,7 @@ spec:
                 custom: true
                 spec:
                   httpGet:
-                    port: 9633
+                    port: &port 9633
                     path: /
               readiness: *probes
       smartctl-exporter-vms:
@@ -77,6 +77,17 @@ spec:
             probes:
               liveness: *probes
               readiness: *probes
+    service:
+      smartctl-exporter:
+        controller: smartctl-exporter
+        ports:
+          exporter:
+            port: *port
+      smartctl-exporter-vms:
+        controller: smartctl-exporter-vms
+        ports:
+          exporter:
+            port: *port
     persistence:
       dev:
         type: hostPath
@@ -85,3 +96,24 @@ spec:
         globalMounts:
           - path: /host/dev
             readOnly: true
+    serviceMonitor:
+      smartctl-exporter:
+        serviceName: smartctl-exporter
+        endpoints:
+          - port: exporter
+            scheme: http
+            path: /metrics
+            interval: 1m
+            scrapeTimeout: 10s
+      smartctl-exporter-vms:
+        selector:
+          matchLabels:
+            app.kubernetes.io/instance: smartctl-exporter
+            app.kubernetes.io/name: smartctl-exporter
+            app.kubernetes.io/service: smartctl-exporter-smartctl-exporter-vms
+        endpoints:
+          - port: exporter
+            scheme: http
+            path: /metrics
+            interval: 1m
+            scrapeTimeout: 10s
