@@ -5,6 +5,7 @@
         "redhat.vscode-yaml",
         "signageos.signageos-vscode-sops",
         "pkief.material-icon-theme",
-        "ms-vscode-remote.remote-ssh"
+        "ms-vscode-remote.remote-ssh",
+        "editorconfig.editorconfig"
     ]
 }
