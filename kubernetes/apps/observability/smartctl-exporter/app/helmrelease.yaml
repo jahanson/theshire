@@ -26,11 +26,12 @@ spec:
     fullnameOverride: *app
     # incompatible drives cause false positives for smart failures.
     nodeSelector:
-      kubernetes.io/hostname: gandalf-01
-      operator: NotIn
-      values:
-        - gandalf-01
-        - shadowfax-01
+      matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: NotIn
+          values:
+            - gandalf-01
+            - shadowfax-01
     serviceMonitor:
       enabled: true
     prometheusRules:
