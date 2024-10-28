@@ -22,7 +22,6 @@ resources:
   - grafana.yaml
   - hashicorp.yaml
   - hetzner.yaml
-  - influxdata.yaml
   - ingress-nginx.yaml
   - intel.yaml
   - jetstack.yaml
