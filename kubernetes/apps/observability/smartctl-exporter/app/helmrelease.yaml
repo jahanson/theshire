@@ -31,7 +31,7 @@ spec:
                           - shadowfax-01
         containers:
           app:
-            image:
+            image: &image
               repository: quay.io/prometheuscommunity/smartctl-exporter
               tag: v0.12.0
             args:
@@ -39,7 +39,7 @@ spec:
               - --smartctl.interval=120s
               - --web.listen-address=0.0.0.0:9633
               - --web.telemetry-path=/metrics
-            securityContext:
+            securityContext: &securityContext
               privileged: true
               runAsUser: 0
             probes:
@@ -51,13 +51,32 @@ spec:
                     port: 9633
                     path: /
               readiness: *probes
-    service:
-      app:
-        controller: smartctl-exporter
-        type: LoadBalancer
-        ports:
-          http:
-            port: 9633
+      smartctl-exporter-vms:
+        type: daemonset
+        pod:
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                  - matchExpressions:
+                      - key: kubernetes.io/hostname
+                        operator: In
+                        values:
+                          - gandalf-01
+                          - shadowfax-01
+        containers:
+          app:
+            image: *image
+            args:
+              - --smartctl.path=/usr/sbin/smartctl
+              - --smartctl.interval=120s
+              - --web.listen-address=0.0.0.0:9633
+              - --web.telemetry-path=/metrics
+              - --smartctl.device=/dev/nvme0
+            securityContext: *securityContext
+            probes:
+              liveness: *probes
+              readiness: *probes
     persistence:
       dev:
         type: hostPath
