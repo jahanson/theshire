@@ -24,17 +24,14 @@ spec:
       retries: 3
   values:
     fullnameOverride: *app
+    # incompatible drives cause false positives for smart failures.
+    nodeSelector:
+      kubernetes.io/hostname: gandalf-01
+      operator: NotIn
+      values:
+        - gandalf-01
+        - shadowfax-01
     serviceMonitor:
       enabled: true
     prometheusRules:
       enabled: false
-    config:
-      devices:
-        - host: 10.1.1.68
-          devices:
-            - device: /dev/nvme0n1
-              type: nvme
-        - host: 10.1.1.69
-          devices:
-            - device: /dev/nvme0n1
-              type: nvme
