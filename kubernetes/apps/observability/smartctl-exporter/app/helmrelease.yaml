@@ -32,7 +32,9 @@ spec:
       devices:
         - host: 10.1.1.68
           devices:
-            - /dev/nvme0n1
+            - device: /dev/nvme0n1
+              type: nvme
         - host: 10.1.1.69
           devices:
-            - /dev/nvme0n1
+            - device: /dev/nvme0n1
+              type: nvme
