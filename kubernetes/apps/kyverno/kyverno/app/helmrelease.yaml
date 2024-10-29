@@ -39,20 +39,27 @@ spec:
         clusterRole:
           extraResources:
             - apiGroups:
-                - ""
+                - "*"
               resources:
-                - pods
+                - "*"
               verbs:
-                - create
-                - update
-                - patch
-                - delete
                 - get
                 - list
+                - watch
     cleanupController:
       serviceMonitor:
         enabled: true
     reportsController:
+      clusterRole:
+        extraResources:
+          - apiGroups:
+              - '*'
+            resources:
+              - '*'
+            verbs:
+              - get
+              - list
+              - watch
       serviceMonitor:
         enabled: true
     admissionController:
@@ -63,14 +70,13 @@ spec:
         clusterRole:
           extraResources:
             - apiGroups:
-                - ""
+                - "*"
               resources:
-                - pods
-                - nodes
+                - "*"
               verbs:
-                - create
-                - update
-                - delete
+                - get
+                - list
+                - watch
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: kubernetes.io/hostname
@@ -85,24 +91,24 @@ spec:
       # These are joined together without spaces, run through `tpl`, and the result is set in the config map.
       # @default -- See [values.yaml](https://github.com/kyverno/kyverno/blob/ed1906a0dc281c2aeb9b7046b843708825310330/charts/kyverno/values.yaml#L207C3-L316C1)
       resourceFilters:
-        - '[Event,*,*]'
-        - '[*/*,kube-system,*]'
-        - '[*/*,kube-public,*]'
-        - '[*/*,kube-node-lease,*]'
-        - '[Node,*,*]'
-        - '[Node/*,*,*]'
-        - '[APIService,*,*]'
-        - '[APIService/*,*,*]'
-        - '[TokenReview,*,*]'
-        - '[SubjectAccessReview,*,*]'
-        - '[SelfSubjectAccessReview,*,*]'
+        - "[Event,*,*]"
+        - "[*/*,kube-system,*]"
+        - "[*/*,kube-public,*]"
+        - "[*/*,kube-node-lease,*]"
+        - "[Node,*,*]"
+        - "[Node/*,*,*]"
+        - "[APIService,*,*]"
+        - "[APIService/*,*,*]"
+        - "[TokenReview,*,*]"
+        - "[SubjectAccessReview,*,*]"
+        - "[SelfSubjectAccessReview,*,*]"
         # remove the following to allow for schematic-to-pod.yaml to work
         # - '[Binding,*,*]'
         # - '[Pod/binding,*,*]'
-        - '[ReplicaSet,*,*]'
-        - '[ReplicaSet/*,*,*]'
-        - '[EphemeralReport,*,*]'
-        - '[ClusterEphemeralReport,*,*]'
+        - "[ReplicaSet,*,*]"
+        - "[ReplicaSet/*,*,*]"
+        - "[EphemeralReport,*,*]"
+        - "[ClusterEphemeralReport,*,*]"
         # exclude resources from the chart
         - '[ClusterRole,*,{{ template "kyverno.admission-controller.roleName" . }}]'
         - '[ClusterRole,*,{{ template "kyverno.admission-controller.roleName" . }}:core]'
