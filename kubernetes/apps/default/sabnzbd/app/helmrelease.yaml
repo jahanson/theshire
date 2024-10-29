@@ -22,6 +22,11 @@ spec:
     remediation:
       retries: 3
       strategy: rollback
+  dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
+    - name: volsync
+      namespace: volsync-system
   values:
     controllers:
       sabnzbd:
@@ -43,6 +48,11 @@ spec:
                 sabnzbd.default.svc.cluster.local,
                 sabz.jahanson.tech,
                 sabnzbd.jahanson.tech
+              CROSS_SEED_ENABLED: true
+              CROSS_SEED_HOST: cross-seed.qbittorrent.svc.cluster.local
+              CROSS_SEED_PORT: 80
+              CROSS_SEED_SLEEP_INTERVAL: 30
+              PUSHOVER_ENABLED: true
             envFrom:
               - secretRef:
                   name: sabnzbd-secret
@@ -70,14 +80,15 @@ spec:
                 cpu: 100m
               limits:
                 memory: 16Gi
-        pod:
-          securityContext:
-            runAsUser: 568
-            runAsGroup: 568
-            runAsNonRoot: true
-            fsGroup: 568
-            fsGroupChangePolicy: OnRootMismatch
-            supplementalGroups: [10000]
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+        supplementalGroups: [10000]
+        seccompProfile: { type: RuntimeDefault }
     service:
       app:
         controller: sabnzbd
@@ -104,6 +115,12 @@ spec:
         existingClaim: sabnzbd
       tmp:
         type: emptyDir
+      scripts:
+        type: configMap
+        name: sabnzbd-scripts
+        defaultMode: 0775
+        globalMounts:
+          - readOnly: true
       media:
         type: nfs
         server: 10.1.1.13
