@@ -92,7 +92,7 @@ spec:
       # @default -- See [values.yaml](https://github.com/kyverno/kyverno/blob/ed1906a0dc281c2aeb9b7046b843708825310330/charts/kyverno/values.yaml#L207C3-L316C1)
       resourceFilters:
         - "[Event,*,*]"
-        - "[*/*,kube-system,*]"
+        # - "[*/*,kube-system,*]"
         - "[*/*,kube-public,*]"
         - "[*/*,kube-node-lease,*]"
         - "[Node,*,*]"
