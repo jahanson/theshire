@@ -124,6 +124,7 @@ spec:
         type: nfs
         server: gandalf.jahanson.tech
         path: /eru/media
-        globalMounts:
-          - path: /data/nas-media/qb
-            subPath: nas-media/qb
+        advancedMounts:
+          qbittorrent:
+            app:
+              - path: /data/nas-media
