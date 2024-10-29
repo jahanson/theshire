@@ -18,8 +18,11 @@ spec:
   values:
     controllers:
       plex-trakt-sync:
+        type: cronjob
         annotations:
           reloader.stakater.com/auto: "true"
+        cronjob:
+          schedule: "@daily"
         pod:
           securityContext:
             runAsUser: 568
