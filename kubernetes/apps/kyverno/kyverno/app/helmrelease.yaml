@@ -43,6 +43,8 @@ spec:
               - get
               - list
               - watch
+              - update
+              - patch
       resources:
         requests:
           cpu: 100m
