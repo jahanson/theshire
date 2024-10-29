@@ -1,0 +1,26 @@
+---
+cache:
+  path: $PTS_CACHE_DIR/trakt_cache
+
+config:
+  dotenv_override: true
+
+logging:
+  append: false
+  debug: false
+  filename: plextraktsync.log
+
+sync:
+  plex_to_trakt:
+    collection: true
+    ratings: true
+    watched_status: true
+  trakt_to_plex:
+    liked_lists: true
+    ratings: true
+    watched_status: true
+    watchlist: true
+
+xbmc-providers:
+  movies: imdb
+  shows: tvdb

@@ -1,0 +1,70 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app plex-trakt-sync
+spec:
+  chart:
+    spec:
+      chart: app-template
+      version: 3.5.1
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  interval: 30m
+  values:
+    controllers:
+      plex-trakt-sync:
+        type: cronjob
+        annotations:
+          reloader.stakater.com/auto: "true"
+        cronjob:
+          schedule: "@daily"
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            fsGroup: 568
+            fsGroupChangePolicy: "OnRootMismatch"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/taxel/plextraktsync
+              tag: 0.32.0
+            args:
+              - sync
+            env:
+              PLEX_BASEURL: http://plex.default.svc.cluster.local:32400
+              PLEX_LOCALURL: http://plex.default.svc.cluster.local:32400
+              PLEX_USERNAME: jahanson
+              TRAKT_USERNAME: jahanson
+            probes:
+              liveness:
+                enabled: false
+              readiness:
+                enabled: false
+              startup:
+                enabled: false
+            resources:
+              requests:
+                cpu: 5m
+                memory: 128M
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: *app
+        advancedMounts:
+          plex-trakt-sync:
+            app:
+              - path: /app/config
+      config-yaml:
+        type: configMap
+        name: plex-trakt-sync-configmap
+        globalMounts:
+          - path: /app/config/config.yml
+            subPath: config.yml
+            readOnly: true
