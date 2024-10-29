@@ -18,11 +18,8 @@ spec:
   values:
     controllers:
       plex-trakt-sync:
-        type: cronjob
         annotations:
           reloader.stakater.com/auto: "true"
-        cronjob:
-          schedule: "@daily"
         pod:
           securityContext:
             runAsUser: 568
@@ -39,7 +36,7 @@ spec:
             env:
               PLEX_BASEURL: http://plex.default.svc.cluster.local:32400
               PLEX_LOCALURL: http://plex.default.svc.cluster.local:32400
-              PLEX_USERNAME: jahanson
+              PLEX_USERNAME: veriwind
               TRAKT_USERNAME: jahanson
             probes:
               liveness:
