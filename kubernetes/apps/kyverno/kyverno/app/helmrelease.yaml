@@ -33,19 +33,21 @@ spec:
       annotations:
         grafana_folder: System
     backgroundController:
-      serviceMonitor:
-        enabled: true
-      rbac:
-        clusterRole:
-          extraResources:
-            - apiGroups:
-                - "*"
-              resources:
-                - "*"
-              verbs:
-                - get
-                - list
-                - watch
+      clusterRole:
+        extraResources:
+          - apiGroups:
+              - '*'
+            resources:
+              - '*'
+            verbs:
+              - get
+              - list
+              - watch
+      resources:
+        requests:
+          cpu: 100m
+        limits:
+          memory: 1Gi
     cleanupController:
       serviceMonitor:
         enabled: true
@@ -63,20 +65,18 @@ spec:
       serviceMonitor:
         enabled: true
     admissionController:
-      replicas: 1
+      clusterRole:
+        extraResources:
+          - apiGroups:
+              - '*'
+            resources:
+              - '*'
+            verbs:
+              - get
+              - list
+              - watch
       serviceMonitor:
         enabled: true
-      rbac:
-        clusterRole:
-          extraResources:
-            - apiGroups:
-                - "*"
-              resources:
-                - "*"
-              verbs:
-                - get
-                - list
-                - watch
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: kubernetes.io/hostname
