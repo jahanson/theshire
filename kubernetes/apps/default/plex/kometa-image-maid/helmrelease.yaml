@@ -82,7 +82,7 @@ spec:
             app:
               - path: /config
       plex-config:
-        existingClaim: plex-config
+        existingClaim: plex
         advancedMounts:
           kometa-image-maid:
             app:
