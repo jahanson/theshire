@@ -10,7 +10,7 @@ metadata:
       This policy sets custom configuration on the Volsync mover Jobs.
     policies.kyverno.io/subject: Pod
 spec:
-  mutateExistingOnPolicyUpdate: true
+  generateExistingOnPolicyUpdate: true
   rules:
     - name: set-volsync-movers-custom-config
       match:
@@ -23,6 +23,9 @@ spec:
             matchLabels:
               volsync.backube/privileged-movers: "true"
       mutate:
+        targets:
+          - apiVersion: batch/v1
+            kind: Job
         patchStrategicMerge:
           spec:
             podReplacementPolicy: Failed
