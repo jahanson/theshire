@@ -13,6 +13,7 @@ resources:
   - ./it-tools/ks.yaml
   - ./linkwarden/ks.yaml
   - ./maintainerr/ks.yaml
+  - ./morphos/ks.yaml
   - ./omegabrr/ks.yaml
   - ./overseerr/ks.yaml
   - ./piped/ks.yaml
