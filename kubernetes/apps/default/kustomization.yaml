@@ -26,6 +26,7 @@ resources:
   - ./scrypted/ks.yaml
   - ./searxng/ks.yaml
   - ./sonarr/ks.yaml
+  - ./stirling-pdf/ks.yaml
   - ./tautulli/ks.yaml
   - ./unpackerr/ks.yaml
   - ./zwave/ks.yaml

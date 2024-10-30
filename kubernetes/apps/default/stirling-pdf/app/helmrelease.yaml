@@ -1,0 +1,81 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app stirling-pdf
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    controllers:
+      stirling-pdf:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/stirling-tools/s-pdf
+              tag: 0.30.1@sha256:3eb983b2043c923553ec549db63f184da456b743e50ef97f4388386483641176
+              pullPolicy: IfNotPresent
+            env:
+              TZ: America/Chicago
+              DOCKER_ENABLE_SECURITY: true
+              SECURITY_ENABLE_LOGIN: true
+            probes:
+              liveness: &probes
+                enabled: false
+              readiness: *probes
+              startup: *probes
+            resources:
+              requests:
+                cpu: 10m
+                memory: 500Mi
+              limits:
+                memory: 500Mi
+    service:
+      app:
+        controller: stirling-pdf
+        ports:
+          http:
+            port: &port 8080
+    ingress:
+      app:
+        enabled: true
+        className: internal-nginx
+        hosts:
+          - host: &host pdf.jahanson.tech
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - hosts:
+              - *host
+    persistence:
+      config:
+        type: emptyDir
+        globalMounts:
+          - path: /configs
+      logs:
+        type: emptyDir
+      tessdata:
+        type: emptyDir
+        globalMounts:
+          - path: /usr/share/tessdata
