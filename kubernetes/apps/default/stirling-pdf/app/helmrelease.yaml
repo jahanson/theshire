@@ -35,8 +35,8 @@ spec:
               pullPolicy: IfNotPresent
             env:
               TZ: America/Chicago
-              DOCKER_ENABLE_SECURITY: true
-              SECURITY_ENABLE_LOGIN: true
+              DOCKER_ENABLE_SECURITY: false
+              SECURITY_ENABLE_LOGIN: false
             probes:
               liveness: &probes
                 enabled: false
