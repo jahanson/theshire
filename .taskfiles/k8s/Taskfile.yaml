@@ -2,14 +2,13 @@
 version: "3"
 
 tasks:
-  hubble:
-    desc: forward the hubble relay
+  cleanup-pods:
+    desc: Clean up leftover Pods
     cmds:
-      - cilium hubble port-forward &
-  hubble-ui:
-    desc: port-forward hubble to 8888
-    cmds:
-      - kubectl port-forward -n kube-system svc/hubble-ui 8888:80
+      - for:
+          matrix:
+            PHASE: [Failed, Succeeded, Pending]
+        cmd: kubectl delete pods --field-selector status.phase={{.ITEM.PHASE}} -A --ignore-not-found=true
   sync-secrets:
     desc: Sync ExternalSecret resources
     vars:
