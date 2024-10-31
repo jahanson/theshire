@@ -73,6 +73,8 @@ spec:
               limits:
                 memory: 24Gi
     defaultPodOptions:
+      nodeSelector: # ~~testing~~
+        kubernetes.io/hostname: shadowfax-01
       securityContext:
         runAsNonRoot: true
         runAsUser: 568
