@@ -120,6 +120,10 @@ spec:
         defaultMode: 0775
         globalMounts:
           - readOnly: true
+      tmp:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp
       media:
         type: nfs
         server: gandalf.jahanson.tech
