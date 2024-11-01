@@ -8,7 +8,6 @@ pkgs.mkShell {
     fluxcd
     git
     gitleaks
-    go-task
     helmfile
     k9s
     krew
