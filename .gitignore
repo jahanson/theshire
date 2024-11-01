@@ -1,19 +1,26 @@
+# OS generated files
 .DS_Store
 Thumbs.db
+
+# Development environments
 .direnv
-.private/
+.idea/
 .venv/
+.pytest_cache/
+
+# Infrastructure and deployment
 .terraform
-.direnv
 *.tfvars
+kubeconfig*
+*talosconfig.yaml
+omniconfig.yaml
+
+# Security and credentials
+.private/
 .decrypted~*
 *.agekey
 *.pub
 *.key
 *.pem
-kubeconfig*
-*talosconfig.yaml
-omniconfig.yaml
-config.xml
-.idea/
 *.secrets
+config.xml
