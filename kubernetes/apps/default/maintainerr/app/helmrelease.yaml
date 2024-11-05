@@ -32,7 +32,7 @@ spec:
           app:
             image:
               repository: ghcr.io/jorenn92/maintainerr
-              tag: 2.1.2@sha256:bb08c801f407abe9388dd35faecf9c4d4fc5be3b6021057bff3c1da5acf13ef5
+              tag: 2.2.0@sha256:fbb2c0341b8af502e4488f3664e34992f24947708c7dac10dcbee592f99a946c
             env:
               TZ: America/Chicago
             resources:
