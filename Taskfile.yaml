@@ -7,6 +7,8 @@ vars:
   CLUSTER_SETTINGS_FILE: "{{.CLUSTER_DIR}}/flux/vars/cluster-settings.env"
   K8S_CLUSTER: '{{.K8S_CLUSTER | default "theshire"}}'
   K8S_CLUSTER_DIR: '{{.KUBERNETES_DIR}}'
+  CLUSTER: '{{.CLUSTER | default "theshire"}}'
+  CLUSTER_DIR: '{{.KUBERNETES_DIR}}'
 
 env:
   KUBECONFIG: "{{.ROOT_DIR}}/kubeconfig"
