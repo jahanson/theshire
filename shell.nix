@@ -19,5 +19,6 @@ pkgs.mkShell {
     age
     mqttui
     kustomize
+    yq-go
   ];
 }
