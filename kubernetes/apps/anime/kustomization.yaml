@@ -9,5 +9,5 @@ resources:
   - ./jellyfin/ks.yaml    # sqlite
   - ./jellyseerr/ks.yaml  # sqlite
   - ./radarr/ks.yaml      # postgres
-  # - ./shoko/ks.yaml       # sqlite
+  - ./shoko/ks.yaml       # sqlite
   - ./sonarr/ks.yaml      # postgres
