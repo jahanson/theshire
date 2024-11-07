@@ -12,6 +12,7 @@ resources:
   - ./descheduler/ks.yaml
   - ./dnsimple-webhook-rbac.yaml
   - ./fstrim/ks.yaml
+  - ./generic-device-plugin/ks.yaml
   - ./kubelet-csr-approver/ks.yaml
   - ./metrics-server/ks.yaml
   - ./node-feature-discovery/ks.yaml
