@@ -262,7 +262,7 @@ spec:
         victoria-single:
           # renovate: depName="VictoriaMetrics - single-node"
           gnetId: 10229
-          revision: 36
+          revision: 37
           datasource: Prometheus
       postgres:
         crunchy-pgbackrest:
