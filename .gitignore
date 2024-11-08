@@ -24,3 +24,6 @@ omniconfig.yaml
 *.pem
 *.secrets
 config.xml
+
+# syncthing
+**/*sync-conflict*
