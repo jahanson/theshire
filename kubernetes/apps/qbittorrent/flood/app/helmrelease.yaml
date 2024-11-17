@@ -43,7 +43,7 @@ spec:
           app:
             image:
               repository: jesec/flood
-              tag: master@sha256:8a18a3509a6c1557b769873a1ef85dcd5fa4cbce1a939be2c6c87f97eb79de45
+              tag: master@sha256:7b0f2b863434946260621b037d293130acb9f5d9248071408c641b858ffacccf
             envFrom:
               - secretRef:
                   name: flood-secret
