@@ -23,8 +23,9 @@
       "(^|/)\\.taskfiles/.+\\.ya?ml(?:\\.j2)?$"
     ]
   },
-  "regexManagers": [
+  "customManagers": [
     {
+      "customType": "regex",
       "description": [
         "Process CRD dependencies - Chart and Github Release are the same version"
       ],
@@ -35,15 +36,17 @@
       "datasourceTemplate": "helm"
     },
     {
+      "customType": "regex",
       "description": ["Generic Docker image Regex manager"],
       "fileMatch": ["infrastructure/.+\\.ya?ml$", "infrastructure/.+\\.tf$"],
       "matchStrings": [
-        "# renovate: docker-image( versioning=(?<versioning>.*=?))?\n .*[:|=] \"?(?<depName>.*?):(?<currentValue>[^\"\n]*=?)\"?"
+        '# renovate: docker-image( versioning=(?<versioning>.*=?))?\n .*[:|=] "?(?<depName>.*?):(?<currentValue>[^"\n]*=?)"?'
       ],
       "datasourceTemplate": "docker",
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
     },
     {
+      "customType": "regex",
       "description": ["Raw GitHub URL Regex manager"],
       "fileMatch": ["infrastructure/.+\\.ya?ml$", "kubernetes/.+\\.ya?ml$"],
       "matchStrings": [
@@ -69,24 +72,24 @@
     {
       "description": "Flux Group",
       "groupName": "Flux",
-      "matchPackagePatterns": ["^flux", "^ghcr.io/fluxcd/"],
       "matchDatasources": ["docker", "github-tags"],
       "versioning": "semver",
       "group": {
         "commitMessageTopic": "{{{groupName}}} group"
       },
-      "separateMinorPatch": true
+      "separateMinorPatch": true,
+      "matchPackageNames": ["/^flux/", "/^ghcr.io/fluxcd//"]
     },
     {
       "description": "Mastodon images",
       "groupName": "Mastodon",
-      "matchPackagePatterns": ["mastodon", "^ghcr.io/mastodon/"],
       "matchDatasources": ["docker", "github-tags"],
       "versioning": "semver",
       "group": {
         "commitMessageTopic": "{{{groupName}}} group"
       },
-      "separateMinorPatch": true
+      "separateMinorPatch": true,
+      "matchPackageNames": ["/mastodon/", "/^ghcr.io/mastodon//"]
     },
     {
       "description": "1Password Connect images",
@@ -104,12 +107,12 @@
     {
       "description": "Rook-Ceph image and chart",
       "groupName": "Rook Ceph",
-      "matchPackagePatterns": ["rook.ceph"],
       "matchDatasources": ["docker", "helm"],
       "group": {
         "commitMessageTopic": "{{{groupName}}} group"
       },
-      "separateMinorPatch": true
+      "separateMinorPatch": true,
+      "matchPackageNames": ["/rook.ceph/"]
     },
     {
       "description": "Cilium image and chart",
@@ -128,10 +131,7 @@
     {
       "description": "External Snapshotter charts",
       "groupName": "External Snapshotter",
-      "matchPackageNames": [
-        "snapshot-controller",
-        "snapshot-validation-webhook"
-      ],
+      "matchPackageNames": ["snapshot-controller", "snapshot-validation-webhook"],
       "matchDatasources": ["helm"],
       "group": {
         "commitMessageTopic": "{{{groupName}}} group"
@@ -141,23 +141,22 @@
     {
       "description": "Thanos image and chart - versions do not match",
       "groupName": "Thanos",
-      "matchPackagePatterns": ["quay.io/thanos/thanos", "thanos"],
       "matchDatasources": ["docker", "github-releases", "helm"],
       "matchUpdateTypes": ["minor", "patch"],
       "group": {
         "commitMessageTopic": "{{{groupName}}} group"
-      }
+      },
+      "matchPackageNames": ["/quay.io/thanos/thanos/", "/thanos/"]
     },
     {
       "description": "Vector image and chart - versions do not match",
       "groupName": "Vector",
-      "matchPackagePatterns": ["vector"],
       "matchDatasources": ["docker", "github-releases", "helm"],
       "matchUpdateTypes": ["minor", "patch"],
       "group": {
         "commitMessageTopic": "{{{groupName}}} group"
-      }
+      },
+      "matchPackageNames": ["/vector/"]
     }
-    // Version strategies
   ]
 }
