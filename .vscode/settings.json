@@ -1,32 +1,41 @@
 {
   "ansible.validation.lint.arguments": "-c .ansible-lint",
   "files.associations": {
-      "*.json5": "jsonc",
-      "**/ansible/**/*.yaml": "ansible",
-      "**/ansible/**/*.sops.yaml": "yaml",
-      "**/ansible/**/inventory/**/*.yaml": "yaml",
-      "**/kubernetes/**/*.sops.toml": "plaintext"
+    "*.json5": "jsonc",
+    "**/ansible/**/*.yaml": "ansible",
+    "**/ansible/**/*.sops.yaml": "yaml",
+    "**/ansible/**/inventory/**/*.yaml": "yaml",
+    "**/kubernetes/**/*.sops.toml": "plaintext",
+    "*.hujson": "jsonc"
   },
   "material-icon-theme.folders.associations": {
-      ".taskfiles": "utils",
-      "bootstrap": "import",
-      "charts": "kubernetes",
-      "hack": "scripts",
-      "repositories": "database",
-      "vars": "other",
-      // namespaces
-      "cert-manager": "guard",
-      "external-secrets": "keys",
-      "kube-system": "kubernetes",
-      "monitoring": "event",
-      "networking": "connection",
-      "rook-ceph": "dump",
+    ".taskfiles": "utils",
+    "bootstrap": "import",
+    "charts": "kubernetes",
+    "hack": "scripts",
+    "repositories": "database",
+    "vars": "other",
+    // namespaces
+    "cert-manager": "guard",
+    "external-secrets": "keys",
+    "kube-system": "kubernetes",
+    "monitoring": "event",
+    "networking": "connection",
+    "rook-ceph": "dump"
   },
   "yaml.schemaStore.enable": true,
   "yaml.schemas": {
     "ansible": "ansible/**/*.yaml",
     "kubernetes": "kubernetes/**/*.yaml"
   },
+  "json.schemas": [
+    {
+      "fileMatch": ["*.hujson"],
+      "schema": {
+        "allowTrailingCommas": true
+      }
+    }
+  ],
   "editor.fontFamily": "FiraCode Nerd Font",
   "editor.fontLigatures": true,
   "editor.bracketPairColorization.enabled": true,
@@ -35,9 +44,7 @@
   "editor.guides.highlightActiveBracketPair": true,
   "editor.hover.delay": 1500,
   "editor.stickyScroll.enabled": false,
-  "editor.rulers": [
-    100
-  ],
+  "editor.rulers": [100],
   "explorer.autoReveal": false,
   "files.trimTrailingWhitespace": true,
   "ansible.python.interpreterPath": "/usr/bin/python3",
@@ -46,5 +53,5 @@
   "prettier.quoteProps": "preserve",
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
+  }
 }
