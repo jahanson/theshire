@@ -40,7 +40,7 @@
       "description": ["Generic Docker image Regex manager"],
       "fileMatch": ["infrastructure/.+\\.ya?ml$", "infrastructure/.+\\.tf$"],
       "matchStrings": [
-        '# renovate: docker-image( versioning=(?<versioning>.*=?))?\n .*[:|=] "?(?<depName>.*?):(?<currentValue>[^"\n]*=?)"?'
+        "# renovate: docker-image( versioning=(?<versioning>.*=?))?\\\n .*[:|=] \"?(?<depName>.*?):(?<currentValue>[^\"\\n]*=?)\"?"
       ],
       "datasourceTemplate": "docker",
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
