@@ -1,6 +1,6 @@
 {
-  $schema: "https://docs.renovatebot.com/renovate-schema.json",
-  extends: [
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
     "config:recommended",
     "local>jahanson/theshire//.renovate/autoMerge.json5",
     "local>jahanson/theshire//.renovate/commitMessage.json5",
@@ -8,155 +8,155 @@
     "local>jahanson/theshire//.renovate/grafanaDashboards.json5",
     "local>jahanson/theshire//.renovate/groups.json5",
     "local>jahanson/theshire//.renovate/labels.json5",
-    "local>jahanson/theshire//.renovate/packageRules.json5",
+    "local>jahanson/theshire//.renovate/packageRules.json5"
   ],
-  ignorePaths: ["**/*.sops.*", "**/.archive/**", "**/resources/**"],
-  flux: {
-    fileMatch: ["kubernetes/.+\\.ya?ml$"],
+  "ignorePaths": ["**/*.sops.*", "**/.archive/**", "**/resources/**"],
+  "flux": {
+    "fileMatch": ["kubernetes/.+\\.ya?ml$"]
   },
   "helm-values": {
-    fileMatch: ["kubernetes/.+\\.ya?ml$"],
+    "fileMatch": ["kubernetes/.+\\.ya?ml$"]
   },
-  kubernetes: {
-    fileMatch: [
+  "kubernetes": {
+    "fileMatch": [
       "(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$",
-      "(^|/)\\.taskfiles/.+\\.ya?ml(?:\\.j2)?$",
-    ],
+      "(^|/)\\.taskfiles/.+\\.ya?ml(?:\\.j2)?$"
+    ]
   },
-  customManagers: [
+  "customManagers": [
     {
-      customType: "regex",
-      description: [
-        "Process CRD dependencies - Chart and Github Release are the same version",
+      "customType": "regex",
+      "description": [
+        "Process CRD dependencies - Chart and Github Release are the same version"
       ],
-      fileMatch: ["kubernetes/.+\\.ya?ml$"],
-      matchStrings: [
-        "# renovate: registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\n.*?(?<currentValue>[^-\\s]*)\n",
+      "fileMatch": ["kubernetes/.+\\.ya?ml$"],
+      "matchStrings": [
+        "# renovate: registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\n.*?(?<currentValue>[^-\\s]*)\n"
       ],
-      datasourceTemplate: "helm",
+      "datasourceTemplate": "helm"
     },
     {
-      customType: "regex",
-      description: ["Generic Docker image Regex manager"],
-      fileMatch: ["infrastructure/.+\\.ya?ml$", "infrastructure/.+\\.tf$"],
-      matchStrings: [
-        '# renovate: docker-image( versioning=(?<versioning>.*=?))?\n .*[:|=] "?(?<depName>.*?):(?<currentValue>[^"\n]*=?)"?',
+      "customType": "regex",
+      "description": ["Generic Docker image Regex manager"],
+      "fileMatch": ["infrastructure/.+\\.ya?ml$", "infrastructure/.+\\.tf$"],
+      "matchStrings": [
+        '# renovate: docker-image( versioning=(?<versioning>.*=?))?\n .*[:|=] "?(?<depName>.*?):(?<currentValue>[^"\n]*=?)"?'
       ],
-      datasourceTemplate: "docker",
-      versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
     },
     {
-      customType: "regex",
-      description: ["Raw GitHub URL Regex manager"],
-      fileMatch: ["infrastructure/.+\\.ya?ml$", "kubernetes/.+\\.ya?ml$"],
-      matchStrings: [
-        "https:\\/\\/raw.githubusercontent.com\\/(?<depName>[\\w\\d\\-_]+\\/[\\w\\d\\-_]+)\\/(?<currentValue>[\\w\\d\\.\\-_]+)\\/.*",
+      "customType": "regex",
+      "description": ["Raw GitHub URL Regex manager"],
+      "fileMatch": ["infrastructure/.+\\.ya?ml$", "kubernetes/.+\\.ya?ml$"],
+      "matchStrings": [
+        "https:\\/\\/raw.githubusercontent.com\\/(?<depName>[\\w\\d\\-_]+\\/[\\w\\d\\-_]+)\\/(?<currentValue>[\\w\\d\\.\\-_]+)\\/.*"
       ],
-      datasourceTemplate: "github-releases",
-      versioningTemplate: "semver",
-    },
+      "datasourceTemplate": "github-releases",
+      "versioningTemplate": "semver"
+    }
   ],
-  packageRules: [
+  "packageRules": [
     {
-      description: "Use custom versioning for Vector",
-      matchDatasources: ["docker"],
-      matchPackageNames: ["docker.io/timberio/vector"],
-      versioning: "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<compatibility>.*)$",
+      "description": "Use custom versioning for Vector",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["docker.io/timberio/vector"],
+      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<compatibility>.*)$"
     },
     {
-      description: "Use custom versioning for Minio",
-      matchDatasources: ["docker"],
-      versioning: "regex:^RELEASE\\.(?<major>\\d+)-(?<minor>\\d+)-(?<patch>\\d+)T.*Z(-(?<compatibility>.*))?$",
-      matchPackageNames: ["quay.io/minio/minio"],
+      "description": "Use custom versioning for Minio",
+      "matchDatasources": ["docker"],
+      "versioning": "regex:^RELEASE\\.(?<major>\\d+)-(?<minor>\\d+)-(?<patch>\\d+)T.*Z(-(?<compatibility>.*))?$",
+      "matchPackageNames": ["quay.io/minio/minio"]
     },
     {
-      description: "Flux Group",
-      groupName: "Flux",
-      matchDatasources: ["docker", "github-tags"],
-      versioning: "semver",
-      group: {
-        commitMessageTopic: "{{{groupName}}} group",
+      "description": "Flux Group",
+      "groupName": "Flux",
+      "matchDatasources": ["docker", "github-tags"],
+      "versioning": "semver",
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
       },
-      separateMinorPatch: true,
-      matchPackageNames: ["/^flux/", "/^ghcr.io/fluxcd//"],
+      "separateMinorPatch": true,
+      "matchPackageNames": ["/^flux/", "/^ghcr.io/fluxcd//"]
     },
     {
-      description: "Mastodon images",
-      groupName: "Mastodon",
-      matchDatasources: ["docker", "github-tags"],
-      versioning: "semver",
-      group: {
-        commitMessageTopic: "{{{groupName}}} group",
+      "description": "Mastodon images",
+      "groupName": "Mastodon",
+      "matchDatasources": ["docker", "github-tags"],
+      "versioning": "semver",
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
       },
-      separateMinorPatch: true,
-      matchPackageNames: ["/mastodon/", "/^ghcr.io/mastodon//"],
+      "separateMinorPatch": true,
+      "matchPackageNames": ["/mastodon/", "/^ghcr.io/mastodon//"]
     },
     {
-      description: "1Password Connect images",
-      groupName: "1password-connect",
-      matchPackageNames: [
+      "description": "1Password Connect images",
+      "groupName": "1password-connect",
+      "matchPackageNames": [
         "docker.io/1password/connect-sync",
-        "docker.io/1password/connect-api",
+        "docker.io/1password/connect-api"
       ],
-      matchDatasources: ["docker"],
-      group: {
-        commitMessageTopic: "{{{groupName}}} group",
+      "matchDatasources": ["docker"],
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
       },
-      separateMinorPatch: true,
+      "separateMinorPatch": true
     },
     {
-      description: "Rook-Ceph image and chart",
-      groupName: "Rook Ceph",
-      matchDatasources: ["docker", "helm"],
-      group: {
-        commitMessageTopic: "{{{groupName}}} group",
+      "description": "Rook-Ceph image and chart",
+      "groupName": "Rook Ceph",
+      "matchDatasources": ["docker", "helm"],
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
       },
-      separateMinorPatch: true,
-      matchPackageNames: ["/rook.ceph/"],
+      "separateMinorPatch": true,
+      "matchPackageNames": ["/rook.ceph/"]
     },
     {
-      description: "Cilium image and chart",
-      groupName: "cilium",
-      matchPackageNames: [
+      "description": "Cilium image and chart",
+      "groupName": "cilium",
+      "matchPackageNames": [
         "quay.io/cilium/cilium",
         "quay.io/cilium/operator-generic",
-        "cilium",
+        "cilium"
       ],
-      matchDatasources: ["helm", "docker"],
-      group: {
-        commitMessageTopic: "{{{groupName}}} group",
+      "matchDatasources": ["helm", "docker"],
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
       },
-      separateMinorPatch: true,
+      "separateMinorPatch": true
     },
     {
-      description: "External Snapshotter charts",
-      groupName: "External Snapshotter",
-      matchPackageNames: ["snapshot-controller", "snapshot-validation-webhook"],
-      matchDatasources: ["helm"],
-      group: {
-        commitMessageTopic: "{{{groupName}}} group",
+      "description": "External Snapshotter charts",
+      "groupName": "External Snapshotter",
+      "matchPackageNames": ["snapshot-controller", "snapshot-validation-webhook"],
+      "matchDatasources": ["helm"],
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
       },
-      separateMinorPatch: true,
+      "separateMinorPatch": true
     },
     {
-      description: "Thanos image and chart - versions do not match",
-      groupName: "Thanos",
-      matchDatasources: ["docker", "github-releases", "helm"],
-      matchUpdateTypes: ["minor", "patch"],
-      group: {
-        commitMessageTopic: "{{{groupName}}} group",
+      "description": "Thanos image and chart - versions do not match",
+      "groupName": "Thanos",
+      "matchDatasources": ["docker", "github-releases", "helm"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
       },
-      matchPackageNames: ["/quay.io/thanos/thanos/", "/thanos/"],
+      "matchPackageNames": ["/quay.io/thanos/thanos/", "/thanos/"]
     },
     {
-      description: "Vector image and chart - versions do not match",
-      groupName: "Vector",
-      matchDatasources: ["docker", "github-releases", "helm"],
-      matchUpdateTypes: ["minor", "patch"],
-      group: {
-        commitMessageTopic: "{{{groupName}}} group",
+      "description": "Vector image and chart - versions do not match",
+      "groupName": "Vector",
+      "matchDatasources": ["docker", "github-releases", "helm"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
       },
-      matchPackageNames: ["/vector/"],
-    },
-  ],
+      "matchPackageNames": ["/vector/"]
+    }
+  ]
 }
