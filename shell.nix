@@ -15,8 +15,6 @@ pkgs.mkShell {
     gitleaks
     helmfile
     k9s
-    krew
-    kubectl
     kubevirt
     kubernetes-helm
     pre-commit
@@ -25,5 +23,6 @@ pkgs.mkShell {
     mqttui
     kustomize
     yq-go
+    go-task
   ];
 }
