@@ -66,12 +66,6 @@ spec:
               capabilities:
                 drop:
                   - ALL
-            resources:
-              requests:
-                cpu: 100m
-                memory: 1024Mi
-              limits:
-                memory: 8Gi
     defaultPodOptions:
       nodeSelector: # ~~testing~~
         kubernetes.io/hostname: gandalf-01
