@@ -74,7 +74,7 @@ spec:
                 memory: 8Gi
     defaultPodOptions:
       nodeSelector: # ~~testing~~
-        kubernetes.io/hostname: shadowfax-01
+        kubernetes.io/hostname: gandalf-01
       securityContext:
         runAsNonRoot: true
         runAsUser: 568
