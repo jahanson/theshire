@@ -12,7 +12,6 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: volsync
-    - name: ollama
   path: ./kubernetes/apps/ai/open-webui/app
   prune: true
   sourceRef:
