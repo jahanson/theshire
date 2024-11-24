@@ -29,6 +29,7 @@ resources:
   - kubernetes-sigs-metrics-server.yaml
   - kubernetes-sigs-nfd.yaml
   - kyverno.yaml
+  - mariadb.yaml
   - nvidia.yaml
   - openebs.yaml
   - piraeus.yaml
