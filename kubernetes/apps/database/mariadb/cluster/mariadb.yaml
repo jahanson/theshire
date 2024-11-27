@@ -11,9 +11,9 @@ spec:
   storage:
     size: 5Gi
     storageClassName: openebs-hostpath
-  bootstrapFrom:
-    backupRef:
-      name: mariadb-backup
+  # bootstrapFrom:
+  #   backupRef:
+  #     name: mariadb-backup
   maxScale:
     enabled: true
     kubernetesService:

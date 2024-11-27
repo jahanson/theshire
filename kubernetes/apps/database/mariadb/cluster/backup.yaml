@@ -8,9 +8,22 @@ spec:
   mariaDbRef:
     name: mariadb
   timeZone: "America/Chicago"
-  schedule:
-    cron: "0 * * * *"
-    suspend: false
+  # schedule:
+  #   cron: "0 * * * *"
+  #   suspend: false
+  stagingStorage:
+    persistentVolumeClaim:
+      storageClassName: openebs-hostpath
+      resources:
+        requests:
+          storage: 6Gi
+      accessModes:
+        - ReadWriteOnce
+  podSecurityContext:
+    runAsUser: 568
+    runAsGroup: 568
+    fsGroup: 568
+    fsGroupChangePolicy: OnRootMismatch
   storage:
     s3:
       endpoint: s3.hsn.dev
