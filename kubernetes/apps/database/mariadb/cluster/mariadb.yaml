@@ -1,0 +1,38 @@
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/k8s.mariadb.com/mariadb_v1alpha1.json
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: MariaDB
+metadata:
+  name: &name mariadb
+spec:
+  # renovate: datasource=docker depName=docker.io/library/mariadb
+  image: docker.io/library/mariadb:11.6.2
+  replicas: 3
+  storage:
+    size: 5Gi
+    storageClassName: openebs-hostpath
+  bootstrapFrom:
+    backupRef:
+      name: mariadb-backup
+  maxScale:
+    enabled: true
+    kubernetesService:
+      type: LoadBalancer
+      metadata:
+        annotations:
+          io.cilium/lb-ipam-ips: 10.1.1.39
+    connection:
+      secretName: mxs-connection
+      port: 3306
+  galera:
+    enabled: true
+  podSecurityContext:
+    runAsUser: 568
+    runAsGroup: 568
+    fsGroup: 568
+    fsGroupChangePolicy: OnRootMismatch
+  service:
+    type: LoadBalancer
+    metadata:
+      annotations:
+        io.cilium/lb-ipam-ips: 10.1.1.33
