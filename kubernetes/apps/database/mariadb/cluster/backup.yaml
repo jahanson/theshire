@@ -8,9 +8,9 @@ spec:
   mariaDbRef:
     name: mariadb
   timeZone: "America/Chicago"
-  # schedule:
-  #   cron: "0 * * * *"
-  #   suspend: false
+  schedule:
+    cron: "0 * * * *"
+    suspend: false
   stagingStorage:
     persistentVolumeClaim:
       storageClassName: openebs-hostpath
