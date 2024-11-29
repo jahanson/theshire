@@ -94,7 +94,7 @@ spec:
       nginxconfig:
         globalMounts:
           - path: /etc/nginx/http.d
-      logs:
+      ptlogs:
         globalMounts:
           - path: /app/storage/logs
       tmp:
