@@ -1,0 +1,89 @@
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/k8s.mariadb.com/database_v1alpha1.json
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Database
+metadata:
+  name: pterodactyl
+spec:
+  mariaDbRef:
+    name: mariadb
+    namespace: database
+  characterSet: utf8
+  collate: utf8_general_ci
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/k8s.mariadb.com/user_v1alpha1.json
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: User
+metadata:
+  name: pterodactyl
+spec:
+  mariaDbRef:
+    name: mariadb
+    namespace: database
+  passwordSecretKeyRef:
+    name: pterodactyl-secret
+    key: DB_PASSWORD
+  maxUserConnections: 20
+  host: "%"
+  cleanupPolicy: Delete
+
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/k8s.mariadb.com/grant_v1alpha1.json
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Grant
+metadata:
+  name: grant-pterodactyl
+spec:
+  mariaDbRef:
+    name: mariadb
+    namespace: database
+  privileges:
+    - "SELECT"
+    - "INSERT"
+    - "UPDATE"
+  database: "pterodactyl"
+  table: "*"
+  username: pterodactyl
+  grantOption: true
+  host: "%"
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/k8s.mariadb.com/backup_v1alpha1.json
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Backup
+metadata:
+  name: &name mariadb-pterodactyl-backup
+  namespace: database
+spec:
+  mariaDbRef:
+    name: mariadb
+    namespace: database
+  timeZone: "America/Chicago"
+  schedule:
+    cron: "0 * * * *"
+    suspend: false
+  stagingStorage:
+    persistentVolumeClaim:
+      storageClassName: openebs-hostpath
+      resources:
+        requests:
+          storage: 6Gi
+      accessModes:
+        - ReadWriteOnce
+  podSecurityContext:
+    runAsUser: 568
+    runAsGroup: 568
+    fsGroup: 568
+    fsGroupChangePolicy: OnRootMismatch
+  databases:
+    - pterodactyl
+  storage:
+    s3:
+      endpoint: s3.hsn.dev
+      bucket: mariadb
+      prefix: pterodactyl/
+      accessKeyIdSecretKeyRef:
+        name: mariadb-secret
+        key: AWS_ACCESS_KEY_ID
+      secretAccessKeySecretKeyRef:
+        name: mariadb-secret
+        key: AWS_SECRET_ACCESS_KEY

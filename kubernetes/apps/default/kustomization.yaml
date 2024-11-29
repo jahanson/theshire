@@ -18,6 +18,7 @@ resources:
   - ./overseerr/ks.yaml
   - ./plex/ks.yaml
   - ./prowlarr/ks.yaml
+  - ./pterodactyl/ks.yaml
   - ./radarr/ks.yaml
   - ./recyclarr/ks.yaml
   - ./redlib/ks.yaml
