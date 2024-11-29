@@ -88,11 +88,12 @@ spec:
         existingClaim: *app
         globalMounts:
           - path: /app
-            readOnly: false
-          - path: /etc/nginx/http.d
-            readOnly: false
+      certs:
+        globalMounts:
           - path: /etc/letsencrypt
-            readOnly: false
+      nginxconfig:
+        globalMounts:
+          - path: /etc/nginx/http.d
       logs:
         globalMounts:
           - path: /app/storage/logs
