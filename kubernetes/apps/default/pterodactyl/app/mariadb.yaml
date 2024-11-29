@@ -38,9 +38,7 @@ spec:
     name: mariadb
     namespace: database
   privileges:
-    - "SELECT"
-    - "INSERT"
-    - "UPDATE"
+    - ALL PRIVILEGES
   database: "pterodactyl"
   table: "*"
   username: pterodactyl
