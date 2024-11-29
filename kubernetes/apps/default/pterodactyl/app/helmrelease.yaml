@@ -87,9 +87,14 @@ spec:
       config:
         existingClaim: *app
         globalMounts:
-          - path: /app/var
-          - path: /app/storage/logs
+          - path: /app
+            readOnly: false
           - path: /etc/nginx/http.d
+            readOnly: false
           - path: /etc/letsencrypt
+            readOnly: false
+      logs:
+        globalMounts:
+          - path: /app/storage/logs
       tmp:
         type: emptyDir
