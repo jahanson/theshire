@@ -144,6 +144,11 @@ spec:
         - jellyseerr
       password:
         type: AlphaNumeric
+    - name: ptero
+      databases:
+        - ptero
+      password:
+        type: AlphaNumeric
 
 
   backups:
