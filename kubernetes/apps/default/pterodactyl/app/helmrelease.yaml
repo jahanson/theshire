@@ -86,16 +86,14 @@ spec:
     persistence:
       config:
         existingClaim: *app
-        globalMounts:
-          - path: /app
-      certs:
-        globalMounts:
-          - path: /etc/letsencrypt
-      nginxconfig:
-        globalMounts:
-          - path: /etc/nginx/http.d
-      ptlogs:
-        globalMounts:
-          - path: /app/storage/logs
-      tmp:
-        type: emptyDir
+        advancedMounts:
+          pterodactyl:
+            app:
+              - subPath: "config"
+                path: "/app/var"
+              - subPath: "nginx"
+                path: "/etc/nginx/http.d"
+              - subPath: "logs"
+                path: "/app/storage/logs"
+              - subPath: "letsencrypt"
+                path: "/etc/letsencrypt"
