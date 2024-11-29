@@ -6,5 +6,5 @@ resources:
   - ../../../../templates/volsync
   - ../../../../templates/gatus/external
   - ./externalsecret.yaml
-  # - ./helmrelease.yaml
+  - ./helmrelease.yaml
   - ./mariadb.yaml
