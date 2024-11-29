@@ -28,6 +28,7 @@ spec:
     s3:
       endpoint: s3.hsn.dev
       bucket: mariadb
+      prefix: full/
       accessKeyIdSecretKeyRef:
         name: mariadb-secret
         key: AWS_ACCESS_KEY_ID
