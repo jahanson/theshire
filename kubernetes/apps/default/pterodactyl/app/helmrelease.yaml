@@ -90,7 +90,7 @@ spec:
           pterodactyl:
             app:
               - subPath: "config"
-                path: "/app"
+                path: "/app/var"
               - subPath: "nginx"
                 path: "/etc/nginx/http.d"
               - subPath: "applogs"
