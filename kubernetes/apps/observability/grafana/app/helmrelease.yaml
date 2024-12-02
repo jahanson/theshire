@@ -239,7 +239,7 @@ spec:
         prometheus:
           # renovate: depName="Prometheus"
           gnetId: 19105
-          revision: 5
+          revision: 6
           datasource: Prometheus
         victoria-agent:
           # renovate: depName="VictoriaMetrics - vmagent"
