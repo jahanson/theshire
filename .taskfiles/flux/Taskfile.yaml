@@ -18,6 +18,20 @@ tasks:
           | xargs -P 4 -L 1 bash -c \
             'kubectl -n $0 annotate kustomization/$1 reconcile.fluxcd.io/requestedAt="$(date +%s)" --field-manager=flux-client-side-apply --overwrite'
 
+  ks-suspend:
+    desc: Suspend all Flux Kustomizations
+    cmds:
+      - |
+        flux get kustomizations --all-namespaces --no-header | awk '{print $1, $2}' \
+          | xargs -L 1 bash -c 'flux -n $0 suspend kustomization $1'
+
+  ks-resume:
+    desc: Resume all Flux Kustomizations
+    cmds:
+      - |
+        flux get kustomizations --all-namespaces --no-header | awk '{print $1, $2}' \
+          | xargs -L 1 bash -c 'flux -n $0 resume kustomization $1'
+
   hr-sync:
     desc: Sync all Flux HelmReleases
     cmds:
