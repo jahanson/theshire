@@ -29,8 +29,6 @@ spec:
       env:
         - name: CODER_ACCESS_URL
           value: https://coder.hsn.dev
-        - name: CODER_WILDCARD_ACCESS_URL
-          value: "*.coder.hsn.dev"
         - name: CODER_PROMETHEUS_ENABLE
           value: "true"
       envFrom:
@@ -44,4 +42,3 @@ spec:
           external-dns.alpha.kubernetes.io/target: external.hsn.dev
 
         host: "coder.hsn.dev"
-        wildcardHost: "*.coder.hsn.dev"
