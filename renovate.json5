@@ -2,6 +2,12 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended",
+    ":automergeBranch",
+    ":dependencyDashboard",
+    ":disableRateLimiting",
+    ":skipStatusChecks",
+    ":timezone(America/Chicago)",
+    "docker:enableMajor",
     "local>jahanson/theshire//.renovate/autoMerge.json5",
     "local>jahanson/theshire//.renovate/commitMessage.json5",
     "local>jahanson/theshire//.renovate/customManagers.json5",
