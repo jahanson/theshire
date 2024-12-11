@@ -76,8 +76,6 @@ spec:
               readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
     defaultPodOptions:
-      nodeSelector: # ~~testing~~
-        kubernetes.io/hostname: gandalf-01
       securityContext:
         runAsNonRoot: true
         runAsUser: 568
@@ -120,7 +118,7 @@ spec:
           - readOnly: true
       media:
         type: nfs
-        server: 10.1.1.13
+        server: 10.1.1.61
         path: /eru/media
         globalMounts:
           - path: /data/nas-media

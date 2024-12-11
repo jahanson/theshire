@@ -105,7 +105,7 @@ spec:
         type: emptyDir
       media:
         type: nfs
-        server: 10.1.1.13
+        server: 10.1.1.61
         path: /eru/media
         globalMounts:
           - path: /data/nas-media
@@ -126,4 +126,3 @@ spec:
           - path: /scripts/refresh-series.sh
             subPath: refresh-series.sh
             readOnly: true
-

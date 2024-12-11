@@ -76,7 +76,7 @@ spec:
     persistence:
       media:
         type: nfs
-        server: 10.1.1.13
+        server: 10.1.1.61
         path: /eru/media
         advancedMounts:
           unpackerr:
