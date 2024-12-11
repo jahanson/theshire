@@ -76,6 +76,17 @@ spec:
         supplementalGroups: [10000]
         seccompProfile: { type: RuntimeDefault }
       terminationGracePeriodSeconds: 300
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app.kubernetes.io/name
+                      operator: In
+                      values: ["sabnzbd"]
+                topologyKey: kubernetes.io/hostname
     service:
       app:
         controller: *app
