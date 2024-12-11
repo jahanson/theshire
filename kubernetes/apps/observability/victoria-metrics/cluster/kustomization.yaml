@@ -5,5 +5,4 @@ kind: Kustomization
 resources:
   - vmagent.yaml
   - vmalert.yaml
-  - vmscrapeconfig.yaml
   - vmsingle.yaml

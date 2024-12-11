@@ -1,2 +1,2 @@
 ---
-providerRegex: ^bilbo|^frodo|^sam|^merry|^pippin|^rosie|^gandalf-01$
+providerRegex: ^bilbo|^frodo|^sam|^merry|^pippin|^rosie$
