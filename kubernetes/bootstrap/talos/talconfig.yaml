@@ -74,42 +74,6 @@ nodes:
     networkInterfaces:
       - interface: eno1
         dhcp: true
-  - hostname: gandalf-01
-    disableSearchDomain: true
-    ipAddress: 10.1.1.68
-    controlPlane: false
-    installDisk: /dev/sda
-    networkInterfaces:
-      - interface: enp5s0
-        dhcp: true
-
-  - hostname: shadowfax-01
-    disableSearchDomain: true
-    ipAddress: 10.1.1.69
-    controlPlane: false
-    installDiskSelector:
-      busPath: /pci0000:00/0000:00:01.1/0000:02:00.0/virtio6/host0/target0:0:0/0:0:0:1/
-    networkInterfaces:
-      - interface: enp5s0
-        dhcp: true
-    patches:
-      - |-
-        machine:
-          sysctls:
-            net.core.bpf_jit_harden: 1
-
-    kernelModules:
-      - name: nvidia
-      - name: nvidia_uvm
-      - name: nvidia_drm
-      - name: nvidia_modeset
-    schematic:
-      customization:
-        systemExtensions:
-          officialExtensions:
-            - siderolabs/amd-ucode
-            - siderolabs/nonfree-kmod-nvidia-production
-            - siderolabs/nvidia-container-toolkit-production
 
 worker:
   schematic:
