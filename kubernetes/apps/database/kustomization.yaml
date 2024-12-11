@@ -10,4 +10,4 @@ resources:
   - ./dragonfly/ks.yaml
   - ./emqx/ks.yaml
   - ./influxdb/ks.yaml
-  - ./mariadb/ks.yaml
+  # - ./mariadb/ks.yaml
