@@ -24,5 +24,6 @@ pkgs.mkShell {
     kustomize
     yq-go
     go-task
+    kubectl
   ];
 }
