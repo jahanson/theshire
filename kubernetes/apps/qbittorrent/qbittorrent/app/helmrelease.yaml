@@ -67,8 +67,6 @@ spec:
                 drop:
                   - ALL
     defaultPodOptions:
-      nodeSelector: # ~~testing~~
-        kubernetes.io/hostname: gandalf-01
       securityContext:
         runAsNonRoot: true
         runAsUser: 568
@@ -122,7 +120,7 @@ spec:
           - path: /tmp
       media:
         type: nfs
-        server: gandalf.jahanson.tech
+        server: 10.1.1.61
         path: /eru/media
         advancedMounts:
           qbittorrent:
