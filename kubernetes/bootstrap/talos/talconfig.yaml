@@ -24,6 +24,12 @@ nodes:
     networkInterfaces:
       - interface: eno1
         dhcp: true
+    schematic:
+      customization:
+        systemExtensions:
+          officialExtensions:
+            - siderolabs/intel-ucode
+            - siderolabs/i915-ucode
 
   - hostname: frodo
     disableSearchDomain: true
@@ -34,6 +40,12 @@ nodes:
     networkInterfaces:
       - interface: eno1
         dhcp: true
+    schematic:
+      customization:
+        systemExtensions:
+          officialExtensions:
+            - siderolabs/intel-ucode
+            - siderolabs/i915-ucode
 
   - hostname: sam
     disableSearchDomain: true
@@ -44,6 +56,12 @@ nodes:
     networkInterfaces:
       - interface: eno1
         dhcp: true
+    schematic:
+      customization:
+        systemExtensions:
+          officialExtensions:
+            - siderolabs/intel-ucode
+            - siderolabs/i915-ucode
 
   - hostname: pippin
     disableSearchDomain: true
@@ -54,16 +72,39 @@ nodes:
     networkInterfaces:
       - interface: eno1
         dhcp: true
+    schematic:
+      customization:
+        systemExtensions:
+          officialExtensions:
+            - siderolabs/intel-ucode
+            - siderolabs/i915-ucode
 
   - hostname: merry
     disableSearchDomain: true
     ipAddress: 10.1.1.66
     controlPlane: false
     installDiskSelector:
-      busPath: /pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/
+      wwid: eui.0025385381b04243
     networkInterfaces:
       - interface: eno1
         dhcp: true
+    patches:
+      - |-
+        machine:
+          sysctls:
+            net.core.bpf_jit_harden: 1
+    kernelModules:
+      - name: nvidia
+      - name: nvidia_uvm
+      - name: nvidia_drm
+      - name: nvidia_modeset
+    schematic:
+      customization:
+        systemExtensions:
+          officialExtensions:
+            - siderolabs/amd-ucode
+            - siderolabs/nonfree-kmod-nvidia-production
+            - siderolabs/nvidia-container-toolkit-production
 
   - hostname: rosie
     disableSearchDomain: true
@@ -74,16 +115,18 @@ nodes:
     networkInterfaces:
       - interface: eno1
         dhcp: true
+    schematic:
+      customization:
+        systemExtensions:
+          officialExtensions:
+            - siderolabs/intel-ucode
+            - siderolabs/i915-ucode
 
 worker:
   schematic:
     customization:
       extraKernelArgs:
         - net.ifnames=1
-      systemExtensions:
-        officialExtensions:
-          - siderolabs/intel-ucode
-          - siderolabs/i915-ucode
   patches:
     # hugepages
     - &hugepages |-
@@ -173,10 +216,6 @@ controlPlane:
     customization:
       extraKernelArgs:
         - net.ifnames=1
-      systemExtensions:
-        officialExtensions:
-          - siderolabs/intel-ucode
-          - siderolabs/i915-ucode
   patches:
     # hugepages
     - *hugepages
