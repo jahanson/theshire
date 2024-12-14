@@ -33,7 +33,6 @@ spec:
     resources:
       requests:
         memory: "64Mi"
-        cpu: "500m"
       limits:
         memory: 1Gi
     service:
