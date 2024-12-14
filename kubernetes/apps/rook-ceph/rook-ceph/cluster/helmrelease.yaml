@@ -54,6 +54,8 @@ spec:
         modules:
           - name: pg_autoscaler
             enabled: true
+          - name: nfs
+            enabled: false
       network:
         provider: host
         connections:
