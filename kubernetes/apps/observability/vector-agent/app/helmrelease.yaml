@@ -36,7 +36,6 @@ spec:
         cpu: "500m"
       limits:
         memory: 1Gi
-        cpu: "6000m"
     service:
       ports:
         - name: prom-exporter
