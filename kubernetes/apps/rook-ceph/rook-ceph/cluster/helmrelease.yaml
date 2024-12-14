@@ -56,6 +56,11 @@ spec:
             enabled: true
           - name: nfs
             enabled: false
+          - name: rook
+            enabled: true
+          - name: insights
+            enabled: true
+
       network:
         provider: host
         connections:
@@ -70,28 +75,6 @@ spec:
         useAllNodes: true
         useAllDevices: false
         deviceFilter: "nvme[0-9]+n1"
-      resources:
-        mgr:
-          requests:
-            cpu: 10m
-            memory: 512Mi
-          limits:
-            cpu: 2000m
-            memory: 2Gi
-        mon:
-          requests:
-            cpu: 10m
-            memory: 1Gi
-          limits:
-            cpu: 4000m
-            memory: 4Gi
-        osd:
-          requests:
-            cpu: 10m
-            memory: 1Gi
-          limits:
-            cpu: 4000m
-            memory: 3Gi
     cephBlockPools:
       - name: ceph-blockpool
         spec:
@@ -133,9 +116,10 @@ spec:
           metadataServer:
             activeCount: 1
             activeStandby: true
+            priorityClassName: system-cluster-critical
             resources:
               requests:
-                cpu: 10m
+                cpu: 100m
                 memory: 1Gi
               limits:
                 memory: 4Gi
@@ -159,34 +143,4 @@ spec:
       name: csi-ceph-filesystem
       isDefault: false
       deletionPolicy: Delete
-    cephObjectStores:
-      - name: ceph-objectstore
-        spec:
-          metadataPool:
-            failureDomain: host
-            replicated:
-              size: 3
-          dataPool:
-            failureDomain: host
-            erasureCoded:
-              dataChunks: 2
-              codingChunks: 1
-          preservePoolsOnDelete: true
-          gateway:
-            port: 80
-            resources:
-              requests:
-                cpu: 10m
-                memory: 1Gi
-              limits:
-                memory: 2Gi
-            instances: 2
-          healthCheck:
-            bucket:
-              interval: 60s
-        storageClass:
-          enabled: true
-          name: ceph-bucket
-          reclaimPolicy: Delete
-          parameters:
-            region: us-east-1
+    cephObjectStores: []
