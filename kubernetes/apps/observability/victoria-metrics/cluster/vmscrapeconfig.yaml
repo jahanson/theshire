@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://ks.hsn.dev/operator.victoriametrics.com/vmscrapeconfig_v1beta1.json
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMScrapeConfig
+metadata:
+  name: &name shadowfax
+spec:
+  staticConfigs:
+    - targets: ["10.1.1.61:9100"]
+  path: /metrics
+  relabelConfigs:
+    - action: replace
+      targetLabel: job
+      replacement: node-exporter
+    - action: replace
+      targetLabel: instance
+      replacement: shadowfax
+  scheme: http
