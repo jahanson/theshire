@@ -8,6 +8,13 @@ spec:
   # Possible units character: h(ours), d(ays), w(eeks), y(ears). Min 24h.
   retentionPeriod: "6" # months if not specified
   useStrictSecurity: true
+  serviceSpec:
+    spec:
+      type: LoadBalancer
+      loadBalancerIP: 10.1.1.33
+      ports:
+        - name: http
+          port: 8429
   extraArgs:
     dedup.minScrapeInterval: 10s
     maxLabelsPerTimeseries: "40"
