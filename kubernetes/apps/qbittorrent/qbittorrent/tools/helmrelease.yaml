@@ -73,7 +73,7 @@ spec:
               "prune",
               "--exclude-category", "manual",
               "--exclude-category", "music",
-              "--exclude-tag", "added:24h",
+              "--exclude-tag", "added:1d",
               "--include-tag", "unregistered",
               # "--dry-run",
               "--server", "qbittorrent.$(POD_NAMESPACE).svc.cluster.local",
