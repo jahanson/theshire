@@ -39,5 +39,6 @@ resources:
   - spegel-org.yaml
   - stakater.yaml
   - stevehipwell.yaml
+  - tailscale.yaml
   - vector.yaml
   - victoria-metrics.yaml
