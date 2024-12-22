@@ -20,7 +20,7 @@ nodes:
     ipAddress: 10.1.1.62
     controlPlane: true
     installDiskSelector:
-      wwid: naa.55cd2e4150654449
+      busPath: /pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/
     networkInterfaces:
       - interface: eno1
         dhcp: true
@@ -28,15 +28,16 @@ nodes:
       customization:
         systemExtensions:
           officialExtensions:
+            - siderolabs/i915
             - siderolabs/intel-ucode
-            - siderolabs/i915-ucode
+            - siderolabs/glibc
 
   - hostname: frodo
     disableSearchDomain: true
     ipAddress: 10.1.1.63
     controlPlane: true
     installDiskSelector:
-      wwid: naa.55cd2e4150650b54
+      busPath: /pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/
     networkInterfaces:
       - interface: eno1
         dhcp: true
@@ -44,15 +45,16 @@ nodes:
       customization:
         systemExtensions:
           officialExtensions:
+            - siderolabs/i915
             - siderolabs/intel-ucode
-            - siderolabs/i915-ucode
+            - siderolabs/glibc
 
   - hostname: sam
     disableSearchDomain: true
     ipAddress: 10.1.1.64
     controlPlane: true
     installDiskSelector:
-      wwid: naa.55cd2e41521a8480
+      busPath: /pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/
     networkInterfaces:
       - interface: eno1
         dhcp: true
@@ -60,15 +62,16 @@ nodes:
       customization:
         systemExtensions:
           officialExtensions:
+            - siderolabs/i915
             - siderolabs/intel-ucode
-            - siderolabs/i915-ucode
+            - siderolabs/glibc
 
   - hostname: pippin
     disableSearchDomain: true
     ipAddress: 10.1.1.65
     controlPlane: false
     installDiskSelector:
-      wwid: naa.55cd2e4150155dbf
+      busPath: /pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/
     networkInterfaces:
       - interface: eno1
         dhcp: true
@@ -76,8 +79,9 @@ nodes:
       customization:
         systemExtensions:
           officialExtensions:
+            - siderolabs/i915
             - siderolabs/intel-ucode
-            - siderolabs/i915-ucode
+            - siderolabs/glibc
 
   - hostname: merry
     disableSearchDomain: true
@@ -103,15 +107,15 @@ nodes:
         systemExtensions:
           officialExtensions:
             - siderolabs/amd-ucode
-            - siderolabs/nonfree-kmod-nvidia-production
             - siderolabs/nvidia-container-toolkit-production
-
+            - siderolabs/nvidia-open-gpu-kernel-modules-production
+            - siderolabs/glibc
   - hostname: rosie
     disableSearchDomain: true
     ipAddress: 10.1.1.67
     controlPlane: false
     installDiskSelector:
-      wwid: naa.55cd2e4150a6183a
+      busPath: /pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/
     networkInterfaces:
       - interface: eno1
         dhcp: true
@@ -119,8 +123,9 @@ nodes:
       customization:
         systemExtensions:
           officialExtensions:
+            - siderolabs/i915
             - siderolabs/intel-ucode
-            - siderolabs/i915-ucode
+            - siderolabs/glibc
 
 worker:
   schematic:
