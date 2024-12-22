@@ -9,6 +9,7 @@ vars:
   K8S_CLUSTER_DIR: '{{.KUBERNETES_DIR}}'
   CLUSTER: '{{.CLUSTER | default "theshire"}}'
   CLUSTER_DIR: '{{.KUBERNETES_DIR}}'
+  TALOSCONFIG: "{{.K8S_CLUSTER_DIR}}/talos/clusterconfig/talosconfig"
 
 env:
   KUBECONFIG: "{{.ROOT_DIR}}/kubeconfig"
