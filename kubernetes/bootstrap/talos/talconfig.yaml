@@ -20,12 +20,14 @@ nodes:
     ipAddress: 10.1.1.62
     controlPlane: true
     installDiskSelector:
-      busPath: /pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/
+      model: INTEL*
     networkInterfaces:
       - interface: eno1
         dhcp: true
     schematic:
       customization:
+        extraKernelArgs:
+          - net.ifnames=1
         systemExtensions:
           officialExtensions:
             - siderolabs/i915
@@ -37,12 +39,14 @@ nodes:
     ipAddress: 10.1.1.63
     controlPlane: true
     installDiskSelector:
-      busPath: /pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/
+      model: INTEL*
     networkInterfaces:
       - interface: eno1
         dhcp: true
     schematic:
       customization:
+        extraKernelArgs:
+          - net.ifnames=1
         systemExtensions:
           officialExtensions:
             - siderolabs/i915
@@ -54,12 +58,14 @@ nodes:
     ipAddress: 10.1.1.64
     controlPlane: true
     installDiskSelector:
-      busPath: /pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/
+      model: INTEL*
     networkInterfaces:
       - interface: eno1
         dhcp: true
     schematic:
       customization:
+        extraKernelArgs:
+          - net.ifnames=1
         systemExtensions:
           officialExtensions:
             - siderolabs/i915
@@ -71,12 +77,14 @@ nodes:
     ipAddress: 10.1.1.65
     controlPlane: false
     installDiskSelector:
-      busPath: /pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/
+      model: INTEL*
     networkInterfaces:
       - interface: eno1
         dhcp: true
     schematic:
       customization:
+        extraKernelArgs:
+          - net.ifnames=1
         systemExtensions:
           officialExtensions:
             - siderolabs/i915
@@ -104,6 +112,8 @@ nodes:
       - name: nvidia_modeset
     schematic:
       customization:
+        extraKernelArgs:
+          - net.ifnames=1
         systemExtensions:
           officialExtensions:
             - siderolabs/amd-ucode
@@ -115,12 +125,14 @@ nodes:
     ipAddress: 10.1.1.67
     controlPlane: false
     installDiskSelector:
-      busPath: /pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/
+      model: INTEL*
     networkInterfaces:
       - interface: eno1
         dhcp: true
     schematic:
       customization:
+        extraKernelArgs:
+          - net.ifnames=1
         systemExtensions:
           officialExtensions:
             - siderolabs/i915
@@ -128,10 +140,6 @@ nodes:
             - siderolabs/glibc
 
 worker:
-  schematic:
-    customization:
-      extraKernelArgs:
-        - net.ifnames=1
   patches:
     # hugepages
     - &hugepages |-
@@ -217,10 +225,6 @@ worker:
           nameservers:
             - 10.1.1.1
 controlPlane:
-  schematic:
-    customization:
-      extraKernelArgs:
-        - net.ifnames=1
   patches:
     # hugepages
     - *hugepages
