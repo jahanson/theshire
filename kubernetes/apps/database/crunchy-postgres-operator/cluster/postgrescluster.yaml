@@ -178,7 +178,7 @@ spec:
         - name: repo1 # Minio
           s3: &minio
             bucket: "crunchy-main"
-            endpoint: "10.1.1.61"
+            endpoint: "10.1.1.61:9000"
             region: "us-east-1"
           schedules:
             full: "0 1 * * 0" # Sunday at 01:00
