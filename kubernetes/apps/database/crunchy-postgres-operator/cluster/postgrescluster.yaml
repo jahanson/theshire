@@ -168,7 +168,7 @@ spec:
         # Hetzner
         repo2-retention-full-type: "time"
         repo2-retention-full: "7"
-        repo2-path: "/crunchy-pgo"
+        repo2-path: "/hsn-pgb"
         repo2-s3-uri-style: path
       manual:
         repoName: repo1
