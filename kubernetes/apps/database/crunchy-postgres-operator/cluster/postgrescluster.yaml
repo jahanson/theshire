@@ -194,7 +194,7 @@ spec:
             region: "fsn1"
           schedules:
             full: "0 2 * * 0" # Sunday at 02:00
-            incremental: "0 2 * * 1-6/2" # Mon,Wed,Fri at 02:00
+            differential: "0 2 * * 1-6/2" # Mon,Wed,Fri at 02:00
 
   dataSource:
     pgbackrest:
