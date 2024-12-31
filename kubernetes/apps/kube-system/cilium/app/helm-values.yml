@@ -16,7 +16,6 @@ cluster:
   name: theshire
 cni:
   exclusive: false
-# devices: eno+|enp+
 enableRuntimeDeviceDetection: true
 endpointRoutes:
   enabled: true
