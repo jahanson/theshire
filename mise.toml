@@ -2,6 +2,10 @@
 task = "latest"
 
 [env]
-KUBECONFIG="{{config_root}}/kubeconfig)"
+KUBECONFIG="{{config_root}}/kubeconfig"
 SOPS_AGE_KEY_FILE="{{config_root}}/age.key"
 TALOSCONFIG="{{config_root}}/kubernetes/bootstrap/talos/clusterconfig/talosconfig"
+
+[tasks.aider]
+description = "My Aider workflow."
+run = "aider --no-auto-commits --cache-prompts --cache-keepalive-pings 12 --no-suggest-shell-commands --watch-files"
