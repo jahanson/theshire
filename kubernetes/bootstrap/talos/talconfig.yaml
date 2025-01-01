@@ -6,13 +6,16 @@ clusterName: theshire
 talosVersion: v1.9.0
 # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
 kubernetesVersion: 1.31.4
-endpoint: "https://10.1.1.57:6444"
-
-additionalApiServerCertSans:
-  - 10.1.1.57
-
-additionalMachineCertSans:
-  - 10.1.1.57
+endpoint: "https://10.1.1.8:6443"
+additionalApiServerCertSans: &sans
+  - 10.1.1.8  # VIP
+  - 10.1.1.57 # haproxy loadbalancer
+additionalMachineCertSans: *sans
+clusterPodNets:
+  - "10.3.0.0/16"
+clusterSvcNets:
+  - "10.4.0.0/16"
+## Cilium LBPool CIDR 10.1.1.30-49 --> 10.5.0.0/16
 
 nodes:
   - hostname: bilbo
@@ -24,6 +27,8 @@ nodes:
     networkInterfaces:
       - interface: eno1
         dhcp: true
+        vip:
+          ip: 10.1.1.8
     schematic:
       customization:
         extraKernelArgs:
@@ -41,6 +46,8 @@ nodes:
     networkInterfaces:
       - interface: eno1
         dhcp: true
+        vip:
+          ip: 10.1.1.8
     schematic:
       customization:
         extraKernelArgs:
@@ -58,6 +65,8 @@ nodes:
     networkInterfaces:
       - interface: eno1
         dhcp: true
+        vip:
+          ip: 10.1.1.8
     schematic:
       customization:
         extraKernelArgs:
@@ -130,6 +139,19 @@ nodes:
             - siderolabs/intel-ucode
 worker:
   patches:
+    # registries
+    - &registries |-
+        machine:
+          registries:
+            config:
+              registry-1.docker.io:
+                auth:
+                  username: ${dockerUsername}
+                  password: ${dockerPassword}
+              docker.io:
+                auth:
+                  username: ${dockerUsername}
+                  password: ${dockerPassword}
     # hugepages
     - &hugepages |-
         machine:
@@ -215,6 +237,8 @@ worker:
             - 10.1.1.1
 controlPlane:
   patches:
+    # registries
+    - *registries
     # hugepages
     - *hugepages
     # Kubelet local mount

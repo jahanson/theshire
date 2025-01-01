@@ -2,11 +2,11 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: disk-wipe-sam
+  name: disk-wipe-pippin
   namespace: kube-system
 spec:
   restartPolicy: Never
-  nodeName: sam
+  nodeName: pippin
   containers:
     - name: disk-wipe
       image: docker.io/library/alpine:latest
@@ -16,11 +16,7 @@ spec:
       env:
         - name: CEPH_DISK
           value: "/dev/nvme0n1"
-      command:
-        [
-          "/bin/sh",
-          "-c"
-        ]
+      command: ["/bin/sh", "-c"]
       args:
         - apk add --no-cache sgdisk util-linux parted;
           sgdisk --zap-all $CEPH_DISK;
@@ -39,11 +35,11 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: disk-wipe-frodo
+  name: disk-wipe-merry
   namespace: kube-system
 spec:
   restartPolicy: Never
-  nodeName: frodo
+  nodeName: merry
   containers:
     - name: disk-wipe
       image: docker.io/library/alpine:latest
@@ -52,12 +48,8 @@ spec:
       resources: {}
       env:
         - name: CEPH_DISK
-          value: "/dev/nvme0n1"
-      command:
-        [
-          "/bin/sh",
-          "-c"
-        ]
+          value: "/dev/nvme1n1"
+      command: ["/bin/sh", "-c"]
       args:
         - apk add --no-cache sgdisk util-linux parted;
           sgdisk --zap-all $CEPH_DISK;
@@ -76,11 +68,11 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: disk-wipe-bilbo
+  name: disk-wipe-rosie
   namespace: kube-system
 spec:
   restartPolicy: Never
-  nodeName: bilbo
+  nodeName: rosie
   containers:
     - name: disk-wipe
       image: docker.io/library/alpine:latest
@@ -91,11 +83,7 @@ spec:
         - name: CEPH_DISK
           value: "/dev/nvme0n1"
 
-      command:
-        [
-          "/bin/sh",
-          "-c"
-        ]
+      command: ["/bin/sh", "-c"]
       args:
         - apk add --no-cache sgdisk util-linux parted;
           sgdisk --zap-all $CEPH_DISK;
