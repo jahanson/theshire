@@ -139,6 +139,19 @@ nodes:
             - siderolabs/intel-ucode
 worker:
   patches:
+    # registries
+    - &registries |-
+        machine:
+          registries:
+            config:
+              registry-1.docker.io:
+                auth:
+                  username: ${dockerUsername}
+                  password: ${dockerPassword}
+              docker.io:
+                auth:
+                  username: ${dockerUsername}
+                  password: ${dockerPassword}
     # hugepages
     - &hugepages |-
         machine:
@@ -224,6 +237,8 @@ worker:
             - 10.1.1.1
 controlPlane:
   patches:
+    # registries
+    - *registries
     # hugepages
     - *hugepages
     # Kubelet local mount
