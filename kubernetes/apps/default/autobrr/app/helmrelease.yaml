@@ -86,3 +86,12 @@ spec:
                 service:
                   identifier: app
                   port: http
+    persistence:
+      config:
+        existingClaim: autobrr
+      log:
+        type: emptyDir
+        globalMounts:
+          - path: /config/log
+      tmp:
+        type: emptyDir
