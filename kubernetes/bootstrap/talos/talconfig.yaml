@@ -12,10 +12,8 @@ additionalApiServerCertSans: &sans
   - 10.1.1.57 # haproxy loadbalancer
 additionalMachineCertSans: *sans
 clusterPodNets:
-  # - "10.244.0.0/16"
   - "10.3.0.0/16"
 clusterSvcNets:
-  # - "10.96.0.0/12"
   - "10.4.0.0/16"
 ## Cilium LBPool CIDR 10.1.1.30-49 --> 10.5.0.0/16
 

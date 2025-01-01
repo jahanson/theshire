@@ -2,7 +2,7 @@
 
 ## Prerequisites
 ```sh
-brew install helmfile
+mise use helm helmfile
 helm plugin install https://github.com/databus23/helm-diff
 ```
 
@@ -11,14 +11,19 @@ helm plugin install https://github.com/databus23/helm-diff
 ### Bootstrap talos cluster
 
 ```sh
-talosctl apply-config --nodes=10.1.1.61 --file=./kubernetes/bootstrap/talos/clusterconfig/homelab-shadowfax.yaml --insecure
-talosctl bootstrap --nodes=10.1.1.61
+talosctl apply-config --nodes=frodo --file=./kubernetes/bootstrap/talos/clusterconfig/theshire-frodo.yaml --insecure
+talosctl apply-config --nodes=bilbo --file=./kubernetes/bootstrap/talos/clusterconfig/theshire-bilbo.yaml --insecure
+talosctl apply-config --nodes=sam --file=./kubernetes/bootstrap/talos/clusterconfig/theshire-sam.yaml --insecure
+talosctl apply-config --nodes=merry --file=./kubernetes/bootstrap/talos/clusterconfig/theshire-merry.yaml --insecure
+talosctl apply-config --nodes=pippin --file=./kubernetes/bootstrap/talos/clusterconfig/theshire-pippin.yaml --insecure
+talosctl apply-config --nodes=rosie --file=./kubernetes/bootstrap/talos/clusterconfig/theshire-rosie.yaml --insecure
+talosctl bootstrap --nodes=frodo
 ```
 ## CNI & Container Proxy
 
-### Install Cilium & Spegel
+### Install Cilium, csr-approver, coredns, and Prometheus CRDs.
 ```sh
-helmfile apply -f kubernetes/bootstrap/talos/apps/helmfile.yaml
+helmfile apply -f kubernetes/bootstrap/helmfile.yaml
 ```
 
 ## Flux Prep
@@ -35,7 +40,6 @@ _These cannot be applied with `kubectl` in the regular fashion due to be encrypt
 
 ```sh
 sops --decrypt kubernetes/bootstrap/flux/age-key.sops.yaml | kubectl apply -f -
-sops --decrypt kubernetes/bootstrap/flux/git-deploy-key.sops.yaml | kubectl apply -f -
 sops --decrypt kubernetes/flux/vars/cluster-secrets.sops.yaml | kubectl apply -f -
 kubectl apply -f kubernetes/flux/vars/cluster-settings.yaml
 ```
