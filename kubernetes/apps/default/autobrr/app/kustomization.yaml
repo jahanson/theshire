@@ -5,6 +5,6 @@ kind: Kustomization
 resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
-  - ../../../../../shared/templates/volsync
+  - ../../../../templates/volsync
 generatorOptions:
   disableNameSuffixHash: true
