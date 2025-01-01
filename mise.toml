@@ -1,0 +1,18 @@
+[tools]
+helm = "latest"
+helmfile = "latest"
+task = "latest"
+
+[env]
+KUBECONFIG="{{config_root}}/kubeconfig"
+SOPS_AGE_KEY_FILE="{{config_root}}/age.key"
+TALOSDIR="{{config_root}}/kubernetes/bootstrap/talos"
+TALOSCONFIG="{{env['TALOSDIR']}}/clusterconfig/talosconfig"
+
+[tasks.aider]
+description = "My Aider workflow."
+run = "aider --no-auto-commits --cache-prompts --cache-keepalive-pings 12 --no-suggest-shell-commands --watch-files"
+
+[tasks.talhelper-gen]
+description = "Generate talhelper configuration for Talos"
+run = "talhelper genconfig --env-file {{env['TALOSDIR']}}/talenv.sops.yaml --secret-file {{env['TALOSDIR']}}/talsecret.sops.yaml --config-file {{env['TALOSDIR']}}/talconfig.yaml --out-dir {{env['TALOSDIR']}}/clusterconfig"

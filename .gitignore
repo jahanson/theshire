@@ -27,3 +27,6 @@ config.xml
 
 # syncthing
 **/*sync-conflict*
+
+# Aider
+.aider*
