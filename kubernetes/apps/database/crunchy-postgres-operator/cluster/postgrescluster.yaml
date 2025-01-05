@@ -157,6 +157,7 @@ spec:
         - secret:
             name: crunchy-postgres-secret
       global: &backupFlag
+        archive-timeout: "1d"
         compress-type: "bz2"
         compress-level: "9"
         # Minio
