@@ -1,6 +1,8 @@
 [tools]
+flux2 = "latest"
 helm = "latest"
 helmfile = "latest"
+kubectl = "latest"
 task = "latest"
 
 [env]
