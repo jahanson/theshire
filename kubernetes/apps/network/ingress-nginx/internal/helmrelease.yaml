@@ -25,7 +25,6 @@ spec:
       updateStrategy:
         type: RollingUpdate
 
-      allowSnippetAnnotations: true
       enableAnnotationValidations: true
 
       service:

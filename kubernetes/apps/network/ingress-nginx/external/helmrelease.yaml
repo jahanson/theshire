@@ -25,7 +25,6 @@ spec:
       replicaCount: 2
       updateStrategy:
         type: RollingUpdate
-      allowSnippetAnnotations: true
       enableAnnotationValidations: true
       service:
         enabled: true
