@@ -17,7 +17,7 @@ spec:
     metadata:
       annotations:
         external-dns.alpha.kubernetes.io/hostname: postgres.jahanson.tech
-        io.cilium/lb-ipam-ips: 10.1.1.35
+        lbipam.cilium.io/ips: "10.5.0.52"
 
   monitoring:
     pgmonitor:
@@ -215,7 +215,7 @@ spec:
         metadata:
           annotations:
             external-dns.alpha.kubernetes.io/hostname: pgbouncer.jahanson.tech
-            io.cilium/lb-ipam-ips: 10.1.1.36
+            lbipam.cilium.io/ips: "10.5.0.53"
       metadata:
         labels:
           app.kubernetes.io/name: crunchy-postgres-pgbouncer

@@ -18,9 +18,6 @@ spec:
     enabled: true
     kubernetesService:
       type: LoadBalancer
-      metadata:
-        annotations:
-          io.cilium/lb-ipam-ips: 10.1.1.39
     connection:
       secretName: mxs-connection
       port: 3306
@@ -33,6 +30,3 @@ spec:
     fsGroupChangePolicy: OnRootMismatch
   service:
     type: LoadBalancer
-    metadata:
-      annotations:
-        io.cilium/lb-ipam-ips: 10.1.1.33

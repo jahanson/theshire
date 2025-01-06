@@ -31,7 +31,6 @@ spec:
         type: LoadBalancer
         annotations:
           external-dns.alpha.kubernetes.io/hostname: external.hsn.dev
-          io.cilium/lb-ipam-ips: 10.1.1.30
 
       publishService:
         enabled: true

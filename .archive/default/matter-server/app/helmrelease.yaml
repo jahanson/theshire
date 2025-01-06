@@ -58,7 +58,6 @@ spec:
         type: LoadBalancer
         annotations:
           external-dns.alpha.kubernetes.io/hostname: *host
-          io.cilium/lb-ipam-ips: 10.1.1.40
         ports:
           http:
             port: *port
