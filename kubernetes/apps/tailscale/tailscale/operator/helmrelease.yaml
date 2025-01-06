@@ -20,6 +20,15 @@ spec:
     crds: CreateReplace
   upgrade:
     crds: CreateReplace
+  valuesFrom:
+    - kind: Secret
+      name: k8s-operator-oauth-secret
+      valuesKey: OAUTH_CLIENT_ID
+      targetPath: oauth.clientId
+    - kind: Secret
+      name: k8s-operator-oauth-secret
+      valuesKey: OAUTH_CLIENT_SECRET
+      targetPath: oauth.clientSecret
   values:
     operatorConfig:
       defaultTags:

@@ -1,0 +1,14 @@
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/tailscale.com/connector_v1alpha1.json
+apiVersion: tailscale.com/v1alpha1
+kind: Connector
+metadata:
+  name: connector
+spec:
+  hostname: theshire-connector
+  exitNode: true
+  proxyClass: kernel-org-tun
+  subnetRouter:
+    advertiseRoutes:
+      - "10.5.0.0/16" # load-balancers
+      - "10.4.0.0/16" # services
