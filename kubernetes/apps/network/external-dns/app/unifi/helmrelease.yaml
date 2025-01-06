@@ -65,7 +65,7 @@ spec:
     sources: ["ingress", "service"]
     txtOwnerId: theshire
     txtPrefix: k8s.theshire.
-    domainFilters: ["theshire.internal"]
+    domainFilters: ["theshire.internal", "jahanson.tech"]
     serviceMonitor:
       enabled: true
     podAnnotations:
