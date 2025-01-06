@@ -11,7 +11,7 @@ spec:
   serviceSpec:
     spec:
       type: LoadBalancer
-      loadBalancerIP: 10.1.1.33
+      loadBalancerIP: 10.5.0.54
       ports:
         - name: http
           port: 8429

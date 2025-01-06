@@ -92,7 +92,7 @@ spec:
         controller: *app
         type: LoadBalancer
         annotations:
-          lbipam.cilium.io/ips: 10.1.1.51
+          lbipam.cilium.io/ips: 10.5.0.51
         nameOverride: *app
         ports:
           http:
