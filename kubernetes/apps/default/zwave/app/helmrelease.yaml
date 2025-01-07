@@ -92,7 +92,7 @@ spec:
         enabled: true
         className: tailscale
         hosts:
-          - host: &host "{{ Release.Name }}.meerkat-dab.ts.net"
+          - host: &host "{{ .Release.Name }}.meerkat-dab.ts.net"
             paths:
               - path: /
                 service:
