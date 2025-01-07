@@ -94,6 +94,19 @@ spec:
         tls:
           - hosts:
               - *host
+      tailscale:
+        enabled: true
+        className: tailscale
+        hosts:
+          - host: &host "{{ .Release.Name }}.meerkat-dab.ts.net"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - hosts:
+              - *host
     persistence:
       config:
         enabled: true
