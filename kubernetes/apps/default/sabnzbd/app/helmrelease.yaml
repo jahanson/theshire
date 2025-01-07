@@ -47,7 +47,8 @@ spec:
                 sabnzbd.default.svc.cluster,
                 sabnzbd.default.svc.cluster.local,
                 sabz.jahanson.tech,
-                sabnzbd.jahanson.tech
+                sabnzbd.jahanson.tech,
+                sabnzbd.meerkat-dab.ts.net
               CROSS_SEED_ENABLED: true
               CROSS_SEED_HOST: cross-seed.qbittorrent.svc.cluster.local
               CROSS_SEED_PORT: 80
