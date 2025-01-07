@@ -7,6 +7,8 @@ bandwidthManager:
 bpf:
   masquerade: true
   tproxy: true
+bgpControlPlane:
+  enabled: true
 cgroup:
   automount:
     enabled: false
@@ -19,9 +21,9 @@ cni:
 enableRuntimeDeviceDetection: true
 endpointRoutes:
   enabled: true
-hubble:
-  enable: false
 envoy:
+  enabled: false
+hubble:
   enable: false
 ipam:
   mode: kubernetes
@@ -37,6 +39,7 @@ loadBalancer:
   mode: dsr
 localRedirectPolicy: true
 operator:
+  replicas: 2
   rollOutPods: true
 rollOutCiliumPods: true
 routingMode: native
@@ -50,6 +53,8 @@ securityContext:
       - IPC_LOCK
       - SYS_ADMIN
       - SYS_RESOURCE
+      - PERFMON
+      - BPF
       - DAC_OVERRIDE
       - FOWNER
       - SETGID
