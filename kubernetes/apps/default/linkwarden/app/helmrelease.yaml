@@ -31,7 +31,7 @@ spec:
           app:
             image:
               repository: ghcr.io/linkwarden/linkwarden
-              tag: v2.8.4@sha256:8a8e6323508f97ddaa863281b9ff52949fc153eea1ec07cb84539436371caf28
+              tag: v2.9.2@sha256:20a07b21d2cfc464cfa175f8f833803bd92839299baca5cd522c4d23734b8600
             env:
               TIMEZONE: "America/Chicago"
               NEXTAUTH_URL: "https://{{ .Release.Name }}.jahanson.tech/api/v1/auth"
