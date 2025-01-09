@@ -2,14 +2,13 @@
 flux2 = "latest"
 helm = "latest"
 helmfile = "latest"
-kubectl = "latest"
 task = "latest"
 
 [env]
-KUBECONFIG="{{config_root}}/kubeconfig"
-SOPS_AGE_KEY_FILE="{{config_root}}/age.key"
-TALOSDIR="{{config_root}}/kubernetes/bootstrap/talos"
-TALOSCONFIG="{{env['TALOSDIR']}}/clusterconfig/talosconfig"
+KUBECONFIG = "{{config_root}}/kubeconfig"
+SOPS_AGE_KEY_FILE = "{{config_root}}/age.key"
+TALOSDIR = "{{config_root}}/kubernetes/bootstrap/talos"
+TALOSCONFIG = "{{env['TALOSDIR']}}/clusterconfig/talosconfig"
 
 [tasks.aider]
 description = "My Aider workflow."
